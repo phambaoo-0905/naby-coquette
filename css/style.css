@@ -5,29 +5,28 @@
 ==================================================== */
 
 :root {
-  /* Nền trắng tinh khôi theo yêu cầu mới */
+  /* Nền trắng tinh khôi (#ffffff) */
+  --bg-page: #ffffff;
   --bg-white: #ffffff;
-  --bg-body: #ffffff;
-  --bg-soft: #fdf6f7;
 
-  /* Khung màu hồng pastel mã #f1c1c2 */
-  --pink-pastel: #f1c1c2;
-  --bg-card: linear-gradient(150deg, #fce5e6 0%, #f1c1c2 100%);
-  --bg-card-solid: #f1c1c2;
-  --border-pink-card: #e2a6a8;
-  --border-pink-light: rgba(241, 193, 194, 0.6);
-  --border-pink: #f1c1c2;
-  --border-light: rgba(241, 193, 194, 0.6);
-  --border-banner: #f1c1c2;
+  /* Khung màu hồng pastel cực nhạt */
+  --bg-card: linear-gradient(150deg, #fff9fb 0%, #fdf2f6 100%);
+  --bg-card-solid: #fdf3f7;
+  --bg-soft: #fef7f9;
+  --border-pink-light: #f3dce4;
+  --border-pink: #ebd0da;
+  --border-cream: #f3dce4;
+  --border-banner: #f3dce4;
+  --border-light: rgba(243, 220, 228, 0.8);
   --border-dark: #3a2b2e;
 
   --fawn-dark: #3a2b2e;
   --fawn-brown: #6b4d54;
-  --dusty-rose: #a64d62;
+  --dusty-rose: #b2586e;
   --dusty-rose-light: #fae4eb;
-  --ribbon-pink: #f1c1c2;
-  --text-muted: #785a62;
-  --price-color: #a64d62;
+  --ribbon-pink: #f5ccd8;
+  --text-muted: #82696e;
+  --price-color: #b2586e;
 
   --font-script: 'Pinyon Script', cursive;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -44,7 +43,6 @@
 
 body {
   background-color: #ffffff;
-  background-image: none;
   color: var(--fawn-dark);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -53,7 +51,7 @@ body {
 }
 
 /* ====================================================
-   1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR TRẮNG TINH KHÔI)
+   1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR NỀN TRẮNG TINH TẾ)
 ==================================================== */
 .top-navbar {
   position: sticky;
@@ -61,7 +59,7 @@ body {
   background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(241, 193, 194, 0.6);
+  border-bottom: 1px solid var(--border-pink-light);
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -285,22 +283,22 @@ body {
   flex-wrap: wrap;
 }
 .filter-btn {
-  background: #ffffff;
-  border: 1.5px solid #f1c1c2;
+  background: linear-gradient(145deg, #fff9fb 0%, #fdf2f6 100%);
+  border: 1px solid var(--border-pink-light);
   color: var(--fawn-dark);
   padding: 8px 18px;
   border-radius: 20px;
   font-size: 0.88rem;
-  font-weight: 600;
+  font-weight: 500;
   cursor: pointer;
   transition: all 0.2s ease;
   font-family: var(--font-sans);
 }
 .filter-btn:hover,
 .filter-btn.active {
-  background: #f1c1c2;
-  color: var(--fawn-dark);
-  border-color: #e2a6a8;
+  background: var(--dusty-rose);
+  color: #ffffff;
+  border-color: var(--dusty-rose);
 }
 
 /* ====================================================
@@ -316,28 +314,28 @@ body {
 .product-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(150deg, #fce5e6 0%, #f1c1c2 100%);
-  border: 1px solid #e2a6a8;
+  background: linear-gradient(150deg, #fff9fb 0%, #fdf2f6 100%);
+  border: 1px solid var(--border-pink-light);
   border-radius: 14px;
   padding: 10px;
-  box-shadow: 0 4px 16px rgba(241, 193, 194, 0.3);
+  box-shadow: 0 4px 16px rgba(220, 175, 188, 0.07);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(241, 193, 194, 0.5);
-  border-color: #d89698;
+  box-shadow: 0 10px 24px rgba(220, 175, 188, 0.14);
+  border-color: #e8c4d1;
 }
 
 /* Khung ảnh có bo góc nhẹ */
 .product-image-wrap {
   position: relative;
   aspect-ratio: 1 / 1.15;
-  background: #ffffff;
+  background: #fdf5f8;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(243, 220, 228, 0.6);
 }
 .product-image {
   width: 100%;
@@ -420,18 +418,18 @@ body {
   margin-top: auto;
 }
 .btn-add-cart {
-  background: #ffffff;
+  background: #fdf0f4;
   color: var(--dusty-rose);
-  border: 1.5px solid #f1c1c2;
+  border: 1px solid var(--border-pink);
 }
 .btn-add-cart:hover {
-  background: #f1c1c2;
-  color: var(--fawn-dark);
-  border-color: #e2a6a8;
+  background: var(--dusty-rose);
+  color: #ffffff;
+  border-color: var(--dusty-rose);
 }
 .btn-sold-out {
-  background: #faf2f4;
-  color: #bca4aa;
+  background: #faedf1;
+  color: #c0a8af;
   border: 1px solid #ebd4dc;
   cursor: not-allowed;
 }
@@ -440,27 +438,27 @@ body {
    5. PHẦN GIỚI THIỆU ABOUT US (TRÊN NỀN TRẮNG)
 ==================================================== */
 .about-us-section {
-  border-top: 1px solid rgba(241, 193, 194, 0.5);
+  border-top: 1px solid var(--border-pink-light);
   padding: 70px 0 20px;
   margin-top: 40px;
 }
 .about-card-box {
-  background: linear-gradient(150deg, #fce5e6 0%, #f1c1c2 100%);
-  border: 1px solid #e2a6a8;
+  background: linear-gradient(150deg, #fff9fb 0%, #fdf2f6 100%);
+  border: 1px solid var(--border-pink-light);
   border-radius: 24px;
   padding: 50px 60px;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 50px;
   align-items: center;
-  box-shadow: 0 10px 28px rgba(241, 193, 194, 0.35);
+  box-shadow: 0 10px 28px rgba(220, 175, 188, 0.08);
 }
 .about-image-frame {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(58, 43, 46, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 10px 30px rgba(220, 175, 188, 0.12);
+  border: 1px solid var(--border-pink-light);
 }
 .about-img {
   width: 100%;
@@ -497,14 +495,14 @@ body {
   margin-top: 25px;
 }
 .highlight-item {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
   padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid #e2a6a8;
+  border: 1px solid var(--border-pink-light);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--fawn-dark);
-  box-shadow: 0 4px 12px rgba(241, 193, 194, 0.2);
+  box-shadow: 0 4px 12px rgba(220, 175, 188, 0.05);
 }
 
 /* ====================================================
@@ -533,12 +531,12 @@ body {
   max-width: 420px;
   height: 100%;
   background: #ffffff;
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2100;
-  border-left: 2px solid #f1c1c2;
+  border-left: 1px solid var(--border-pink-light);
 }
 .cart-drawer.open {
   right: 0;
@@ -546,7 +544,7 @@ body {
 
 .cart-header {
   padding: 20px 25px;
-  border-bottom: 1px solid rgba(241, 193, 194, 0.6);
+  border-bottom: 1px solid var(--border-pink-light);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -559,7 +557,7 @@ body {
 }
 .btn-close-cart {
   background: none;
-  border: 1px solid #f1c1c2;
+  border: 1px solid var(--border-pink-light);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -672,8 +670,8 @@ body {
    7. FOOTER CHÂN TRANG
 ==================================================== */
 .site-footer {
-  border-top: 1px solid rgba(241, 193, 194, 0.6);
-  background: #ffffff;
+  border-top: 1px solid var(--border-pink-light);
+  background: #fff8fa;
   padding: 35px 20px;
   text-align: center;
   color: var(--text-muted);
@@ -951,18 +949,18 @@ body {
   gap: 20px;
 }
 .standard-card {
-  background: linear-gradient(150deg, #fce5e6 0%, #f1c1c2 100%);
-  border: 1px solid #e2a6a8;
+  background: linear-gradient(150deg, #fff9fb 0%, #fdf2f6 100%);
+  border: 1px solid var(--border-pink-light);
   border-radius: 18px;
   padding: 24px 20px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 20px rgba(241, 193, 194, 0.3);
+  box-shadow: 0 6px 20px rgba(220, 175, 188, 0.08);
 }
 .standard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(241, 193, 194, 0.5);
-  border-color: #d89698;
+  box-shadow: 0 12px 28px rgba(220, 175, 188, 0.15);
+  border-color: #e8c4d1;
 }
 .standard-icon {
   font-size: 2rem;
@@ -988,12 +986,12 @@ body {
   margin: 60px 0 30px;
 }
 .consign-box {
-  background: linear-gradient(160deg, #fce5e6 0%, #f1c1c2 100%);
-  border: 2px dashed #b2586e;
+  background: linear-gradient(160deg, #fff8fa 0%, #fceef3 100%);
+  border: 2px dashed #d6899e;
   border-radius: 24px;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(241, 193, 194, 0.35);
+  box-shadow: 0 10px 30px rgba(220, 175, 188, 0.09);
 }
 .consign-box h3 {
   font-family: var(--font-sans);
@@ -1016,12 +1014,12 @@ body {
   margin-bottom: 35px;
 }
 .consign-step-item {
-  background: rgba(255, 255, 255, 0.95);
+  background: #ffffff;
   border-radius: 16px;
   padding: 20px;
   text-align: center;
-  border: 1px solid #e2a6a8;
-  box-shadow: 0 4px 12px rgba(241, 193, 194, 0.2);
+  border: 1px solid var(--border-pink-light);
+  box-shadow: 0 4px 12px rgba(220, 175, 188, 0.05);
   backdrop-filter: blur(4px);
 }
 .step-num {
@@ -1098,18 +1096,18 @@ body {
 }
 
 .orders-card-box {
-  background: linear-gradient(150deg, #fce5e6 0%, #f1c1c2 100%);
-  border: 1px solid #e2a6a8;
+  background: linear-gradient(150deg, #fff9fb 0%, #fdf2f6 100%);
+  border: 1px solid var(--border-pink-light);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(241, 193, 194, 0.3);
+  box-shadow: 0 8px 24px rgba(220, 175, 188, 0.08);
 }
 .orders-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 16px;
-  border-bottom: 1px solid #e2a6a8;
+  border-bottom: 1px solid var(--border-pink-light);
   margin-bottom: 20px;
 }
 .orders-card-header h3 {
@@ -1266,7 +1264,7 @@ body {
   color: var(--text-muted);
   line-height: 1.45;
   margin-bottom: 18px;
-  background: #ffffff;
+  background: #fff5f8;
   padding: 10px 12px;
   border-radius: 8px;
   border-left: 3px solid var(--dusty-rose);
