@@ -1,6 +1,5 @@
 // DANH SÁCH MÓN ĐỒ TẠI NABY COQUETTE (_naby.coquette)
-// Bạn có thể thoải mái thêm/sửa/xóa sản phẩm, đổi giá, đổi size, đổi ảnh tại đây
-// status: true (Còn hàng), false (Đã pass)
+// status: true (Còn hàng), false (Đã pass / Sold out)
 
 const productsData = [
   {
@@ -50,7 +49,7 @@ const productsData = [
     size: "Freesize",
     condition: "Like new 98%",
     price: 135000,
-    status: true,
+    status: false,
     image: "https://images.unsplash.com/photo-1564257631407-4deb1f99d992?auto=format&fit=crop&w=600&q=80"
   },
   {
@@ -82,5 +81,25 @@ const productsData = [
     price: 140000,
     status: false,
     image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "naby-09",
+    name: "Váy Babydoll Tơ Óng Hoa Trà",
+    category: "dress",
+    size: "Size S-M (dưới 50kg)",
+    condition: "Like new 99%",
+    price: 195000,
+    status: true,
+    image: "https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?auto=format&fit=crop&w=600&q=80"
+  },
+  {
+    id: "naby-10",
+    name: "Áo Croptop Cột Nơ Lưng Cổ Vuông",
+    category: "top",
+    size: "Freesize",
+    condition: "Like new 98%",
+    price: 125000,
+    status: false,
+    image: "https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=600&q=80"
   }
 ];

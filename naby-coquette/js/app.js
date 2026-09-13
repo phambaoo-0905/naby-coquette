@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let currentFilter = "all";
 
   const productsGrid = document.getElementById("productsGrid");
-  const filterPills = document.querySelectorAll(".filter-pill, .pill");
+  const filterPills = document.querySelectorAll(".filter-btn, .filter-pill, .pill");
   const cartBadge = document.getElementById("cartCount");
   
   const cartDrawer = document.getElementById("cartDrawer");
@@ -13,53 +13,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const cartItemsList = document.getElementById("cartItemsList");
   const totalPriceEl = document.getElementById("totalPrice");
   const checkoutBtn = document.getElementById("checkoutBtn");
-
-  const floatingMascot = document.getElementById("floatingMascot");
-  const mascotToast = document.getElementById("mascotToast");
-  const heroFawnMascot = document.getElementById("heroFawnMascot");
-
-  let toastTimer = null;
-
-  const mascotGreetings = [
-    "Bé nai chúc bạn một ngày dịu dàng như chiếc váy xinh ♡ 🦌 ୨ৎ",
-    "Thấy món đồ nào ưng ý, cứ nhấn Thêm đơn để Naby giữ đồ cho bạn nhé! 🎀",
-    "Đồ vintage mỗi mẫu chỉ có 1 chiếc duy nhất thôi đó ạ! 🌸",
-    "Naby gói ghém sự dịu dàng này và gửi đến bạn nha ♡ 🦌"
-  ];
-
-  function showMascotToast(text, duration = 3500) {
-    if (!mascotToast) return;
-    mascotToast.innerHTML = text;
-    mascotToast.classList.add("show");
-    
-    if (floatingMascot) {
-      const mascotImg = floatingMascot.querySelector(".floating-mascot-fawn");
-      if (mascotImg) {
-        mascotImg.style.animation = "mascot-bounce 0.6s ease";
-        setTimeout(() => {
-          mascotImg.style.animation = "mascot-wiggle 5s ease-in-out infinite";
-        }, 600);
-      }
-    }
-
-    clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => {
-      mascotToast.classList.remove("show");
-    }, duration);
-  }
-
-  if (floatingMascot) {
-    floatingMascot.addEventListener("click", () => {
-      const randMsg = mascotGreetings[Math.floor(Math.random() * mascotGreetings.length)];
-      showMascotToast(randMsg);
-    });
-  }
-
-  if (heroFawnMascot) {
-    heroFawnMascot.addEventListener("click", () => {
-      showMascotToast("Bé nai nằm ngủ ngoan chờ bạn ghé chơi tủ đồ Naby ♡ 🦌 ୨ৎ");
-    });
-  }
 
   const formatMoney = (amount) => {
     return new Intl.NumberFormat("vi-VN").format(amount) + "₫";
@@ -78,10 +31,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (filtered.length === 0) {
       productsGrid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 50px 20px; color: var(--fawn-brown);">
-          <img src="assets/elements/fawn_lying.png" style="width:100px; opacity:0.8; margin-bottom:12px;">
-          <p style="font-size: 1.25rem; font-family: var(--font-serif); margin-bottom: 6px;">Hiện chưa có món đồ nào trong mục này ♡</p>
-          <span style="font-size: 0.9rem; opacity: 0.8;">Naby sẽ sớm cập nhật thêm các mẫu mới bạn nhé! 🦌 ୨ৎ</span>
+        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
+          <p style="font-size: 1.3rem; font-family: var(--font-serif); margin-bottom: 6px; color: var(--fawn-dark);">Không tìm thấy món đồ phù hợp ♡</p>
+          <span style="font-size: 0.9rem;">Naby sẽ sớm cập nhật thêm các mẫu mới bạn nhé! 🦌 ୨ৎ</span>
         </div>
       `;
       return;
@@ -94,33 +46,24 @@ document.addEventListener("DOMContentLoaded", () => {
       const isInCart = cart.some(c => c.id === product.id);
 
       card.innerHTML = `
-        <div class="product-img-box">
-          <img class="product-img" src="${product.image}" alt="${product.name}" loading="lazy">
-          <span class="stock-tag ${product.status ? "" : "sold-out"}">
-            ${product.status ? "Còn hàng 🦌" : "Đã pass ♡"}
-          </span>
+        <div class="product-image-wrap">
+          <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
+          ${!product.status ? '<span class="badge-soldout">Sold out</span>' : '<span class="badge-available">Còn hàng</span>'}
         </div>
-        <div class="product-info">
-          <h3 class="product-name">${product.name}</h3>
-          <div class="product-meta">${product.size} • ${product.condition}</div>
-          <div class="product-bottom">
-            <span class="product-price">${formatMoney(product.price)}</span>
-            <button class="add-order-btn ${!product.status ? "disabled" : ""}" 
-                    data-id="${product.id}" 
-                    ${!product.status ? "disabled" : ""}>
-              ${!product.status ? "Hết đồ" : (isInCart ? "✓ Đã chọn" : "+ Thêm đơn")}
-            </button>
-          </div>
-        </div>
+        <div class="product-title" title="${product.name}">${product.name}</div>
+        <div class="product-size-condition">${product.size} · ${product.condition}</div>
+        <div class="product-price">${formatMoney(product.price)}</div>
+        <button class="btn-action-card ${product.status ? 'btn-add-cart' : 'btn-sold-out'}" 
+                data-id="${product.id}" 
+                ${!product.status ? 'disabled' : ''}>
+          ${!product.status ? 'Sold out' : (isInCart ? '✓ Đã trong đơn' : '+ Add to cart')}
+        </button>
       `;
 
-      const addBtn = card.querySelector(".add-order-btn");
+      const addBtn = card.querySelector(".btn-add-cart");
       if (product.status && addBtn) {
         addBtn.addEventListener("click", () => {
           toggleCart(product);
-          if (!isInCart) {
-            showMascotToast(`Bé nai đã thêm <b>${product.name}</b> vào đơn cho bạn rồi nhé ♡ 🦌 ୨ৎ`);
-          }
         });
       }
 
@@ -150,10 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (cart.length === 0) {
       cartItemsList.innerHTML = `
-        <div style="text-align: center; padding: 50px 20px; color: var(--fawn-brown);">
-          <img src="assets/elements/fawn_lying.png" alt="Bé nai" style="width:130px; margin-bottom:12px; filter: drop-shadow(0 4px 10px rgba(90,60,44,0.15));">
-          <p style="font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 6px; color: var(--fawn-dark);">Đơn của bạn đang trống</p>
-          <p style="font-size: 0.86rem; opacity: 0.85;">Dạo quanh tủ đồ và chọn chiếc áo xinh bạn yêu thích nhé ♡</p>
+        <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
+          <p style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 8px; color: var(--fawn-dark);">Đơn của bạn đang trống</p>
+          <p style="font-size: 0.88rem; line-height: 1.5;">Hãy dạo một vòng tủ đồ và bấm <strong>+ Add to cart</strong> để chọn món đồ yêu thích nhé ♡</p>
         </div>
       `;
       if (totalPriceEl) totalPriceEl.textContent = "0₫";
@@ -166,17 +108,18 @@ document.addEventListener("DOMContentLoaded", () => {
     cart.forEach(item => {
       total += item.price;
       const row = document.createElement("div");
-      row.className = "cart-item";
+      row.className = "cart-item-row";
       row.innerHTML = `
-        <img class="cart-item-img" src="${item.image}" alt="${item.name}">
-        <div class="cart-item-detail">
-          <div class="cart-item-title">${item.name}</div>
-          <div class="cart-item-price">${formatMoney(item.price)} <span style="font-size:0.75rem; color:#8c7365; font-weight:normal;">(${item.size})</span></div>
+        <img class="cart-item-thumbnail" src="${item.image}" alt="${item.name}">
+        <div class="cart-item-info">
+          <div class="cart-item-name">${item.name}</div>
+          <div class="cart-item-meta">${item.size} · ${item.condition}</div>
+          <div class="cart-item-cost">${formatMoney(item.price)}</div>
         </div>
-        <button class="remove-item-btn" data-id="${item.id}" title="Bỏ món này">✕</button>
+        <button class="btn-remove-item" data-id="${item.id}" title="Bỏ món này">✕</button>
       `;
 
-      row.querySelector(".remove-item-btn").addEventListener("click", () => {
+      row.querySelector(".btn-remove-item").addEventListener("click", () => {
         toggleCart(item);
       });
 
@@ -240,6 +183,23 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+  // Smooth active tab highlight on scroll
+  const navLinks = document.querySelectorAll(".nav-link[href^='#']");
+  window.addEventListener("scroll", () => {
+    const scrollPos = window.scrollY + 120;
+    navLinks.forEach(link => {
+      const section = document.querySelector(link.getAttribute("href"));
+      if (section) {
+        const top = section.offsetTop;
+        const height = section.offsetHeight;
+        if (scrollPos >= top && scrollPos < top + height) {
+          navLinks.forEach(l => l.classList.remove("active"));
+          link.classList.add("active");
+        }
+      }
+    });
+  });
 
   renderProducts();
   updateCartUI();
