@@ -5,26 +5,25 @@
 ==================================================== */
 
 :root {
-  /* Warm French Vintage Rose-Champagne Palette (đồng bộ trực tiếp từ nền Hero Banner) */
-  --bg-banner-base: #f7e8df;
-  --bg-banner-light: #fdf6f2;
-  --bg-banner-warm: #f2ded3;
-  --bg-pastel-pink: #f7e8df;
+  /* Gentle Pastel Pink Palette (Hồng pastel nhẹ nhàng đồng bộ toàn trang) */
+  --bg-pastel-pink: #fdf0f4;
+  --bg-pastel-light: #fff8fa;
+  --bg-pastel-card: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
+  --bg-pastel-card-solid: #fff7f9;
+  --bg-soft: #fcebf0;
   --bg-white: transparent;
-  --bg-card: linear-gradient(150deg, #fcf4ee 0%, #f4e1d5 100%);
-  --bg-card-solid: #fcf5f0;
-  --bg-soft: #f9ede5;
-  --fawn-dark: #3a2e29;
-  --fawn-brown: #6d5446;
-  --dusty-rose: #a65868;
-  --dusty-rose-light: #f7e3db;
-  --ribbon-pink: #ebd1c5;
-  --border-light: rgba(229, 203, 190, 0.7);
-  --border-pink: #dfbfb0;
-  --border-dark: #3a2e29;
-  --border-banner: #e5cbbe;
-  --text-muted: #7d6558;
-  --price-color: #a65868;
+  --bg-card: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
+  --fawn-dark: #3a2b2e;
+  --fawn-brown: #6b4d54;
+  --dusty-rose: #b2586e;
+  --dusty-rose-light: #fae4eb;
+  --ribbon-pink: #f5ccd8;
+  --border-light: rgba(240, 209, 220, 0.7);
+  --border-pink: #f0d1dc;
+  --border-banner: #f0d1dc;
+  --border-dark: #3a2b2e;
+  --text-muted: #82696e;
+  --price-color: #b2586e;
 
   --font-script: 'Pinyon Script', cursive;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -40,11 +39,11 @@
 }
 
 body {
-  background-color: #f7e8df;
+  background-color: #fdf0f4;
   background-image: 
-    radial-gradient(ellipse at 50% 0%, #fdf6f2 0%, #f8ebe2 40%, #f2ded3 100%),
-    radial-gradient(circle at 15% 50%, rgba(250, 226, 218, 0.65) 0%, transparent 60%),
-    radial-gradient(circle at 85% 80%, rgba(244, 218, 207, 0.65) 0%, transparent 60%);
+    radial-gradient(ellipse at 50% 0%, #fff8fa 0%, #fdf0f4 45%, #fce7ed 100%),
+    radial-gradient(circle at 15% 40%, rgba(254, 230, 237, 0.65) 0%, transparent 60%),
+    radial-gradient(circle at 85% 75%, rgba(253, 225, 234, 0.65) 0%, transparent 60%);
   background-attachment: fixed;
   background-size: 100% 100%, 100% 100%, 100% 100%;
   color: var(--fawn-dark);
@@ -55,15 +54,15 @@ body {
 }
 
 /* ====================================================
-   1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR ĐỒNG BỘ MÀU BANNER)
+   1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR HỒNG PASTEL TRONG SUỐT)
 ==================================================== */
 .top-navbar {
   position: sticky;
   top: 0;
-  background: rgba(250, 240, 234, 0.94);
+  background: rgba(254, 243, 246, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-banner);
+  border-bottom: 1px solid var(--border-pink);
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -287,8 +286,8 @@ body {
   flex-wrap: wrap;
 }
 .filter-btn {
-  background: linear-gradient(145deg, #fcf4ee 0%, #f7e6dc 100%);
-  border: 1px solid var(--border-banner);
+  background: linear-gradient(145deg, #fff7f9 0%, #fcecf1 100%);
+  border: 1px solid var(--border-pink);
   color: var(--fawn-dark);
   padding: 8px 18px;
   border-radius: 20px;
@@ -318,28 +317,28 @@ body {
 .product-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(150deg, #fcf4ee 0%, #f5e4d9 100%);
-  border: 1px solid var(--border-banner);
+  background: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
+  border: 1px solid var(--border-pink);
   border-radius: 14px;
   padding: 10px;
-  box-shadow: 0 4px 16px rgba(184, 123, 109, 0.07);
+  box-shadow: 0 4px 16px rgba(214, 150, 168, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(184, 123, 109, 0.14);
-  border-color: #d8b8a7;
+  box-shadow: 0 10px 24px rgba(214, 150, 168, 0.16);
+  border-color: #e5bcc8;
 }
 
 /* Khung ảnh có bo góc nhẹ */
 .product-image-wrap {
   position: relative;
   aspect-ratio: 1 / 1.15;
-  background: #fbf1ea;
+  background: #fdf2f6;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
-  border: 1px solid rgba(229, 203, 190, 0.5);
+  border: 1px solid rgba(240, 209, 220, 0.6);
 }
 .product-image {
   width: 100%;
@@ -422,9 +421,9 @@ body {
   margin-top: auto;
 }
 .btn-add-cart {
-  background: #fbf1ea;
+  background: #fdf0f4;
   color: var(--dusty-rose);
-  border: 1px solid rgba(229, 203, 190, 0.9);
+  border: 1px solid var(--border-pink);
 }
 .btn-add-cart:hover {
   background: var(--dusty-rose);
@@ -432,9 +431,9 @@ body {
   border-color: var(--dusty-rose);
 }
 .btn-sold-out {
-  background: #f4e8e1;
-  color: #b09c95;
-  border: 1px solid #dfc9bd;
+  background: #faedf1;
+  color: #c0a8af;
+  border: 1px solid #ebd4dc;
   cursor: not-allowed;
 }
 
@@ -442,27 +441,27 @@ body {
    5. PHẦN GIỚI THIỆU ABOUT US (TRÊN NỀN TRẮNG)
 ==================================================== */
 .about-us-section {
-  border-top: 1px solid var(--border-banner);
+  border-top: 1px solid var(--border-pink);
   padding: 70px 0 20px;
   margin-top: 40px;
 }
 .about-card-box {
-  background: linear-gradient(150deg, #fcf4ee 0%, #f5e2d6 100%);
-  border: 1px solid var(--border-banner);
+  background: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
+  border: 1px solid var(--border-pink);
   border-radius: 24px;
   padding: 50px 60px;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 50px;
   align-items: center;
-  box-shadow: 0 10px 28px rgba(184, 123, 109, 0.08);
+  box-shadow: 0 10px 28px rgba(214, 150, 168, 0.08);
 }
 .about-image-frame {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(184, 123, 109, 0.12);
-  border: 1px solid var(--border-banner);
+  box-shadow: 0 10px 30px rgba(214, 150, 168, 0.12);
+  border: 1px solid var(--border-pink);
 }
 .about-img {
   width: 100%;
@@ -499,14 +498,14 @@ body {
   margin-top: 25px;
 }
 .highlight-item {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid var(--border-banner);
+  border: 1px solid var(--border-pink);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--fawn-dark);
-  box-shadow: 0 4px 12px rgba(184, 123, 109, 0.05);
+  box-shadow: 0 4px 12px rgba(214, 150, 168, 0.05);
 }
 
 /* ====================================================
@@ -534,12 +533,13 @@ body {
   width: 100%;
   max-width: 420px;
   height: 100%;
-  background: #ffffff;
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
+  background: #fdf5f7;
+  box-shadow: -10px 0 40px rgba(214, 150, 168, 0.15);
   display: flex;
   flex-direction: column;
   transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2100;
+  border-left: 1px solid var(--border-pink);
 }
 .cart-drawer.open {
   right: 0;
@@ -547,7 +547,7 @@ body {
 
 .cart-header {
   padding: 20px 25px;
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-pink);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -560,7 +560,7 @@ body {
 }
 .btn-close-cart {
   background: none;
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-pink);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -673,8 +673,8 @@ body {
    7. FOOTER CHÂN TRANG
 ==================================================== */
 .site-footer {
-  border-top: 1px solid var(--border-banner);
-  background: linear-gradient(180deg, #f2ded3 0%, #ebd7cb 100%);
+  border-top: 1px solid var(--border-pink);
+  background: linear-gradient(180deg, #fce8ee 0%, #fadbdf 100%);
   padding: 35px 20px;
   text-align: center;
   color: var(--text-muted);
@@ -952,18 +952,18 @@ body {
   gap: 20px;
 }
 .standard-card {
-  background: linear-gradient(150deg, #fcf4ee 0%, #f4e1d5 100%);
-  border: 1px solid var(--border-banner);
+  background: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
+  border: 1px solid var(--border-pink);
   border-radius: 18px;
   padding: 24px 20px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 20px rgba(184, 123, 109, 0.08);
+  box-shadow: 0 6px 20px rgba(214, 150, 168, 0.08);
 }
 .standard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(184, 123, 109, 0.14);
-  border-color: #d8b8a7;
+  box-shadow: 0 12px 28px rgba(214, 150, 168, 0.16);
+  border-color: #e5bcc8;
 }
 .standard-icon {
   font-size: 2rem;
@@ -989,12 +989,12 @@ body {
   margin: 60px 0 30px;
 }
 .consign-box {
-  background: linear-gradient(160deg, #f9eee6 0%, #f1ddd2 100%);
-  border: 2px dashed #b87b6d;
+  background: linear-gradient(160deg, #fff5f8 0%, #fde8ee 100%);
+  border: 2px dashed #cf7b90;
   border-radius: 24px;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(184, 123, 109, 0.09);
+  box-shadow: 0 10px 30px rgba(214, 150, 168, 0.1);
 }
 .consign-box h3 {
   font-family: var(--font-sans);
@@ -1017,12 +1017,12 @@ body {
   margin-bottom: 35px;
 }
 .consign-step-item {
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   border-radius: 16px;
   padding: 20px;
   text-align: center;
-  border: 1px solid var(--border-banner);
-  box-shadow: 0 4px 12px rgba(184, 123, 109, 0.06);
+  border: 1px solid var(--border-pink);
+  box-shadow: 0 4px 12px rgba(214, 150, 168, 0.06);
   backdrop-filter: blur(4px);
 }
 .step-num {
@@ -1099,18 +1099,18 @@ body {
 }
 
 .orders-card-box {
-  background: linear-gradient(150deg, #fcf4ee 0%, #f5e4d9 100%);
-  border: 1px solid var(--border-banner);
+  background: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
+  border: 1px solid var(--border-pink);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(184, 123, 109, 0.08);
+  box-shadow: 0 8px 24px rgba(214, 150, 168, 0.08);
 }
 .orders-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-banner);
+  border-bottom: 1px solid var(--border-pink);
   margin-bottom: 20px;
 }
 .orders-card-header h3 {
@@ -1267,7 +1267,7 @@ body {
   color: var(--text-muted);
   line-height: 1.45;
   margin-bottom: 18px;
-  background: #fbf1ea;
+  background: #fdf0f4;
   padding: 10px 12px;
   border-radius: 8px;
   border-left: 3px solid var(--dusty-rose);
@@ -1471,7 +1471,7 @@ body {
   padding: 6px 0 4px;
   user-select: none;
   pointer-events: none;
-  border-bottom: 1px solid rgba(236, 230, 224, 0.5);
+  border-bottom: 1px solid rgba(240, 209, 220, 0.6);
 }
 
 .mascot-marquee-track {
