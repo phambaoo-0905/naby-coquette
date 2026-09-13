@@ -1380,30 +1380,30 @@ body {
 
 /* ====================================================
    DẢI LINH VẬT NAI & THỎ CHẠY NGANG KHÔNG NỀN (MARQUEE)
-   Nằm ngay chỗ giao nhau giữa Hero Banner và phần dưới
+   Chạy từ trái sang phải, size nhỏ tinh tế, không icon
 ==================================================== */
 .mascot-marquee-divider {
   width: 100%;
   background: transparent;
   overflow: hidden;
   position: relative;
-  padding: 16px 0 8px;
+  padding: 8px 0 4px;
   user-select: none;
   pointer-events: none;
-  border-bottom: 1px solid rgba(236, 230, 224, 0.6);
+  border-bottom: 1px solid rgba(236, 230, 224, 0.5);
 }
 
 .mascot-marquee-track {
   display: flex;
   width: max-content;
-  animation: mascot-marquee-scroll 26s linear infinite;
+  animation: mascot-marquee-scroll 24s linear infinite;
 }
 
 .mascot-marquee-group {
   display: flex;
   align-items: flex-end;
-  gap: 40px;
-  padding-right: 40px;
+  gap: 28px;
+  padding-right: 28px;
 }
 
 .mascot-parade-item {
@@ -1412,44 +1412,38 @@ body {
 }
 
 .parade-fawn {
-  height: 64px;
+  height: 42px;
   width: auto;
-  filter: drop-shadow(0 4px 8px rgba(58, 46, 41, 0.08));
+  filter: drop-shadow(0 3px 6px rgba(58, 46, 41, 0.08));
 }
 
 .parade-bunny {
-  height: 48px;
+  height: 32px;
   width: auto;
-  filter: drop-shadow(0 4px 8px rgba(58, 46, 41, 0.08));
-}
-
-.mascot-parade-sparkle {
-  font-size: 1.25rem;
-  color: var(--dusty-rose);
-  opacity: 0.8;
-  margin-bottom: 12px;
+  filter: drop-shadow(0 3px 6px rgba(58, 46, 41, 0.08));
 }
 
 /* Hiệu ứng bước đi & nhún nhảy nhẹ nhàng của bé nai và thỏ */
 .deer-bob {
-  animation: mascot-walk-bob 1.5s ease-in-out infinite alternate;
+  animation: mascot-walk-bob 1.4s ease-in-out infinite alternate;
 }
 .bunny-hop {
-  animation: mascot-bunny-hop 1s cubic-bezier(0.28, 0.84, 0.42, 1) infinite alternate;
+  animation: mascot-bunny-hop 0.95s cubic-bezier(0.28, 0.84, 0.42, 1) infinite alternate;
 }
 .delay-1 {
-  animation-delay: 0.35s;
+  animation-delay: 0.3s;
 }
 .delay-2 {
-  animation-delay: 0.6s;
+  animation-delay: 0.55s;
 }
 
+/* Chuyển động từ trái sang phải */
 @keyframes mascot-marquee-scroll {
   0% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(0);
   }
 }
 
@@ -1458,7 +1452,7 @@ body {
     transform: translateY(0) rotate(0deg);
   }
   50% {
-    transform: translateY(-4px) rotate(1.5deg);
+    transform: translateY(-3px) rotate(1.5deg);
   }
   100% {
     transform: translateY(0) rotate(-1deg);
@@ -1470,7 +1464,7 @@ body {
     transform: translateY(0) scale(1);
   }
   50% {
-    transform: translateY(-6px) scale(0.98, 1.02);
+    transform: translateY(-4px) scale(0.98, 1.02);
   }
   100% {
     transform: translateY(0) scale(1);
@@ -1479,20 +1473,16 @@ body {
 
 @media (max-width: 768px) {
   .mascot-marquee-divider {
-    padding: 10px 0 6px;
+    padding: 6px 0 3px;
   }
   .mascot-marquee-group {
-    gap: 26px;
-    padding-right: 26px;
+    gap: 18px;
+    padding-right: 18px;
   }
   .parade-fawn {
-    height: 48px;
+    height: 32px;
   }
   .parade-bunny {
-    height: 36px;
-  }
-  .mascot-parade-sparkle {
-    font-size: 1rem;
-    margin-bottom: 8px;
+    height: 24px;
   }
 }
