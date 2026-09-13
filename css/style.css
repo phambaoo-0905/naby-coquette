@@ -851,23 +851,32 @@ body {
 }
 
 .mascot-visual {
-  flex: 0 0 280px;
+  flex: 0 0 320px;
   position: relative;
-  text-align: center;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 12px;
 }
 
 .mascot-img-fawn {
-  width: 220px;
+  width: 175px;
   height: auto;
   filter: drop-shadow(0 8px 16px rgba(58, 46, 41, 0.1));
+  transition: transform 0.3s ease;
+}
+.mascot-img-fawn:hover {
+  transform: translateY(-4px) scale(1.02);
 }
 
-.mascot-img-rose {
-  position: absolute;
-  bottom: -15px;
-  right: 10px;
-  width: 90px;
+.mascot-img-bunny {
+  width: 125px;
   height: auto;
+  filter: drop-shadow(0 6px 14px rgba(58, 46, 41, 0.08));
+  transition: transform 0.3s ease;
+}
+.mascot-img-bunny:hover {
+  transform: translateY(-4px) scale(1.03);
 }
 
 .mascot-text {
@@ -1234,19 +1243,21 @@ body {
   margin: 0 auto;
 }
 .empty-mascot-wrap {
-  position: relative;
-  width: 180px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
   margin: 0 auto 20px;
 }
 .empty-fawn-img {
-  width: 150px;
+  width: 135px;
   height: auto;
+  filter: drop-shadow(0 6px 14px rgba(58, 46, 41, 0.1));
 }
-.empty-rose-img {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 60px;
+.empty-bunny-img {
+  width: 95px;
+  height: auto;
+  filter: drop-shadow(0 6px 14px rgba(58, 46, 41, 0.1));
 }
 .empty-state-box h2 {
   font-family: var(--font-serif);
@@ -1338,4 +1349,31 @@ body {
 
 .wardrobe-page-main {
   padding-top: 45px;
+}
+
+/* Cặp linh vật bé nai & bé thỏ nét trên đầu Tủ đồ */
+.catalog-header-mascots {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+.catalog-mascot-deer {
+  width: 76px;
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(58, 46, 41, 0.08));
+  transition: transform 0.3s ease;
+}
+.catalog-mascot-deer:hover {
+  transform: translateY(-3px) rotate(-3deg);
+}
+.catalog-mascot-bunny {
+  width: 56px;
+  height: auto;
+  filter: drop-shadow(0 4px 10px rgba(58, 46, 41, 0.08));
+  transition: transform 0.3s ease;
+}
+.catalog-mascot-bunny:hover {
+  transform: translateY(-3px) rotate(3deg);
 }
