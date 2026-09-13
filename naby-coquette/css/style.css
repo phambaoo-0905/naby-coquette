@@ -5,20 +5,23 @@
 ==================================================== */
 
 :root {
-  --bg-pastel-pink: #fdf0f4;
-  --bg-white: #fdf0f4;
-  --bg-card: #ffffff;
-  --bg-soft: #faedf1;
+  --bg-hero-pink: #f7e6dc;
+  --bg-pastel-pink: #f7e6dc;
+  --bg-cream-pastel: #fdf7f0;
+  --bg-cream-light: #fffaf5;
+  --bg-white: var(--bg-hero-pink);
+  --bg-card: var(--bg-cream-pastel);
+  --bg-soft: #f4ded2;
   --fawn-dark: #3a2e29;
   --fawn-brown: #6d5446;
-  --dusty-rose: #a65868;
-  --dusty-rose-light: #faedf1;
-  --ribbon-pink: #f2cbd4;
-  --border-light: rgba(235, 206, 215, 0.7);
-  --border-pink: #ebced7;
+  --dusty-rose: #9c5060;
+  --dusty-rose-light: #f7e8df;
+  --ribbon-pink: #f0c5c1;
+  --border-light: #ebd8cc;
+  --border-pink: #dfc3b5;
   --border-dark: #3a2e29;
   --text-muted: #7a655c;
-  --price-color: #a65868;
+  --price-color: #9c5060;
 
   --font-script: 'Pinyon Script', cursive;
   --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -34,7 +37,9 @@
 }
 
 body {
-  background-color: var(--bg-pastel-pink);
+  background-color: var(--bg-hero-pink);
+  background-image: linear-gradient(180deg, #faece1 0%, #f6e3d7 260px, #f7e6dc 100%);
+  background-attachment: fixed;
   color: var(--fawn-dark);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -48,7 +53,7 @@ body {
 .top-navbar {
   position: sticky;
   top: 0;
-  background: rgba(253, 240, 244, 0.94);
+  background: rgba(250, 236, 224, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-light);
@@ -310,23 +315,23 @@ body {
   border: 1px solid var(--border-light);
   border-radius: 14px;
   padding: 10px;
-  box-shadow: 0 4px 16px rgba(166, 88, 104, 0.04);
+  box-shadow: 0 6px 20px rgba(138, 92, 72, 0.05);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.08);
+  box-shadow: 0 10px 24px rgba(138, 92, 72, 0.09);
 }
 
 /* Khung ảnh có bo góc nhẹ */
 .product-image-wrap {
   position: relative;
   aspect-ratio: 1 / 1.15;
-  background: #fdf0f4;
+  background: #f7e8df;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
-  border: 1px solid rgba(235, 206, 215, 0.5);
+  border: 1px solid var(--border-light);
 }
 .product-image {
   width: 100%;
@@ -409,9 +414,9 @@ body {
   margin-top: auto;
 }
 .btn-add-cart {
-  background: #fdf0f4;
+  background: var(--bg-cream-pastel);
   color: var(--dusty-rose);
-  border: 1px solid rgba(235, 206, 215, 0.9);
+  border: 1px solid var(--border-light);
 }
 .btn-add-cart:hover {
   background: var(--dusty-rose);
@@ -419,9 +424,9 @@ body {
   border-color: var(--dusty-rose);
 }
 .btn-sold-out {
-  background: #faf2f4;
-  color: #c4b5bb;
-  border: 1px solid #ebdce1;
+  background: #f3ded3;
+  color: #a8948c;
+  border: 1px solid var(--border-light);
   cursor: not-allowed;
 }
 
@@ -442,13 +447,13 @@ body {
   grid-template-columns: 1fr 1.2fr;
   gap: 50px;
   align-items: center;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 8px 24px rgba(138, 92, 72, 0.06);
 }
 .about-image-frame {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(166, 88, 104, 0.08);
+  box-shadow: 0 10px 30px rgba(138, 92, 72, 0.08);
   border: 1px solid var(--border-light);
 }
 .about-img {
@@ -486,7 +491,7 @@ body {
   margin-top: 25px;
 }
 .highlight-item {
-  background: #ffffff;
+  background: var(--bg-cream-light);
   padding: 12px 18px;
   border-radius: 12px;
   border: 1px solid var(--border-light);
@@ -520,7 +525,7 @@ body {
   width: 100%;
   max-width: 420px;
   height: 100%;
-  background: #ffffff;
+  background: var(--bg-cream-pastel);
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
@@ -660,7 +665,7 @@ body {
 ==================================================== */
 .site-footer {
   border-top: 1px solid var(--border-light);
-  background: #faedf1;
+  background: #f4ded2;
   padding: 35px 20px;
   text-align: center;
   color: var(--text-muted);
@@ -820,7 +825,7 @@ body {
 .about-hero-header,
 .orders-hero-header {
   background: var(--bg-pastel-pink);
-  background-image: radial-gradient(rgba(235, 206, 215, 0.45) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(218, 173, 156, 0.35) 1px, transparent 1px);
   background-size: 24px 24px;
   padding: 60px 20px 50px;
   text-align: center;
@@ -877,7 +882,7 @@ body {
   display: flex;
   align-items: center;
   gap: 40px;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 8px 24px rgba(138, 92, 72, 0.06);
 }
 
 .mascot-visual {
@@ -944,11 +949,11 @@ body {
   padding: 24px 20px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 4px 16px rgba(166, 88, 104, 0.04);
+  box-shadow: 0 4px 16px rgba(138, 92, 72, 0.04);
 }
 .standard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(166, 88, 104, 0.08);
+  box-shadow: 0 10px 24px rgba(138, 92, 72, 0.08);
 }
 .standard-icon {
   font-size: 2rem;
@@ -979,7 +984,7 @@ body {
   border-radius: 24px;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 8px 24px rgba(138, 92, 72, 0.06);
 }
 .consign-box h3 {
   font-family: var(--font-sans);
@@ -1002,7 +1007,7 @@ body {
   margin-bottom: 35px;
 }
 .consign-step-item {
-  background: var(--bg-pastel-pink);
+  background: var(--bg-cream-light);
   border-radius: 16px;
   padding: 20px;
   text-align: center;
@@ -1086,7 +1091,7 @@ body {
   border: 1px solid var(--border-light);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 8px 24px rgba(138, 92, 72, 0.06);
 }
 .orders-card-header {
   display: flex;
@@ -1175,7 +1180,7 @@ body {
 }
 .btn-remove-item:hover {
   color: var(--dusty-rose);
-  background: #fdf2f4;
+  background: #f7e8df;
 }
 
 /* Khung Summary bên phải */
@@ -1186,7 +1191,7 @@ body {
   padding: 28px 24px;
   position: sticky;
   top: 90px;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 8px 24px rgba(138, 92, 72, 0.06);
 }
 .orders-summary-box h3 {
   font-family: var(--font-sans);
@@ -1214,7 +1219,7 @@ body {
   border-radius: 10px;
   font-family: var(--font-sans);
   font-size: 0.9rem;
-  background: #ffffff;
+  background: var(--bg-cream-light);
   color: var(--fawn-dark);
   transition: border-color 0.2s;
 }
@@ -1250,7 +1255,7 @@ body {
   color: var(--text-muted);
   line-height: 1.45;
   margin-bottom: 18px;
-  background: #fdf0f4;
+  background: #f7e8df;
   padding: 10px 12px;
   border-radius: 8px;
   border-left: 3px solid var(--dusty-rose);
@@ -1298,7 +1303,7 @@ body {
   border: 1px solid var(--border-light);
   border-radius: 24px;
   padding: 40px;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 8px 24px rgba(138, 92, 72, 0.06);
   max-width: 520px;
   margin: 0 auto;
 }
@@ -1454,14 +1459,14 @@ body {
   padding: 6px 0 4px;
   user-select: none;
   pointer-events: none;
-  border-bottom: 1px solid rgba(236, 230, 224, 0.5);
+  border-bottom: 1px solid rgba(218, 173, 156, 0.35);
 }
 
 .mascot-marquee-track {
   display: flex;
   width: max-content;
   will-change: transform;
-  animation: mascot-marquee-scroll 32s linear infinite;
+  animation: mascot-marquee-scroll 58s linear infinite;
 }
 
 .mascot-marquee-group {
@@ -1543,7 +1548,7 @@ body {
     padding: 5px 0 3px;
   }
   .mascot-marquee-track {
-    animation-duration: 22s;
+    animation-duration: 42s;
   }
   .mascot-marquee-group {
     gap: 16px;
