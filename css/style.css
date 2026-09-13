@@ -5,23 +5,28 @@
 ==================================================== */
 
 :root {
-  /* Gentle Pastel Pink Palette (Hồng pastel nhẹ nhàng đồng bộ toàn trang) */
+  /* Nền hồng pastel nhẹ nhàng đã duyệt */
   --bg-pastel-pink: #fdf0f4;
   --bg-pastel-light: #fff8fa;
-  --bg-pastel-card: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
-  --bg-pastel-card-solid: #fff7f9;
   --bg-soft: #fcebf0;
   --bg-white: transparent;
-  --bg-card: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
+
+  /* Khung màu Cream Pastel của Hero Banner */
+  --bg-card: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
+  --bg-card-solid: #fcf6ef;
+  --bg-cream-soft: #fbf2e9;
+  --border-cream: #eeded2;
+  --border-cream-dark: #dfc8b8;
+  --border-light: rgba(238, 222, 210, 0.8);
+  --border-pink: #f0d1dc;
+  --border-banner: #eeded2;
+  --border-dark: #3a2b2e;
+
   --fawn-dark: #3a2b2e;
   --fawn-brown: #6b4d54;
   --dusty-rose: #b2586e;
   --dusty-rose-light: #fae4eb;
   --ribbon-pink: #f5ccd8;
-  --border-light: rgba(240, 209, 220, 0.7);
-  --border-pink: #f0d1dc;
-  --border-banner: #f0d1dc;
-  --border-dark: #3a2b2e;
   --text-muted: #82696e;
   --price-color: #b2586e;
 
@@ -286,8 +291,8 @@ body {
   flex-wrap: wrap;
 }
 .filter-btn {
-  background: linear-gradient(145deg, #fff7f9 0%, #fcecf1 100%);
-  border: 1px solid var(--border-pink);
+  background: linear-gradient(145deg, #fffbf7 0%, #f9ede2 100%);
+  border: 1px solid var(--border-cream);
   color: var(--fawn-dark);
   padding: 8px 18px;
   border-radius: 20px;
@@ -317,28 +322,28 @@ body {
 .product-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
-  border: 1px solid var(--border-pink);
+  background: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
+  border: 1px solid var(--border-cream);
   border-radius: 14px;
   padding: 10px;
-  box-shadow: 0 4px 16px rgba(214, 150, 168, 0.08);
+  box-shadow: 0 4px 16px rgba(186, 140, 126, 0.07);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(214, 150, 168, 0.16);
-  border-color: #e5bcc8;
+  box-shadow: 0 10px 24px rgba(186, 140, 126, 0.14);
+  border-color: #d8beaf;
 }
 
 /* Khung ảnh có bo góc nhẹ */
 .product-image-wrap {
   position: relative;
   aspect-ratio: 1 / 1.15;
-  background: #fdf2f6;
+  background: #faf2eb;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
-  border: 1px solid rgba(240, 209, 220, 0.6);
+  border: 1px solid rgba(238, 222, 210, 0.7);
 }
 .product-image {
   width: 100%;
@@ -446,22 +451,22 @@ body {
   margin-top: 40px;
 }
 .about-card-box {
-  background: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
-  border: 1px solid var(--border-pink);
+  background: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
+  border: 1px solid var(--border-cream);
   border-radius: 24px;
   padding: 50px 60px;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 50px;
   align-items: center;
-  box-shadow: 0 10px 28px rgba(214, 150, 168, 0.08);
+  box-shadow: 0 10px 28px rgba(186, 140, 126, 0.09);
 }
 .about-image-frame {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(214, 150, 168, 0.12);
-  border: 1px solid var(--border-pink);
+  box-shadow: 0 10px 30px rgba(186, 140, 126, 0.12);
+  border: 1px solid var(--border-cream);
 }
 .about-img {
   width: 100%;
@@ -498,14 +503,14 @@ body {
   margin-top: 25px;
 }
 .highlight-item {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid var(--border-pink);
+  border: 1px solid var(--border-cream);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--fawn-dark);
-  box-shadow: 0 4px 12px rgba(214, 150, 168, 0.05);
+  box-shadow: 0 4px 12px rgba(186, 140, 126, 0.05);
 }
 
 /* ====================================================
@@ -533,13 +538,13 @@ body {
   width: 100%;
   max-width: 420px;
   height: 100%;
-  background: #fdf5f7;
-  box-shadow: -10px 0 40px rgba(214, 150, 168, 0.15);
+  background: #fcf6ef;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
   display: flex;
   flex-direction: column;
   transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2100;
-  border-left: 1px solid var(--border-pink);
+  border-left: 1px solid var(--border-cream);
 }
 .cart-drawer.open {
   right: 0;
@@ -547,7 +552,7 @@ body {
 
 .cart-header {
   padding: 20px 25px;
-  border-bottom: 1px solid var(--border-pink);
+  border-bottom: 1px solid var(--border-cream);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -560,7 +565,7 @@ body {
 }
 .btn-close-cart {
   background: none;
-  border: 1px solid var(--border-pink);
+  border: 1px solid var(--border-cream);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -952,18 +957,18 @@ body {
   gap: 20px;
 }
 .standard-card {
-  background: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
-  border: 1px solid var(--border-pink);
+  background: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
+  border: 1px solid var(--border-cream);
   border-radius: 18px;
   padding: 24px 20px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 20px rgba(214, 150, 168, 0.08);
+  box-shadow: 0 6px 20px rgba(186, 140, 126, 0.08);
 }
 .standard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(214, 150, 168, 0.16);
-  border-color: #e5bcc8;
+  box-shadow: 0 12px 28px rgba(186, 140, 126, 0.15);
+  border-color: #d8beaf;
 }
 .standard-icon {
   font-size: 2rem;
@@ -989,12 +994,12 @@ body {
   margin: 60px 0 30px;
 }
 .consign-box {
-  background: linear-gradient(160deg, #fff5f8 0%, #fde8ee 100%);
-  border: 2px dashed #cf7b90;
+  background: linear-gradient(160deg, #fdf6ee 0%, #f5e7d8 100%);
+  border: 2px dashed #b88675;
   border-radius: 24px;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(214, 150, 168, 0.1);
+  box-shadow: 0 10px 30px rgba(186, 140, 126, 0.1);
 }
 .consign-box h3 {
   font-family: var(--font-sans);
@@ -1017,12 +1022,12 @@ body {
   margin-bottom: 35px;
 }
 .consign-step-item {
-  background: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.92);
   border-radius: 16px;
   padding: 20px;
   text-align: center;
-  border: 1px solid var(--border-pink);
-  box-shadow: 0 4px 12px rgba(214, 150, 168, 0.06);
+  border: 1px solid var(--border-cream);
+  box-shadow: 0 4px 12px rgba(186, 140, 126, 0.06);
   backdrop-filter: blur(4px);
 }
 .step-num {
@@ -1099,18 +1104,18 @@ body {
 }
 
 .orders-card-box {
-  background: linear-gradient(150deg, #fff7f9 0%, #fcecf1 100%);
-  border: 1px solid var(--border-pink);
+  background: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
+  border: 1px solid var(--border-cream);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(214, 150, 168, 0.08);
+  box-shadow: 0 8px 24px rgba(186, 140, 126, 0.08);
 }
 .orders-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-pink);
+  border-bottom: 1px solid var(--border-cream);
   margin-bottom: 20px;
 }
 .orders-card-header h3 {
@@ -1267,7 +1272,7 @@ body {
   color: var(--text-muted);
   line-height: 1.45;
   margin-bottom: 18px;
-  background: #fdf0f4;
+  background: #fdf7f2;
   padding: 10px 12px;
   border-radius: 8px;
   border-left: 3px solid var(--dusty-rose);
