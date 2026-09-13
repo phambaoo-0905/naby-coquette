@@ -28,11 +28,11 @@
 
       <!-- 3 Nút cụ thể theo yêu cầu: About us, Tủ đồ Naby, Đơn của bạn -->
       <nav class="nav-links-group">
-        <a href="#about-section" class="nav-link">About us</a>
-        <a href="#wardrobe-section" class="nav-link active">Tủ đồ Naby</a>
-        <button class="nav-link cart-trigger-link" id="openCartBtn">
+        <a href="about.html" class="nav-link">About us</a>
+        <a href="index.html" class="nav-link active">Tủ đồ Naby</a>
+        <a href="orders.html" class="nav-link cart-trigger-link">
           Đơn của bạn <span class="cart-badge-pill" id="cartCount">0</span>
-        </button>
+        </a>
       </nav>
 
       <!-- Phía bên phải: Instagram -->
@@ -45,7 +45,7 @@
     </div>
   </header>
 
-  <!-- 2. HERO BANNER TOÀN CẢNH (ẢNH 3 - BỨC TRANH NABY VINTAGE) -->
+  <!-- 2. HERO BANNER TOÀN CẢNH (ẢNH 3 - BỨC TRANH NABY VINTAGE 4K) -->
   <section class="hero-banner-section" id="heroSection">
     <div class="hero-banner-container" id="heroBannerContainer">
       <picture class="hero-banner-picture">
@@ -100,58 +100,22 @@
         <div class="products-grid-5col" id="productsGrid"></div>
       </section>
 
-      <!-- 4. SECTION: ABOUT US (VỀ NABY COQUETTE) -->
-      <section class="about-us-section" id="about-section">
-        <div class="about-card-box">
-          <div class="about-image-frame">
-            <img src="assets/avatar.jpg" alt="About Naby Coquette" class="about-img">
-          </div>
-          <div class="about-content">
-            <span class="about-script">About Naby</span>
-            <h3>Một chiếc áo xinh, một niềm vui mới ♡</h3>
-            <p>
-              Chào mừng bạn ghé thăm <strong>Naby Coquette</strong>! Chúng mình là tiệm đồ tuyển chọn & ký gửi thời trang mang phong cách tiểu thư cổ điển Pháp, Shabby Chic và Vintage Romance.
-            </p>
-            <p>
-              Mỗi món đồ tại Naby đều được nâng niu, kiểm tra độ mới kỹ càng (từ 95% đến Like New), ủi phẳng thơm tho và đóng gói kèm nơ lụa trước khi trao gửi đến tay một người thương mới.
-            </p>
-            <div class="about-highlights">
-              <div class="highlight-item">🌸 Đồ tuyển chọn Like New 95-99%</div>
-              <div class="highlight-item">🎀 Nhận pass & ký gửi đồ xinh</div>
-              <div class="highlight-item">💌 Chốt đơn nhanh qua Instagram</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
     </div>
   </div>
 
-  <!-- 5. NGĂN KÉO GIỎ HÀNG ("ĐƠN CỦA BẠN") -->
-  <div class="cart-overlay" id="cartOverlay"></div>
-  <aside class="cart-drawer" id="cartDrawer">
-    <div class="cart-header">
-      <h3>Đơn của bạn ♡</h3>
-      <button class="btn-close-cart" id="closeCartBtn">✕</button>
-    </div>
-    
-    <div class="cart-body" id="cartItemsList"></div>
+  <!-- THÔNG BÁO TOAST KHI THÊM ĐỒ VÀO GIỎ -->
+  <div class="toast-notification" id="toastNotification">
+    <span class="toast-icon">🎀</span>
+    <span class="toast-message" id="toastMessage">Đã thêm vào Đơn của bạn ♡</span>
+    <a href="orders.html" class="toast-link">Xem đơn →</a>
+  </div>
 
-    <div class="cart-footer">
-      <div class="cart-subtotal-row">
-        <span>Tạm tính:</span>
-        <span class="cart-subtotal-amount" id="totalPrice">0₫</span>
-      </div>
-      <p class="cart-note-text">*Đơn sẽ tự sao chép danh sách, bạn chỉ cần dán (Paste) vào chat Instagram cho Naby nhé ୨ৎ</p>
-      <button class="btn-checkout-ig" id="checkoutBtn">🎀 Gửi đơn qua Instagram 🎀</button>
-    </div>
-  </aside>
-
-  <!-- 6. CHÂN TRANG FOOTER -->
+  <!-- CHÂN TRANG FOOTER -->
   <footer class="site-footer">
     <div class="footer-links">
-      <a href="#about-section" class="footer-link">About us</a>
-      <a href="#wardrobe-section" class="footer-link">Tủ đồ Naby</a>
+      <a href="about.html" class="footer-link">About us</a>
+      <a href="index.html" class="footer-link">Tủ đồ Naby</a>
+      <a href="orders.html" class="footer-link">Đơn của bạn</a>
       <a href="https://instagram.com/_naby.coquette" target="_blank" class="footer-link">Instagram @_naby.coquette</a>
     </div>
     <p>© 2024 Naby Coquette Wardrobe · Trao gửi sự dịu dàng & những giấc mơ 🦌🎀</p>

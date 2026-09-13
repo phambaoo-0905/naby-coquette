@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Đơn Của Bạn ♡ Naby Coquette Wardrobe</title>
+  
+  <!-- Font chữ cổ điển & sans-serif thanh lịch -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="page-orders">
+
+  <!-- 1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR) -->
+  <header class="top-navbar">
+    <div class="navbar-container">
+      <!-- Logo bên trái -->
+      <a href="index.html" class="brand-logo">
+        <img src="assets/elements/ribbon_bow_1.png" alt="Naby Bow" class="brand-bow-icon">
+        <div>
+          <span class="brand-name">Naby</span>
+          <span class="brand-subtag">Coquette Wardrobe</span>
+        </div>
+      </a>
+
+      <!-- 3 Nút cụ thể: About us, Tủ đồ Naby, Đơn của bạn (active) -->
+      <nav class="nav-links-group">
+        <a href="about.html" class="nav-link">About us</a>
+        <a href="index.html" class="nav-link">Tủ đồ Naby</a>
+        <a href="orders.html" class="nav-link cart-trigger-link active">
+          Đơn của bạn <span class="cart-badge-pill" id="cartCount">0</span>
+        </a>
+      </nav>
+
+      <!-- Phía bên phải: Instagram -->
+      <div class="nav-right-actions">
+        <a href="https://instagram.com/_naby.coquette" target="_blank" class="ig-pill-btn">
+          <span>♡</span>
+          <span>@_naby.coquette</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- 2. HEADER TRANG ĐƠN CỦA BẠN -->
+  <section class="orders-hero-header">
+    <div class="about-hero-deco-bow">
+      <img src="assets/elements/ribbon_bow_3.png" alt="Bow Deco">
+    </div>
+    <span class="about-subtitle-script">Your Selected Pieces</span>
+    <h1 class="about-main-title">Đơn Của Bạn ♡</h1>
+    <p class="about-intro-p">
+      Kiểm tra danh sách những món đồ bạn yêu thích trước khi trao gửi lời nhắn giữ đồ qua Instagram cho Naby nhé.
+    </p>
+  </section>
+
+  <!-- 3. NỘI DUNG CHÍNH (NỀN TRẮNG TINH KHÔI) -->
+  <main class="main-content-white">
+    <div class="content-container">
+
+      <!-- KHUNG HIỂN THỊ KHI ĐƠN CÓ MÓN ĐỒ -->
+      <div class="orders-layout" id="ordersWithItems" style="display: none;">
+        
+        <!-- Cột trái: Danh sách các món đồ đã chọn -->
+        <div class="orders-items-col">
+          <div class="orders-card-box">
+            <div class="orders-card-header">
+              <h3>Danh sách món đồ đã chọn (<span id="ordersItemsCount">0</span>)</h3>
+              <button class="btn-clear-all-orders" id="btnClearCart" type="button">Xóa tất cả</button>
+            </div>
+            
+            <div class="orders-items-list" id="ordersListContainer">
+              <!-- Danh sách item sẽ render từ JS -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Cột phải: Form thông tin & Bảng tổng kết -->
+        <div class="orders-summary-col">
+          <div class="orders-summary-box">
+            <h3>Thông tin chốt đơn ୨ৎ</h3>
+            
+            <div class="customer-form-group">
+              <label for="custName" class="form-label">Tên của bạn:</label>
+              <input type="text" id="custName" class="form-input" placeholder="Ví dụ: Bảo Ngọc / Linh Đan">
+            </div>
+
+            <div class="customer-form-group">
+              <label for="custContact" class="form-label">Tên Instagram hoặc SĐT:</label>
+              <input type="text" id="custContact" class="form-input" placeholder="Ví dụ: @baongoc_coquette / 090xxxxxxx">
+            </div>
+
+            <div class="customer-form-group">
+              <label for="custNote" class="form-label">Lời nhắn thêm cho Naby:</label>
+              <textarea id="custNote" class="form-textarea" rows="2" placeholder="Ví dụ: Nhắn shop kiểm tra số đo eo giúp mình nhé..."></textarea>
+            </div>
+
+            <div class="summary-divider"></div>
+
+            <div class="summary-price-row">
+              <span>Tạm tính (<span id="summaryCount">0</span> món):</span>
+              <span class="summary-total-price" id="ordersTotalPrice">0₫</span>
+            </div>
+
+            <p class="order-direct-note">
+              *Khi nhấn nút bên dưới, hệ thống sẽ tự động <strong>sao chép đầy đủ nội dung đơn</strong> và mở tin nhắn Instagram của Naby. Bạn chỉ cần dán (Paste) vào khung chat là xong nhé! ♡
+            </p>
+
+            <button class="btn-checkout-page" id="btnPageCheckout" type="button">
+              🎀 Gửi đơn & Giữ đồ qua Instagram 🎀
+            </button>
+
+            <a href="index.html" class="btn-continue-shopping">
+              ← Tiếp tục xem thêm đồ trong Tủ đồ Naby
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- KHUNG HIỂN THỊ KHI ĐƠN ĐANG TRỐNG -->
+      <div class="orders-empty-state" id="ordersEmptyState">
+        <div class="empty-state-box">
+          <div class="empty-mascot-wrap">
+            <img src="assets/elements/fawn_lying.png" alt="Naby Fawn" class="empty-fawn-img">
+            <img src="assets/elements/rose_bouquet_2.png" alt="Roses" class="empty-rose-img">
+          </div>
+          <span class="about-script">Tủ đồ đang chờ bạn</span>
+          <h2>Đơn Của Bạn Đang Trống ♡</h2>
+          <p>
+            Bạn chưa chọn món đồ nào vào đơn. Hãy ghé qua Tủ đồ Naby để ngắm nghía những chiếc váy đầm tiểu thư, áo kiểu vintage dễ thương nhé!
+          </p>
+          <a href="index.html" class="btn-primary-coquette">
+            🦌 Khám phá Tủ đồ Naby ngay
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- CHÂN TRANG FOOTER -->
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="about.html" class="footer-link">About us</a>
+      <a href="index.html" class="footer-link">Tủ đồ Naby</a>
+      <a href="orders.html" class="footer-link">Đơn của bạn</a>
+      <a href="https://instagram.com/_naby.coquette" target="_blank" class="footer-link">Instagram @_naby.coquette</a>
+    </div>
+    <p>© 2024 Naby Coquette Wardrobe · Trao gửi sự dịu dàng & những giấc mơ 🦌🎀</p>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="js/items.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

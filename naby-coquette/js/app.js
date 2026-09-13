@@ -1,208 +1,275 @@
-document.addEventListener("DOMContentLoaded", () => {
-  let cart = [];
-  let currentFilter = "all";
+/**
+ * NABY COQUETTE - MULTI-PAGE APPLICATION CORE JS
+ * Hỗ trợ 3 trang: index.html (Tủ đồ), about.html (About us), orders.html (Đơn của bạn)
+ * Đồng bộ giỏ hàng qua localStorage
+ */
 
-  const productsGrid = document.getElementById("productsGrid");
-  const filterPills = document.querySelectorAll(".filter-btn, .filter-pill, .pill");
-  const cartBadge = document.getElementById("cartCount");
-  
-  const cartDrawer = document.getElementById("cartDrawer");
-  const cartOverlay = document.getElementById("cartOverlay");
-  const openCartBtn = document.getElementById("openCartBtn");
-  const closeCartBtn = document.getElementById("closeCartBtn");
-  const cartItemsList = document.getElementById("cartItemsList");
-  const totalPriceEl = document.getElementById("totalPrice");
-  const checkoutBtn = document.getElementById("checkoutBtn");
+document.addEventListener("DOMContentLoaded", () => {
+  // ====================================================
+  // 1. QUẢN LÝ GIỎ HÀNG PERSISTENT (LOCALSTORAGE)
+  // ====================================================
+  const STORAGE_KEY = "naby_coquette_cart";
+
+  const getCart = () => {
+    try {
+      const data = localStorage.getItem(STORAGE_KEY);
+      return data ? JSON.parse(data) : [];
+    } catch (e) {
+      console.error("Lỗi đọc giỏ hàng từ localStorage:", e);
+      return [];
+    }
+  };
+
+  const saveCart = (cart) => {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(cart));
+      updateCartBadge(cart.length);
+    } catch (e) {
+      console.error("Lỗi lưu giỏ hàng vào localStorage:", e);
+    }
+  };
+
+  let cart = getCart();
 
   const formatMoney = (amount) => {
     return new Intl.NumberFormat("vi-VN").format(amount) + "₫";
   };
 
-  function renderProducts() {
-    if (!productsGrid) return;
-    productsGrid.innerHTML = "";
-
-    const filtered = productsData.filter(item => {
-      if (currentFilter === "all") return true;
-      if (currentFilter === "available") return item.status === true;
-      if (currentFilter === "passed") return item.status === false;
-      return item.category === currentFilter;
-    });
-
-    if (filtered.length === 0) {
-      productsGrid.innerHTML = `
-        <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
-          <p style="font-size: 1.3rem; font-family: var(--font-serif); margin-bottom: 6px; color: var(--fawn-dark);">Không tìm thấy món đồ phù hợp ♡</p>
-          <span style="font-size: 0.9rem;">Naby sẽ sớm cập nhật thêm các mẫu mới bạn nhé! 🦌 ୨ৎ</span>
-        </div>
-      `;
-      return;
-    }
-
-    filtered.forEach(product => {
-      const card = document.createElement("div");
-      card.className = "product-card";
-      
-      const isInCart = cart.some(c => c.id === product.id);
-
-      card.innerHTML = `
-        <div class="product-image-wrap">
-          <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
-          ${!product.status ? '<span class="badge-soldout">Sold out</span>' : '<span class="badge-available">Còn hàng</span>'}
-        </div>
-        <div class="product-title" title="${product.name}">${product.name}</div>
-        <div class="product-size-condition">${product.size} · ${product.condition}</div>
-        <div class="product-price">${formatMoney(product.price)}</div>
-        <button class="btn-action-card ${product.status ? 'btn-add-cart' : 'btn-sold-out'}" 
-                data-id="${product.id}" 
-                ${!product.status ? 'disabled' : ''}>
-          ${!product.status ? 'Sold out' : (isInCart ? '✓ Đã trong đơn' : '+ Add to cart')}
-        </button>
-      `;
-
-      const addBtn = card.querySelector(".btn-add-cart");
-      if (product.status && addBtn) {
-        addBtn.addEventListener("click", () => {
-          toggleCart(product);
-        });
-      }
-
-      productsGrid.appendChild(card);
-    });
-  }
-
-  function toggleCart(product) {
-    const index = cart.findIndex(item => item.id === product.id);
-    if (index > -1) {
-      cart.splice(index, 1);
-    } else {
-      cart.push(product);
-    }
-    updateCartUI();
-    renderProducts();
-  }
-
-  function updateCartUI() {
+  // Cập nhật huy hiệu số lượng trên thanh navbar
+  function updateCartBadge(count) {
+    const cartBadge = document.getElementById("cartCount");
     if (cartBadge) {
-      cartBadge.textContent = cart.length;
-      cartBadge.style.transform = "scale(1.3)";
-      setTimeout(() => { cartBadge.style.transform = "scale(1)"; }, 200);
+      cartBadge.textContent = count;
+      cartBadge.style.transform = "scale(1.25)";
+      setTimeout(() => {
+        cartBadge.style.transform = "scale(1)";
+      }, 200);
     }
+  }
 
-    if (!cartItemsList) return;
+  updateCartBadge(cart.length);
 
-    if (cart.length === 0) {
-      cartItemsList.innerHTML = `
-        <div style="text-align: center; padding: 60px 20px; color: var(--text-muted);">
-          <p style="font-family: var(--font-serif); font-size: 1.3rem; margin-bottom: 8px; color: var(--fawn-dark);">Đơn của bạn đang trống</p>
-          <p style="font-size: 0.88rem; line-height: 1.5;">Hãy dạo một vòng tủ đồ và bấm <strong>+ Add to cart</strong> để chọn món đồ yêu thích nhé ♡</p>
-        </div>
-      `;
-      if (totalPriceEl) totalPriceEl.textContent = "0₫";
-      return;
-    }
+  // Hiển thị thông báo Toast nhanh
+  function showToast(message) {
+    const toast = document.getElementById("toastNotification");
+    const toastMsg = document.getElementById("toastMessage");
+    if (!toast) return;
 
-    cartItemsList.innerHTML = "";
-    let total = 0;
+    if (toastMsg) toastMsg.textContent = message;
+    toast.classList.add("show");
 
-    cart.forEach(item => {
-      total += item.price;
-      const row = document.createElement("div");
-      row.className = "cart-item-row";
-      row.innerHTML = `
-        <img class="cart-item-thumbnail" src="${item.image}" alt="${item.name}">
-        <div class="cart-item-info">
-          <div class="cart-item-name">${item.name}</div>
-          <div class="cart-item-meta">${item.size} · ${item.condition}</div>
-          <div class="cart-item-cost">${formatMoney(item.price)}</div>
-        </div>
-        <button class="btn-remove-item" data-id="${item.id}" title="Bỏ món này">✕</button>
-      `;
+    if (window.toastTimeout) clearTimeout(window.toastTimeout);
+    window.toastTimeout = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3200);
+  }
 
-      row.querySelector(".btn-remove-item").addEventListener("click", () => {
-        toggleCart(item);
+  // ====================================================
+  // 2. LOGIC TRANG TỦ ĐỒ NABY (INDEX.HTML)
+  // ====================================================
+  const productsGrid = document.getElementById("productsGrid");
+  const filterPills = document.querySelectorAll(".filter-btn, .filter-pill");
+
+  if (productsGrid && typeof productsData !== "undefined") {
+    let currentFilter = "all";
+
+    function renderProducts() {
+      productsGrid.innerHTML = "";
+
+      const filtered = productsData.filter((item) => {
+        if (currentFilter === "all") return true;
+        if (currentFilter === "available") return item.status === true;
+        if (currentFilter === "passed") return item.status === false;
+        return item.category === currentFilter;
       });
 
-      cartItemsList.appendChild(row);
-    });
-
-    if (totalPriceEl) {
-      totalPriceEl.textContent = formatMoney(total);
-    }
-  }
-
-  filterPills.forEach(pill => {
-    pill.addEventListener("click", () => {
-      filterPills.forEach(p => p.classList.remove("active"));
-      pill.classList.add("active");
-      currentFilter = pill.dataset.filter || "all";
-      renderProducts();
-    });
-  });
-
-  if (openCartBtn && cartDrawer && cartOverlay) {
-    openCartBtn.addEventListener("click", () => {
-      cartDrawer.classList.add("open");
-      cartOverlay.classList.add("active");
-    });
-  }
-
-  const closeCart = () => {
-    if (cartDrawer) cartDrawer.classList.remove("open");
-    if (cartOverlay) cartOverlay.classList.remove("active");
-  };
-
-  if (closeCartBtn) closeCartBtn.addEventListener("click", closeCart);
-  if (cartOverlay) cartOverlay.addEventListener("click", closeCart);
-
-  if (checkoutBtn) {
-    checkoutBtn.addEventListener("click", () => {
-      if (cart.length === 0) {
-        alert("Đơn của bạn đang trống, hãy chọn món đồ bạn yêu thích nhé ♡");
+      if (filtered.length === 0) {
+        productsGrid.innerHTML = `
+          <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
+            <p style="font-size: 1.3rem; font-family: var(--font-serif); margin-bottom: 6px; color: var(--fawn-dark);">Không tìm thấy món đồ phù hợp ♡</p>
+            <span style="font-size: 0.9rem;">Naby sẽ sớm cập nhật thêm các mẫu mới bạn nhé! 🦌 ୨ৎ</span>
+          </div>
+        `;
         return;
       }
 
-      let message = "Chào Naby Coquette ♡ Mình muốn chốt các món này ạ:\n";
-      cart.forEach((item, idx) => {
-        message += `${idx + 1}. ${item.name} (${item.size}) - ${formatMoney(item.price)}\n`;
-      });
-      message += `👉 Tổng cộng: ${totalPriceEl ? totalPriceEl.textContent : "0₫"}\n`;
-      message += "Shop kiểm tra và giữ đồ giúp mình với nhé ୨ৎ";
+      filtered.forEach((product) => {
+        const card = document.createElement("div");
+        card.className = "product-card";
 
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(message).then(() => {
-          alert("Đã sao chép danh sách đơn! Bạn chỉ cần dán (Paste) vào tin nhắn Instagram cho Naby nhé 🎀");
-          window.open("https://instagram.com/_naby.coquette", "_blank");
-        }).catch(() => {
-          prompt("Copy nội dung đơn bên dưới để nhắn qua Instagram shop nhé:", message);
-          window.open("https://instagram.com/_naby.coquette", "_blank");
-        });
-      } else {
-        prompt("Copy nội dung đơn bên dưới để nhắn qua Instagram shop nhé:", message);
-        window.open("https://instagram.com/_naby.coquette", "_blank");
-      }
+        const isInCart = cart.some((c) => c.id === product.id);
+
+        card.innerHTML = `
+          <div class="product-image-wrap">
+            <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
+            ${!product.status ? '<span class="badge-soldout">Sold out</span>' : '<span class="badge-available">Còn hàng</span>'}
+          </div>
+          <div class="product-title" title="${product.name}">${product.name}</div>
+          <div class="product-size-condition">${product.size} · ${product.condition}</div>
+          <div class="product-price">${formatMoney(product.price)}</div>
+          <button class="btn-action-card ${product.status ? 'btn-add-cart' : 'btn-sold-out'}" 
+                  data-id="${product.id}" 
+                  ${!product.status ? 'disabled' : ''}>
+            ${!product.status ? 'Sold out' : (isInCart ? '✓ Đã trong đơn' : '+ Add to cart')}
+          </button>
+        `;
+
+        const addBtn = card.querySelector(".btn-add-cart");
+        if (product.status && addBtn) {
+          addBtn.addEventListener("click", () => {
+            const index = cart.findIndex((item) => item.id === product.id);
+            if (index > -1) {
+              cart.splice(index, 1);
+              saveCart(cart);
+              showToast(`Đã bỏ "${product.name}" khỏi Đơn của bạn ♡`);
+            } else {
+              cart.push(product);
+              saveCart(cart);
+              showToast(`Đã thêm "${product.name}" vào Đơn của bạn 🎀`);
+            }
+            renderProducts();
+          });
+        }
+
+        productsGrid.appendChild(card);
+      });
+    }
+
+    filterPills.forEach((pill) => {
+      pill.addEventListener("click", () => {
+        filterPills.forEach((p) => p.classList.remove("active"));
+        pill.classList.add("active");
+        currentFilter = pill.dataset.filter || "all";
+        renderProducts();
+      });
     });
+
+    renderProducts();
   }
 
-  // Smooth active tab highlight on scroll
-  const navLinks = document.querySelectorAll(".nav-link[href^='#']");
-  window.addEventListener("scroll", () => {
-    const scrollPos = window.scrollY + 120;
-    navLinks.forEach(link => {
-      const section = document.querySelector(link.getAttribute("href"));
-      if (section) {
-        const top = section.offsetTop;
-        const height = section.offsetHeight;
-        if (scrollPos >= top && scrollPos < top + height) {
-          navLinks.forEach(l => l.classList.remove("active"));
-          link.classList.add("active");
+  // ====================================================
+  // 3. LOGIC TRANG ĐƠN CỦA BẠN (ORDERS.HTML)
+  // ====================================================
+  const ordersWithItems = document.getElementById("ordersWithItems");
+  const ordersEmptyState = document.getElementById("ordersEmptyState");
+  const ordersListContainer = document.getElementById("ordersListContainer");
+  const ordersTotalPrice = document.getElementById("ordersTotalPrice");
+  const summaryCount = document.getElementById("summaryCount");
+  const ordersItemsCount = document.getElementById("ordersItemsCount");
+  const btnClearCart = document.getElementById("btnClearCart");
+  const btnPageCheckout = document.getElementById("btnPageCheckout");
+
+  if (ordersWithItems && ordersEmptyState) {
+    function renderOrdersPage() {
+      cart = getCart();
+
+      if (cart.length === 0) {
+        ordersWithItems.style.display = "none";
+        ordersEmptyState.style.display = "block";
+        updateCartBadge(0);
+        return;
+      }
+
+      ordersWithItems.style.display = "grid";
+      ordersEmptyState.style.display = "none";
+      updateCartBadge(cart.length);
+
+      if (ordersItemsCount) ordersItemsCount.textContent = cart.length;
+      if (summaryCount) summaryCount.textContent = cart.length;
+
+      if (ordersListContainer) {
+        ordersListContainer.innerHTML = "";
+        let total = 0;
+
+        cart.forEach((item, index) => {
+          total += item.price;
+          const row = document.createElement("div");
+          row.className = "order-item-row";
+          row.innerHTML = `
+            <img class="order-item-thumb" src="${item.image}" alt="${item.name}">
+            <div class="order-item-detail">
+              <div class="order-item-name">${item.name}</div>
+              <div class="order-item-specs">${item.category.toUpperCase()} · ${item.size} · ${item.condition}</div>
+              <div class="order-item-price-val">${formatMoney(item.price)}</div>
+            </div>
+            <button class="btn-remove-item" data-index="${index}" title="Bỏ món này">✕ Bỏ món</button>
+          `;
+
+          row.querySelector(".btn-remove-item").addEventListener("click", () => {
+            cart.splice(index, 1);
+            saveCart(cart);
+            renderOrdersPage();
+          });
+
+          ordersListContainer.appendChild(row);
+        });
+
+        if (ordersTotalPrice) {
+          ordersTotalPrice.textContent = formatMoney(total);
         }
       }
-    });
-  });
+    }
+
+    if (btnClearCart) {
+      btnClearCart.addEventListener("click", () => {
+        if (confirm("Bạn có chắc muốn xóa tất cả món đồ trong đơn không ♡?")) {
+          cart = [];
+          saveCart(cart);
+          renderOrdersPage();
+        }
+      });
+    }
+
+    if (btnPageCheckout) {
+      btnPageCheckout.addEventListener("click", () => {
+        cart = getCart();
+        if (cart.length === 0) {
+          alert("Đơn của bạn đang trống ♡ Hãy chọn món đồ yêu thích trước nhé!");
+          return;
+        }
+
+        const nameInput = document.getElementById("custName");
+        const contactInput = document.getElementById("custContact");
+        const noteInput = document.getElementById("custNote");
+
+        const name = nameInput && nameInput.value.trim() ? nameInput.value.trim() : "Khách thương của Naby";
+        const contact = contactInput && contactInput.value.trim() ? contactInput.value.trim() : "(Chưa cung cấp)";
+        const note = noteInput && noteInput.value.trim() ? noteInput.value.trim() : "(Không có)";
+
+        let message = `Chào Naby Coquette ♡ Mình muốn chốt các món này ạ:\n`;
+        message += `──────────────────\n`;
+        cart.forEach((item, idx) => {
+          message += `${idx + 1}. ${item.name} (${item.size}) - ${formatMoney(item.price)}\n`;
+        });
+        message += `──────────────────\n`;
+        message += `👉 Tổng cộng: ${ordersTotalPrice ? ordersTotalPrice.textContent : "0₫"}\n`;
+        message += `🌸 Tên mình: ${name}\n`;
+        message += `💌 Instagram / SĐT: ${contact}\n`;
+        if (note !== "(Không có)") {
+          message += `📝 Lời nhắn: ${note}\n`;
+        }
+        message += `Shop kiểm tra và giữ đồ giúp mình với nhé ୨ৎ`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(message).then(() => {
+            alert("🎀 Đã sao chép nội dung đơn hàng!\n\nNaby đang mở tin nhắn Instagram để bạn dán (Paste) vào chat nhé ♡");
+            window.open("https://instagram.com/_naby.coquette", "_blank");
+          }).catch(() => {
+            prompt("Copy nội dung đơn bên dưới để nhắn qua Instagram shop nhé:", message);
+            window.open("https://instagram.com/_naby.coquette", "_blank");
+          });
+        } else {
+          prompt("Copy nội dung đơn bên dưới để nhắn qua Instagram shop nhé:", message);
+          window.open("https://instagram.com/_naby.coquette", "_blank");
+        }
+      });
+    }
+
+    renderOrdersPage();
+  }
 
   // ====================================================
-  // TÙY CHỈNH HERO BANNER TRÊN MÀN HÌNH ĐIỆN THOẠI
+  // 4. TÙY CHỈNH HERO BANNER TRÊN MÀN HÌNH ĐIỆN THOẠI
   // ====================================================
   function initMobileBannerControls() {
     const container = document.getElementById("heroBannerContainer");
@@ -256,7 +323,5 @@ document.addEventListener("DOMContentLoaded", () => {
     }, { passive: true });
   }
 
-  renderProducts();
-  updateCartUI();
   initMobileBannerControls();
 });
