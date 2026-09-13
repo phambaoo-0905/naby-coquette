@@ -459,51 +459,64 @@ body {
   margin-top: 40px;
 }
 .about-card-box {
-  background: #FFF1F2;
+  background: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: 24px;
-  padding: 50px 60px;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 50px;
+  padding: 40px;
+  display: flex;
   align-items: center;
-  box-shadow: 0 10px 28px rgba(168, 79, 104, 0.08);
+  gap: 40px;
+  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.08);
 }
 .about-image-frame {
+  flex: 0 0 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 30px rgba(168, 79, 104, 0.1);
-  border: 1px solid var(--border-card);
 }
 .about-img {
-  width: 100%;
-  height: 100%;
+  width: 210px;
+  height: 210px;
   object-fit: cover;
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.12);
+  border: 1.5px solid var(--border-card);
   display: block;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.about-img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 12px 28px rgba(168, 79, 104, 0.18);
+}
+.about-content {
+  flex: 1;
 }
 .about-content h2,
 .about-content h3 {
   font-family: var(--font-sans);
-  font-size: 1.8rem;
+  font-size: 1.6rem;
   font-weight: 700;
   color: var(--fawn-dark);
-  margin-bottom: 16px;
+  margin-bottom: 14px;
   letter-spacing: -0.01em;
 }
 .about-script {
   font-family: var(--font-script);
-  font-size: 2.6rem;
+  font-size: 2.5rem;
   color: var(--dusty-rose);
   display: block;
   line-height: 1.1;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 .about-content p {
   color: var(--fawn-brown);
-  font-size: 0.98rem;
-  line-height: 1.8;
-  margin-bottom: 20px;
+  font-size: 0.95rem;
+  line-height: 1.75;
+  margin-bottom: 12px;
+}
+.about-content p:last-child {
+  margin-bottom: 0;
 }
 .about-highlights {
   display: flex;
@@ -724,9 +737,18 @@ body {
     gap: 16px;
   }
   .about-card-box {
-    grid-template-columns: 1fr;
-    padding: 35px;
-    gap: 30px;
+    flex-direction: column;
+    padding: 35px 25px;
+    gap: 25px;
+    text-align: center;
+  }
+  .about-image-frame {
+    flex: 0 0 auto;
+    margin: 0 auto;
+  }
+  .about-img {
+    width: 180px;
+    height: 180px;
   }
 }
 
@@ -902,13 +924,13 @@ body {
 
 .mascot-box {
   background: var(--bg-card);
-  border: 1px solid var(--border-light);
+  border: 1px solid var(--border-card);
   border-radius: 24px;
   padding: 40px;
   display: flex;
   align-items: center;
   gap: 40px;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.08);
 }
 
 .mascot-visual {
