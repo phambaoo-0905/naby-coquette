@@ -5,21 +5,20 @@
 ==================================================== */
 
 :root {
-  /* Nền hồng pastel nhẹ nhàng đã duyệt */
+  /* Nền trắng tinh khôi theo yêu cầu mới */
+  --bg-white: #ffffff;
+  --bg-body: #ffffff;
+  --bg-soft: #fff5f8;
+
+  /* Khung màu hồng pastel nhẹ nhàng */
+  --bg-card: linear-gradient(150deg, #fff5f8 0%, #fdeaf0 100%);
+  --bg-card-solid: #fff5f8;
   --bg-pastel-pink: #fdf0f4;
   --bg-pastel-light: #fff8fa;
-  --bg-soft: #fcebf0;
-  --bg-white: transparent;
-
-  /* Khung màu Cream Pastel của Hero Banner */
-  --bg-card: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
-  --bg-card-solid: #fcf6ef;
-  --bg-cream-soft: #fbf2e9;
-  --border-cream: #eeded2;
-  --border-cream-dark: #dfc8b8;
-  --border-light: rgba(238, 222, 210, 0.8);
   --border-pink: #f0d1dc;
-  --border-banner: #eeded2;
+  --border-pink-light: rgba(240, 209, 220, 0.7);
+  --border-light: rgba(240, 209, 220, 0.7);
+  --border-banner: #f0d1dc;
   --border-dark: #3a2b2e;
 
   --fawn-dark: #3a2b2e;
@@ -44,13 +43,8 @@
 }
 
 body {
-  background-color: #fdf0f4;
-  background-image: 
-    radial-gradient(ellipse at 50% 0%, #fff8fa 0%, #fdf0f4 45%, #fce7ed 100%),
-    radial-gradient(circle at 15% 40%, rgba(254, 230, 237, 0.65) 0%, transparent 60%),
-    radial-gradient(circle at 85% 75%, rgba(253, 225, 234, 0.65) 0%, transparent 60%);
-  background-attachment: fixed;
-  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-color: #ffffff;
+  background-image: none;
   color: var(--fawn-dark);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -59,12 +53,12 @@ body {
 }
 
 /* ====================================================
-   1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR HỒNG PASTEL TRONG SUỐT)
+   1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR NỀN TRẮNG VIỀN HỒNG PASTEL)
 ==================================================== */
 .top-navbar {
   position: sticky;
   top: 0;
-  background: rgba(254, 243, 246, 0.95);
+  background: rgba(255, 255, 255, 0.96);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid var(--border-pink);
@@ -252,7 +246,7 @@ body {
    3. PHẦN THÂN BÊN DƯỚI - NỀN TRẮNG TINH KHÔI (#FFFFFF)
 ==================================================== */
 .main-content-white {
-  background-color: transparent;
+  background-color: #ffffff;
   padding: 50px 0 80px;
 }
 
@@ -291,8 +285,8 @@ body {
   flex-wrap: wrap;
 }
 .filter-btn {
-  background: linear-gradient(145deg, #fffbf7 0%, #f9ede2 100%);
-  border: 1px solid var(--border-cream);
+  background: linear-gradient(145deg, #fff5f8 0%, #fdeaf0 100%);
+  border: 1px solid var(--border-pink);
   color: var(--fawn-dark);
   padding: 8px 18px;
   border-radius: 20px;
@@ -322,28 +316,28 @@ body {
 .product-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
-  border: 1px solid var(--border-cream);
+  background: linear-gradient(150deg, #fff5f8 0%, #fdeaf0 100%);
+  border: 1px solid var(--border-pink);
   border-radius: 14px;
   padding: 10px;
-  box-shadow: 0 4px 16px rgba(186, 140, 126, 0.07);
+  box-shadow: 0 4px 16px rgba(220, 160, 175, 0.1);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(186, 140, 126, 0.14);
-  border-color: #d8beaf;
+  box-shadow: 0 10px 24px rgba(220, 160, 175, 0.2);
+  border-color: #e5bcc8;
 }
 
 /* Khung ảnh có bo góc nhẹ */
 .product-image-wrap {
   position: relative;
   aspect-ratio: 1 / 1.15;
-  background: #faf2eb;
+  background: #ffffff;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
-  border: 1px solid rgba(238, 222, 210, 0.7);
+  border: 1px solid rgba(240, 209, 220, 0.7);
 }
 .product-image {
   width: 100%;
@@ -451,22 +445,22 @@ body {
   margin-top: 40px;
 }
 .about-card-box {
-  background: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
-  border: 1px solid var(--border-cream);
+  background: linear-gradient(150deg, #fff5f8 0%, #fdeaf0 100%);
+  border: 1px solid var(--border-pink);
   border-radius: 24px;
   padding: 50px 60px;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 50px;
   align-items: center;
-  box-shadow: 0 10px 28px rgba(186, 140, 126, 0.09);
+  box-shadow: 0 10px 28px rgba(220, 160, 175, 0.12);
 }
 .about-image-frame {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(186, 140, 126, 0.12);
-  border: 1px solid var(--border-cream);
+  box-shadow: 0 10px 30px rgba(220, 160, 175, 0.15);
+  border: 1px solid var(--border-pink);
 }
 .about-img {
   width: 100%;
@@ -503,14 +497,14 @@ body {
   margin-top: 25px;
 }
 .highlight-item {
-  background: rgba(255, 255, 255, 0.92);
+  background: #ffffff;
   padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid var(--border-cream);
+  border: 1px solid var(--border-pink);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--fawn-dark);
-  box-shadow: 0 4px 12px rgba(186, 140, 126, 0.05);
+  box-shadow: 0 4px 12px rgba(220, 160, 175, 0.08);
 }
 
 /* ====================================================
@@ -538,13 +532,13 @@ body {
   width: 100%;
   max-width: 420px;
   height: 100%;
-  background: #fcf6ef;
-  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.12);
+  background: #fff9fb;
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2100;
-  border-left: 1px solid var(--border-cream);
+  border-left: 1px solid var(--border-pink);
 }
 .cart-drawer.open {
   right: 0;
@@ -552,7 +546,7 @@ body {
 
 .cart-header {
   padding: 20px 25px;
-  border-bottom: 1px solid var(--border-cream);
+  border-bottom: 1px solid var(--border-pink);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -565,7 +559,7 @@ body {
 }
 .btn-close-cart {
   background: none;
-  border: 1px solid var(--border-cream);
+  border: 1px solid var(--border-pink);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -679,7 +673,7 @@ body {
 ==================================================== */
 .site-footer {
   border-top: 1px solid var(--border-pink);
-  background: linear-gradient(180deg, #fce8ee 0%, #fadbdf 100%);
+  background: linear-gradient(180deg, #fff7f9 0%, #fdeaf0 100%);
   padding: 35px 20px;
   text-align: center;
   color: var(--text-muted);
@@ -957,18 +951,18 @@ body {
   gap: 20px;
 }
 .standard-card {
-  background: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
-  border: 1px solid var(--border-cream);
+  background: linear-gradient(150deg, #fff5f8 0%, #fdeaf0 100%);
+  border: 1px solid var(--border-pink);
   border-radius: 18px;
   padding: 24px 20px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 20px rgba(186, 140, 126, 0.08);
+  box-shadow: 0 6px 20px rgba(220, 160, 175, 0.1);
 }
 .standard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 12px 28px rgba(186, 140, 126, 0.15);
-  border-color: #d8beaf;
+  box-shadow: 0 12px 28px rgba(220, 160, 175, 0.18);
+  border-color: #e5bcc8;
 }
 .standard-icon {
   font-size: 2rem;
@@ -994,12 +988,12 @@ body {
   margin: 60px 0 30px;
 }
 .consign-box {
-  background: linear-gradient(160deg, #fdf6ee 0%, #f5e7d8 100%);
-  border: 2px dashed #b88675;
+  background: linear-gradient(160deg, #fff3f7 0%, #fce7ee 100%);
+  border: 2px dashed #d98295;
   border-radius: 24px;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 10px 30px rgba(186, 140, 126, 0.1);
+  box-shadow: 0 10px 30px rgba(220, 160, 175, 0.12);
 }
 .consign-box h3 {
   font-family: var(--font-sans);
@@ -1022,13 +1016,12 @@ body {
   margin-bottom: 35px;
 }
 .consign-step-item {
-  background: rgba(255, 255, 255, 0.92);
+  background: #ffffff;
   border-radius: 16px;
   padding: 20px;
   text-align: center;
-  border: 1px solid var(--border-cream);
-  box-shadow: 0 4px 12px rgba(186, 140, 126, 0.06);
-  backdrop-filter: blur(4px);
+  border: 1px solid var(--border-pink);
+  box-shadow: 0 4px 12px rgba(220, 160, 175, 0.08);
 }
 .step-num {
   display: inline-block;
@@ -1104,18 +1097,18 @@ body {
 }
 
 .orders-card-box {
-  background: linear-gradient(150deg, #fffbf7 0%, #f9ede2 100%);
-  border: 1px solid var(--border-cream);
+  background: linear-gradient(150deg, #fff5f8 0%, #fdeaf0 100%);
+  border: 1px solid var(--border-pink);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(186, 140, 126, 0.08);
+  box-shadow: 0 8px 24px rgba(220, 160, 175, 0.1);
 }
 .orders-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-cream);
+  border-bottom: 1px solid var(--border-pink);
   margin-bottom: 20px;
 }
 .orders-card-header h3 {
@@ -1272,9 +1265,10 @@ body {
   color: var(--text-muted);
   line-height: 1.45;
   margin-bottom: 18px;
-  background: #fdf7f2;
+  background: #ffffff;
   padding: 10px 12px;
   border-radius: 8px;
+  border: 1px solid var(--border-pink);
   border-left: 3px solid var(--dusty-rose);
 }
 .btn-checkout-page {
