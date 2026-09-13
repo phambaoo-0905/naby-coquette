@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>naby coquette 🦌🎀 Mở tủ đồ, gặp điều xinh</title>
+
+    <!-- Font chữ quý tộc cổ điển & thư pháp lãng mạn -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Pinyon+Script&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <!-- DẢI VIỀN REN THẬT BÓC TÁCH TRÊN CÙNG -->
+    <div class="lace-trim-top"></div>
+
+    <!-- HỌA TIẾT HOA & NƠ TRÔI NỔI NỀN (BACKGROUND FLOATING DECOR) -->
+    <div class="bg-decor-accents">
+      <img
+        src="assets/elements/rose_bouquet_1.png"
+        alt="Hoa nhí trang trí"
+        class="decor-item decor-rose-tl"
+      />
+      <img
+        src="assets/elements/rose_large_right.png"
+        alt="Hoa hồng vintage"
+        class="decor-item decor-rose-br"
+      />
+      <img
+        src="assets/elements/ribbon_bow_1.png"
+        alt="Nơ hồng satin"
+        class="decor-item decor-bow-tr"
+      />
+      <img
+        src="assets/elements/ribbon_bow_2.png"
+        alt="Nơ hồng lụa"
+        class="decor-item decor-bow-bl"
+      />
+    </div>
+
+    <!-- DẢI DÂY LEO HOA HỒNG 2 BÊN SƯỜN -->
+    <div class="decor-vine-left"></div>
+    <div class="decor-vine-right"></div>
+
+    <!-- 1. DẢI RUY BĂNG THÔNG BÁO -->
+    <div class="top-announcement">
+      <img
+        src="assets/elements/ribbon_bow_1.png"
+        alt="Nơ"
+        class="announcement-bow"
+      />
+      <span>Một chiếc áo xinh, một niềm vui mới ♡ &nbsp; ୨ৎ &nbsp; 🌸</span>
+      <img
+        src="assets/elements/ribbon_bow_2.png"
+        alt="Nơ"
+        class="announcement-bow"
+      />
+    </div>
+
+    <!-- 2. THANH ĐIỀU HƯỚNG (NAVBAR) -->
+    <header class="navbar-wrapper">
+      <div class="navbar-container">
+        <a href="#" class="brand-box">
+          <div class="brand-avatar-frame">
+            <img
+              src="assets/avatar.jpg"
+              alt="naby coquette"
+              class="avatar-img"
+            />
+          </div>
+          <div class="brand-text">
+            <span class="brand-script">Naby</span>
+            <span class="brand-sub">COQUETTE WARDROBE</span>
+          </div>
+        </a>
+
+        <nav class="nav-menu">
+          <a href="#wardrobe-section" class="menu-link active">Tủ đồ Naby</a>
+          <button class="menu-link cart-trigger-btn" id="openCartBtn">
+            Đơn của bạn <span class="cart-pill" id="cartCount">0</span>
+          </button>
+        </nav>
+
+        <a
+          href="https://instagram.com/_naby.coquette"
+          target="_blank"
+          class="ig-connect-btn"
+        >
+          <img
+            src="assets/elements/ribbon_bow_1.png"
+            alt="Bow"
+            style="width: 15px"
+          />
+          <span>Ghé Instagram</span>
+        </a>
+      </div>
+    </header>
+
+    <!-- 3. HERO BANNER (VỚI LINH VẬT NAI NẰM THƠ MỘNG) -->
+    <section class="hero-section">
+      <div class="hero-left">
+        <div class="vintage-stamp">
+          ✦ &nbsp; PASS & KÝ GỬI · EST. 2024 &nbsp; ✦
+        </div>
+        <h1 class="hero-headline">
+          Mở tủ đồ,<br />
+          <span class="script-accent">gặp điều xinh.</span>
+        </h1>
+        <p class="hero-subtext">
+          Một chút dịu dàng như chú nai con giữa khu vườn hoa hồng cổ.<br />
+          Ghé Naby, chọn chiếc áo mềm mại dành riêng cho mình.
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#wardrobe-section" class="fawn-btn">
+            <span>Khám phá tủ đồ</span>
+            <img
+              src="assets/elements/ribbon_bow_2.png"
+              alt="Bow"
+              style="width: 20px"
+            />
+          </a>
+          <span class="hero-whisper"
+            >♡ Đồ xinh trao gửi người thương mới ♡</span
+          >
+        </div>
+      </div>
+
+      <!-- KHUNG HUY HIỆU CAMEO LỒNG AVATAR SHOP & LINH VẬT NAI NẰM -->
+      <div class="hero-right">
+        <div class="cameo-stage">
+          <!-- Linh vật chú nai nằm chào đón khách -->
+          <img
+            src="assets/elements/fawn_lying.png"
+            alt="Linh vật bé nai Naby"
+            class="hero-mascot-fawn-lying"
+            id="heroFawnMascot"
+            title="Bé nai linh vật Naby Coquette"
+          />
+          <div class="mascot-speech-bubble">Chào bạn ghé Naby ୨ৎ ♡</div>
+
+          <div class="cameo-frame">
+            <div class="cameo-scallop-border">
+              <div class="cameo-image-holder">
+                <img
+                  src="assets/avatar.jpg"
+                  alt="Naby Artwork"
+                  class="cameo-img"
+                />
+              </div>
+            </div>
+            <div class="cameo-ribbon-tag">
+              <img
+                src="assets/elements/ribbon_bow_1.png"
+                alt="Bow"
+                class="cameo-ribbon-icon"
+              />
+              <span>with love, always ୨ৎ</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. DẢI BĂNG CHỮ CHẠY VINTAGE (MARQUEE) -->
+    <div class="vintage-ribbon-track">
+      <div class="ribbon-sliding-text">
+        <span
+          ><img
+            src="assets/elements/rose_small_1.png"
+            alt="Rose"
+            class="ribbon-decor-icon"
+          />
+          Ký gửi dịu dàng</span
+        >
+        <span
+          ><img
+            src="assets/elements/ribbon_bow_1.png"
+            alt="Bow"
+            class="ribbon-decor-icon"
+          />
+          Một chiếc áo, một câu chuyện mới</span
+        >
+        <span
+          ><img
+            src="assets/elements/rose_small_1.png"
+            alt="Rose"
+            class="ribbon-decor-icon"
+          />
+          From Naby, with love</span
+        >
+        <span
+          ><img
+            src="assets/elements/ribbon_bow_2.png"
+            alt="Bow"
+            class="ribbon-decor-icon"
+          />
+          Đồ xinh mỗi ngày</span
+        >
+        <span
+          ><img
+            src="assets/elements/rose_small_1.png"
+            alt="Rose"
+            class="ribbon-decor-icon"
+          />
+          Pass & ký gửi đồ tiểu thư</span
+        >
+        <span
+          ><img
+            src="assets/elements/ribbon_bow_1.png"
+            alt="Bow"
+            class="ribbon-decor-icon"
+          />
+          Một chiếc áo, một câu chuyện mới</span
+        >
+        <span
+          ><img
+            src="assets/elements/rose_small_1.png"
+            alt="Rose"
+            class="ribbon-decor-icon"
+          />
+          From Naby, with love</span
+        >
+        <span
+          ><img
+            src="assets/elements/ribbon_bow_2.png"
+            alt="Bow"
+            class="ribbon-decor-icon"
+          />
+          Đồ xinh mỗi ngày</span
+        >
+      </div>
+    </div>
+
+    <!-- 5. DANH MỤC SẢN PHẨM TỦ ĐỒ (CATALOG) -->
+    <main class="wardrobe-catalog" id="wardrobe-section">
+      <div class="catalog-heading-box">
+        <div class="catalog-title-wrapper">
+          <!-- Linh vật chú nai đứng gác tủ đồ -->
+          <img
+            src="assets/elements/fawn_standing_left.png"
+            alt="Linh vật gác tủ đồ"
+            class="catalog-mascot-fawn"
+          />
+          <div>
+            <span class="catalog-sub-badge">CURATED COQUETTE COLLECTION</span>
+            <h2 class="catalog-main-title">Tủ đồ của Naby ♡</h2>
+          </div>
+        </div>
+        <div class="catalog-whisper">
+          Thấy món đồ ưng ý?<br />Nhấn chọn vào đơn để Naby giữ đồ cho bạn nhé
+          ୨ৎ
+        </div>
+      </div>
+
+      <!-- BỘ LỌC DANH MỤC NƠ VINTAGE -->
+      <div class="pill-filters" id="filterPills">
+        <button class="filter-pill active" data-filter="all">
+          Tất cả đồ xinh ୨ৎ
+        </button>
+        <button class="filter-pill" data-filter="dress">Váy đầm</button>
+        <button class="filter-pill" data-filter="top">Áo kiểu</button>
+        <button class="filter-pill" data-filter="skirt">Chân váy</button>
+        <button class="filter-pill" data-filter="available">
+          Chỉ còn hàng 🦌
+        </button>
+        <button class="filter-pill" data-filter="passed">Đã pass ♡</button>
+      </div>
+
+      <!-- LƯỚI SẢN PHẨM -->
+      <div class="products-grid" id="productsGrid"></div>
+    </main>
+
+    <!-- 6. LINH VẬT ĐỒNG HÀNH GÓC MÀN HÌNH (FLOATING MASCOT WIDGET) -->
+    <div
+      class="floating-mascot-widget"
+      id="floatingMascot"
+      title="Nhấn vào bé nai để trò chuyện ♡"
+    >
+      <div class="floating-mascot-toast" id="mascotToast">
+        Xin chào! Bé nai Naby luôn ở đây đồng hành cùng bạn chọn đồ nhé ♡ 🦌 ୨ৎ
+      </div>
+      <img
+        src="assets/elements/fawn_standing_right.png"
+        alt="Linh vật Naby Coquette"
+        class="floating-mascot-fawn"
+      />
+      <span class="floating-mascot-badge">Naby Mascot 🦌</span>
+    </div>
+
+    <!-- 7. NGĂN KÉO GIỎ HÀNG (DRAWER) -->
+    <div class="cart-overlay" id="cartOverlay"></div>
+    <aside class="cart-drawer" id="cartDrawer">
+      <div class="cart-drawer-header">
+        <h3>
+          <img
+            src="assets/elements/ribbon_bow_1.png"
+            alt="Bow"
+            style="width: 22px"
+          />
+          Đơn của bạn ♡
+        </h3>
+        <button class="close-cart-btn" id="closeCartBtn">✕</button>
+      </div>
+
+      <div class="cart-items" id="cartItemsList"></div>
+
+      <div class="cart-drawer-footer">
+        <div class="total-bar">
+          <span>Tạm tính:</span>
+          <span class="total-price-tag" id="totalPrice">0₫</span>
+        </div>
+        <p class="cart-tip">
+          *Đơn sẽ tự sao chép danh sách, bạn chỉ cần dán (Paste) vào chat
+          Instagram cho shop nhé ୨ৎ
+        </p>
+        <button class="send-order-btn" id="checkoutBtn">
+          <img
+            src="assets/elements/ribbon_bow_2.png"
+            alt="Bow"
+            style="width: 20px"
+          />
+          <span>Gửi đơn qua Instagram</span>
+          <img
+            src="assets/elements/ribbon_bow_2.png"
+            alt="Bow"
+            style="width: 20px"
+          />
+        </button>
+      </div>
+    </aside>
+
+    <!-- 8. CHÂN TRANG FOOTER CÙNG VIỀN REN -->
+    <footer class="footer-section">
+      <p>
+        <img
+          src="assets/elements/ribbon_bow_1.png"
+          alt="Bow"
+          class="footer-bow-icon"
+        />
+        2024 naby coquette • Trao gửi sự dịu dàng & những giấc mơ 🦌
+        <img
+          src="assets/elements/ribbon_bow_2.png"
+          alt="Bow"
+          class="footer-bow-icon"
+        />
+      </p>
+    </footer>
+
+    <!-- DẢI VIỀN REN THẬT BÓC TÁCH DƯỚI CÙNG -->
+    <div class="lace-trim-bottom"></div>
+
+    <!-- SCRIPTS -->
+    <script src="js/items.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
