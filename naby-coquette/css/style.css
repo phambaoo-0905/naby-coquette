@@ -1481,7 +1481,7 @@ body {
   padding: 6px 0 4px;
   user-select: none;
   pointer-events: none;
-  border-bottom: 1px solid rgba(240, 209, 220, 0.6);
+  border: none;
 }
 
 .mascot-marquee-track {
