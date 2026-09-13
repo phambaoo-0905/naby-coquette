@@ -5,19 +5,22 @@
 ==================================================== */
 
 :root {
-  /* Nền trắng tinh khôi (#ffffff) */
-  --bg-page: #ffffff;
-  --bg-white: #ffffff;
+  /* Nền hồng nhạt theo yêu cầu */
+  --bg-page: #fdf0f4;
+  --bg-pastel-pink: #fdf0f4;
+  --bg-pastel-light: #fff8fa;
+  --bg-soft: #fbf0ea;
+  --bg-white: transparent;
 
-  /* Khung màu hồng pastel siêu nhạt, phớt nhẹ tinh tế */
-  --bg-card: linear-gradient(150deg, #ffffff 0%, #fef6f8 100%);
-  --bg-card-solid: #fef7f9;
-  --bg-soft: #fef8fa;
-  --border-pink-light: #f6e7ec;
-  --border-pink: #f0d8e1;
-  --border-cream: #f6e7ec;
-  --border-banner: #f6e7ec;
-  --border-light: rgba(246, 231, 236, 0.8);
+  /* Khung lấy màu chính xác cắt từ Hero Banner (#faebe5 -> #f5e7de) */
+  --bg-card: linear-gradient(150deg, #faebe5 0%, #f5e7de 100%);
+  --bg-card-solid: #f8ebe4;
+  --bg-banner-frame: #f7eae1;
+  --border-card: #e5cbbe;
+  --border-banner: #e5cbbe;
+  --border-pink: #f0d1dc;
+  --border-pink-light: #e5cbbe;
+  --border-light: rgba(229, 203, 190, 0.75);
   --border-dark: #3a2b2e;
 
   --fawn-dark: #3a2b2e;
@@ -25,7 +28,7 @@
   --dusty-rose: #b2586e;
   --dusty-rose-light: #fae4eb;
   --ribbon-pink: #f5ccd8;
-  --text-muted: #82696e;
+  --text-muted: #7d6558;
   --price-color: #b2586e;
 
   --font-script: 'Pinyon Script', cursive;
@@ -42,7 +45,13 @@
 }
 
 body {
-  background-color: #ffffff;
+  background-color: #fdf0f4;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, #fff8fa 0%, #fdf0f4 45%, #fce7ed 100%),
+    radial-gradient(circle at 15% 40%, rgba(254, 230, 237, 0.65) 0%, transparent 60%),
+    radial-gradient(circle at 85% 75%, rgba(253, 225, 234, 0.65) 0%, transparent 60%);
+  background-attachment: fixed;
+  background-size: 100% 100%, 100% 100%, 100% 100%;
   color: var(--fawn-dark);
   font-family: var(--font-sans);
   line-height: 1.6;
@@ -51,15 +60,15 @@ body {
 }
 
 /* ====================================================
-   1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR NỀN TRẮNG TINH TẾ)
+   1. THANH ĐIỀU HƯỚNG TRÊN CÙNG (STICKY NAVBAR HỒNG NHẠT TRONG SUỐT)
 ==================================================== */
 .top-navbar {
   position: sticky;
   top: 0;
-  background: rgba(255, 255, 255, 0.96);
+  background: rgba(253, 240, 244, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--border-pink-light);
+  border-bottom: 1px solid var(--border-card);
   z-index: 1000;
   transition: all 0.3s ease;
 }
@@ -241,10 +250,10 @@ body {
 }
 
 /* ====================================================
-   3. PHẦN THÂN BÊN DƯỚI - NỀN TRẮNG TINH KHÔI (#FFFFFF)
+   3. PHẦN THÂN BÊN DƯỚI - NỀN HỒNG PASTEL NHẸ NHÀNG
 ==================================================== */
 .main-content-white {
-  background-color: #ffffff;
+  background-color: transparent;
   padding: 50px 0 80px;
 }
 
@@ -274,7 +283,7 @@ body {
   font-weight: 400;
 }
 
-/* Bộ lọc danh mục (gọn gàng, tinh tế) */
+/* Bộ lọc danh mục (gọn gàng, tinh tế với khung màu hero banner) */
 .category-filters {
   display: flex;
   justify-content: center;
@@ -283,8 +292,8 @@ body {
   flex-wrap: wrap;
 }
 .filter-btn {
-  background: linear-gradient(145deg, #ffffff 0%, #fef6f8 100%);
-  border: 1px solid var(--border-pink-light);
+  background: linear-gradient(145deg, #faebe5 0%, #f5e7de 100%);
+  border: 1px solid var(--border-card);
   color: var(--fawn-dark);
   padding: 8px 18px;
   border-radius: 20px;
@@ -314,28 +323,28 @@ body {
 .product-card {
   display: flex;
   flex-direction: column;
-  background: linear-gradient(150deg, #ffffff 0%, #fef6f8 100%);
-  border: 1px solid var(--border-pink-light);
+  background: linear-gradient(150deg, #faebe5 0%, #f5e7de 100%);
+  border: 1px solid var(--border-card);
   border-radius: 14px;
   padding: 10px;
-  box-shadow: 0 4px 16px rgba(220, 185, 195, 0.05);
+  box-shadow: 0 4px 16px rgba(184, 138, 126, 0.08);
   transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 .product-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(220, 185, 195, 0.12);
-  border-color: #ebd0d9;
+  box-shadow: 0 10px 24px rgba(184, 138, 126, 0.15);
+  border-color: #d8b8a9;
 }
 
 /* Khung ảnh có bo góc nhẹ */
 .product-image-wrap {
   position: relative;
   aspect-ratio: 1 / 1.15;
-  background: #fef8fa;
+  background: #fdf4ee;
   border-radius: 10px;
   overflow: hidden;
   margin-bottom: 10px;
-  border: 1px solid rgba(246, 231, 236, 0.8);
+  border: 1px solid rgba(229, 203, 190, 0.6);
 }
 .product-image {
   width: 100%;
@@ -438,27 +447,27 @@ body {
    5. PHẦN GIỚI THIỆU ABOUT US (TRÊN NỀN TRẮNG)
 ==================================================== */
 .about-us-section {
-  border-top: 1px solid var(--border-pink-light);
+  border-top: 1px solid var(--border-card);
   padding: 70px 0 20px;
   margin-top: 40px;
 }
 .about-card-box {
-  background: linear-gradient(150deg, #ffffff 0%, #fef6f8 100%);
-  border: 1px solid var(--border-pink-light);
+  background: linear-gradient(150deg, #faebe5 0%, #f5e7de 100%);
+  border: 1px solid var(--border-card);
   border-radius: 24px;
   padding: 50px 60px;
   display: grid;
   grid-template-columns: 1fr 1.2fr;
   gap: 50px;
   align-items: center;
-  box-shadow: 0 8px 24px rgba(220, 185, 195, 0.06);
+  box-shadow: 0 10px 28px rgba(184, 138, 126, 0.08);
 }
 .about-image-frame {
   position: relative;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(220, 185, 195, 0.08);
-  border: 1px solid var(--border-pink-light);
+  box-shadow: 0 10px 30px rgba(184, 138, 126, 0.1);
+  border: 1px solid var(--border-card);
 }
 .about-img {
   width: 100%;
@@ -495,14 +504,14 @@ body {
   margin-top: 25px;
 }
 .highlight-item {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.88);
   padding: 12px 18px;
   border-radius: 12px;
-  border: 1px solid var(--border-pink-light);
+  border: 1px solid var(--border-card);
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--fawn-dark);
-  box-shadow: 0 4px 12px rgba(220, 175, 188, 0.05);
+  box-shadow: 0 4px 12px rgba(184, 138, 126, 0.05);
 }
 
 /* ====================================================
@@ -530,13 +539,13 @@ body {
   width: 100%;
   max-width: 420px;
   height: 100%;
-  background: #ffffff;
+  background: #f8ebe4;
   box-shadow: -10px 0 40px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
   z-index: 2100;
-  border-left: 1px solid var(--border-pink-light);
+  border-left: 1px solid var(--border-card);
 }
 .cart-drawer.open {
   right: 0;
@@ -544,7 +553,7 @@ body {
 
 .cart-header {
   padding: 20px 25px;
-  border-bottom: 1px solid var(--border-pink-light);
+  border-bottom: 1px solid var(--border-card);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -557,7 +566,7 @@ body {
 }
 .btn-close-cart {
   background: none;
-  border: 1px solid var(--border-pink-light);
+  border: 1px solid var(--border-card);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -625,8 +634,8 @@ body {
 
 .cart-footer {
   padding: 22px 25px;
-  border-top: 1px solid var(--border-light);
-  background: var(--bg-soft);
+  border-top: 1px solid var(--border-card);
+  background: #f3e2d7;
 }
 .cart-subtotal-row {
   display: flex;
@@ -670,8 +679,8 @@ body {
    7. FOOTER CHÂN TRANG
 ==================================================== */
 .site-footer {
-  border-top: 1px solid var(--border-pink-light);
-  background: #fff8fa;
+  border-top: 1px solid var(--border-card);
+  background: linear-gradient(180deg, #faedf1 0%, #f5e1e7 100%);
   padding: 35px 20px;
   text-align: center;
   color: var(--text-muted);
@@ -949,18 +958,18 @@ body {
   gap: 20px;
 }
 .standard-card {
-  background: linear-gradient(150deg, #ffffff 0%, #fef6f8 100%);
-  border: 1px solid var(--border-pink-light);
+  background: linear-gradient(150deg, #faebe5 0%, #f5e7de 100%);
+  border: 1px solid var(--border-card);
   border-radius: 18px;
   padding: 24px 20px;
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 5px 18px rgba(220, 185, 195, 0.06);
+  box-shadow: 0 6px 20px rgba(184, 138, 126, 0.08);
 }
 .standard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(220, 185, 195, 0.12);
-  border-color: #ebd0d9;
+  box-shadow: 0 10px 24px rgba(184, 138, 126, 0.14);
+  border-color: #d8b8a9;
 }
 .standard-icon {
   font-size: 2rem;
@@ -986,12 +995,12 @@ body {
   margin: 60px 0 30px;
 }
 .consign-box {
-  background: linear-gradient(160deg, #ffffff 0%, #fef5f8 100%);
-  border: 2px dashed #e2a8b7;
+  background: linear-gradient(160deg, #fbf0ea 0%, #f3e2d7 100%);
+  border: 2px dashed #b87b6d;
   border-radius: 24px;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(220, 185, 195, 0.07);
+  box-shadow: 0 8px 24px rgba(184, 138, 126, 0.08);
 }
 .consign-box h3 {
   font-family: var(--font-sans);
@@ -1014,12 +1023,12 @@ body {
   margin-bottom: 35px;
 }
 .consign-step-item {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.88);
   border-radius: 16px;
   padding: 20px;
   text-align: center;
-  border: 1px solid var(--border-pink-light);
-  box-shadow: 0 4px 12px rgba(220, 185, 195, 0.04);
+  border: 1px solid var(--border-card);
+  box-shadow: 0 4px 12px rgba(184, 138, 126, 0.05);
   backdrop-filter: blur(4px);
 }
 .step-num {
@@ -1096,18 +1105,18 @@ body {
 }
 
 .orders-card-box {
-  background: linear-gradient(150deg, #ffffff 0%, #fef6f8 100%);
-  border: 1px solid var(--border-pink-light);
+  background: linear-gradient(150deg, #faebe5 0%, #f5e7de 100%);
+  border: 1px solid var(--border-card);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(220, 185, 195, 0.06);
+  box-shadow: 0 8px 24px rgba(184, 138, 126, 0.08);
 }
 .orders-card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding-bottom: 16px;
-  border-bottom: 1px solid var(--border-pink-light);
+  border-bottom: 1px solid var(--border-card);
   margin-bottom: 20px;
 }
 .orders-card-header h3 {
@@ -1264,7 +1273,7 @@ body {
   color: var(--text-muted);
   line-height: 1.45;
   margin-bottom: 18px;
-  background: #fef8fa;
+  background: #fcf1eb;
   padding: 10px 12px;
   border-radius: 8px;
   border-left: 3px solid var(--dusty-rose);
