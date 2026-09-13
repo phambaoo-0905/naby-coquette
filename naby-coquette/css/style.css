@@ -509,16 +509,6 @@ body {
   line-height: 1.1;
   margin-bottom: 6px;
 }
-.about-welcome-title {
-  margin-bottom: 12px;
-}
-.about-welcome-title .about-script {
-  font-size: 2.6rem;
-  color: var(--dusty-rose);
-  margin-bottom: 0;
-  display: inline-block;
-  line-height: 1.15;
-}
 .about-content p {
   color: var(--fawn-brown);
   font-size: 0.95rem;
@@ -528,12 +518,12 @@ body {
 .about-content p:last-child {
   margin-bottom: 0;
 }
-.about-signoff-script {
-  font-family: var(--font-script) !important;
-  font-size: 2.1rem !important;
-  color: var(--dusty-rose) !important;
-  margin-top: 14px !important;
-  line-height: 1.25;
+.about-sign-off {
+  font-family: var(--font-script);
+  font-size: 1.85rem;
+  color: var(--dusty-rose);
+  margin-top: 10px;
+  line-height: 1.2;
 }
 .about-highlights {
   display: flex;
