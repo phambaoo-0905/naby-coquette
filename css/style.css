@@ -90,34 +90,37 @@ body {
 .brand-logo {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   text-decoration: none;
   color: var(--fawn-dark);
 }
-.brand-bow-icon {
-  width: 22px;
-  height: auto;
-  transition: transform 0.3s ease;
+.brand-logo-img {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--border-card);
+  box-shadow: 0 3px 10px rgba(168, 79, 104, 0.12);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  flex-shrink: 0;
 }
-.brand-logo:hover .brand-bow-icon {
-  transform: rotate(-10deg) scale(1.1);
+.brand-logo:hover .brand-logo-img {
+  transform: rotate(-6deg) scale(1.08);
+  box-shadow: 0 5px 14px rgba(168, 79, 104, 0.2);
 }
 .brand-name {
-  font-family: var(--font-sans);
-  font-size: 1.5rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
+  font-family: var(--font-script);
+  font-size: 2.35rem;
+  font-weight: 500;
+  color: var(--dusty-rose);
   line-height: 1;
+  display: inline-block;
+  letter-spacing: 0.01em;
+  transition: color 0.2s ease;
+  white-space: nowrap;
 }
-.brand-subtag {
-  font-size: 0.65rem;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  display: block;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  margin-top: 2px;
+.brand-logo:hover .brand-name {
+  color: #8e3e54;
 }
 
 /* Các nút điều hướng chính: About us, Tủ đồ Naby, Đơn của bạn */
@@ -731,8 +734,12 @@ body {
   .navbar-container {
     padding: 10px 18px;
   }
+  .brand-logo-img {
+    width: 36px;
+    height: 36px;
+  }
   .brand-name {
-    font-size: 1.4rem;
+    font-size: 1.85rem;
   }
   .nav-links-group {
     gap: 16px;
