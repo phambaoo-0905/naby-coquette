@@ -201,6 +201,62 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
+  // ====================================================
+  // TÙY CHỈNH HERO BANNER TRÊN MÀN HÌNH ĐIỆN THOẠI
+  // ====================================================
+  function initMobileBannerControls() {
+    const container = document.getElementById("heroBannerContainer");
+    const img = document.getElementById("heroBannerImg");
+    const btnZoom = document.getElementById("btnBannerZoom");
+    const btnFit = document.getElementById("btnBannerFit");
+    if (!container || !btnZoom || !btnFit || !img) return;
+
+    btnZoom.addEventListener("click", (e) => {
+      e.stopPropagation();
+      container.classList.remove("mode-fit");
+      btnZoom.classList.add("active");
+      btnFit.classList.remove("active");
+      img.style.objectPosition = "center";
+    });
+
+    btnFit.addEventListener("click", (e) => {
+      e.stopPropagation();
+      container.classList.add("mode-fit");
+      btnFit.classList.add("active");
+      btnZoom.classList.remove("active");
+      img.style.objectPosition = "center";
+    });
+
+    // Cử chỉ vuốt/chạm lia ngang mượt mà ngắm toàn cảnh bức tranh trên điện thoại
+    let startX = 0;
+    let isTouching = false;
+    let currentPos = 50;
+
+    container.addEventListener("touchstart", (e) => {
+      if (container.classList.contains("mode-fit")) return;
+      startX = e.touches[0].clientX;
+      isTouching = true;
+    }, { passive: true });
+
+    container.addEventListener("touchmove", (e) => {
+      if (!isTouching || container.classList.contains("mode-fit")) return;
+      const deltaX = e.touches[0].clientX - startX;
+      let newPos = currentPos - (deltaX / window.innerWidth) * 50;
+      newPos = Math.max(15, Math.min(85, newPos));
+      img.style.objectPosition = `${newPos}% center`;
+    }, { passive: true });
+
+    container.addEventListener("touchend", () => {
+      if (!isTouching) return;
+      isTouching = false;
+      const match = img.style.objectPosition.match(/([\d.]+)%/);
+      if (match) {
+        currentPos = parseFloat(match[1]);
+      }
+    }, { passive: true });
+  }
+
   renderProducts();
   updateCartUI();
+  initMobileBannerControls();
 });

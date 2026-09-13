@@ -46,9 +46,25 @@
   </header>
 
   <!-- 2. HERO BANNER TOÀN CẢNH (ẢNH 3 - BỨC TRANH NABY VINTAGE) -->
-  <section class="hero-banner-section">
-    <div class="hero-banner-container">
-      <img src="assets/hero-banner.png" alt="Naby Coquette Artwork Banner" class="hero-banner-img">
+  <section class="hero-banner-section" id="heroSection">
+    <div class="hero-banner-container" id="heroBannerContainer">
+      <img 
+        src="assets/hero-banner.png" 
+        srcset="assets/hero-banner-2x.png 2048w, assets/hero-banner.png 1024w" 
+        sizes="100vw"
+        alt="Naby Coquette Artwork Banner" 
+        class="hero-banner-img" 
+        id="heroBannerImg"
+      >
+      <!-- Nút điều khiển tuỳ chỉnh kích thước hiển thị riêng cho màn hình điện thoại -->
+      <div class="mobile-banner-controls" id="mobileBannerControls">
+        <button class="banner-mode-pill active" id="btnBannerZoom" type="button" title="Hiển thị to vừa vặn màn hình điện thoại">
+          <span>✨ Vừa màn hình</span>
+        </button>
+        <button class="banner-mode-pill" id="btnBannerFit" type="button" title="Xem toàn cảnh trọn vẹn 2 chú nai">
+          <span>🦌 Toàn cảnh</span>
+        </button>
+      </div>
     </div>
   </section>
 
