@@ -1377,3 +1377,122 @@ body {
 .catalog-mascot-bunny:hover {
   transform: translateY(-3px) rotate(3deg);
 }
+
+/* ====================================================
+   DẢI LINH VẬT NAI & THỎ CHẠY NGANG KHÔNG NỀN (MARQUEE)
+   Nằm ngay chỗ giao nhau giữa Hero Banner và phần dưới
+==================================================== */
+.mascot-marquee-divider {
+  width: 100%;
+  background: transparent;
+  overflow: hidden;
+  position: relative;
+  padding: 16px 0 8px;
+  user-select: none;
+  pointer-events: none;
+  border-bottom: 1px solid rgba(236, 230, 224, 0.6);
+}
+
+.mascot-marquee-track {
+  display: flex;
+  width: max-content;
+  animation: mascot-marquee-scroll 26s linear infinite;
+}
+
+.mascot-marquee-group {
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+  padding-right: 40px;
+}
+
+.mascot-parade-item {
+  display: inline-flex;
+  align-items: flex-end;
+}
+
+.parade-fawn {
+  height: 64px;
+  width: auto;
+  filter: drop-shadow(0 4px 8px rgba(58, 46, 41, 0.08));
+}
+
+.parade-bunny {
+  height: 48px;
+  width: auto;
+  filter: drop-shadow(0 4px 8px rgba(58, 46, 41, 0.08));
+}
+
+.mascot-parade-sparkle {
+  font-size: 1.25rem;
+  color: var(--dusty-rose);
+  opacity: 0.8;
+  margin-bottom: 12px;
+}
+
+/* Hiệu ứng bước đi & nhún nhảy nhẹ nhàng của bé nai và thỏ */
+.deer-bob {
+  animation: mascot-walk-bob 1.5s ease-in-out infinite alternate;
+}
+.bunny-hop {
+  animation: mascot-bunny-hop 1s cubic-bezier(0.28, 0.84, 0.42, 1) infinite alternate;
+}
+.delay-1 {
+  animation-delay: 0.35s;
+}
+.delay-2 {
+  animation-delay: 0.6s;
+}
+
+@keyframes mascot-marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes mascot-walk-bob {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-4px) rotate(1.5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-1deg);
+  }
+}
+
+@keyframes mascot-bunny-hop {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-6px) scale(0.98, 1.02);
+  }
+  100% {
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 768px) {
+  .mascot-marquee-divider {
+    padding: 10px 0 6px;
+  }
+  .mascot-marquee-group {
+    gap: 26px;
+    padding-right: 26px;
+  }
+  .parade-fawn {
+    height: 48px;
+  }
+  .parade-bunny {
+    height: 36px;
+  }
+  .mascot-parade-sparkle {
+    font-size: 1rem;
+    margin-bottom: 8px;
+  }
+}
