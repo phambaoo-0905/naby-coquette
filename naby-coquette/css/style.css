@@ -1380,30 +1380,40 @@ body {
 
 /* ====================================================
    DẢI LINH VẬT NAI & THỎ CHẠY NGANG KHÔNG NỀN (MARQUEE)
-   Chạy từ trái sang phải, size nhỏ tinh tế, không icon
+   Chạy từ trái sang phải qua hết màn hình, lặp vô tận
 ==================================================== */
 .mascot-marquee-divider {
   width: 100%;
+  max-width: 100vw;
+  height: 52px;
   background: transparent;
   overflow: hidden;
   position: relative;
-  padding: 8px 0 4px;
   user-select: none;
   pointer-events: none;
   border-bottom: 1px solid rgba(236, 230, 224, 0.5);
 }
 
-.mascot-marquee-track {
-  display: flex;
-  width: max-content;
-  animation: mascot-marquee-scroll 24s linear infinite;
-}
-
-.mascot-marquee-group {
+.mascot-runner-track {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
   display: flex;
   align-items: flex-end;
   gap: 28px;
-  padding-right: 28px;
+  width: max-content;
+  padding-bottom: 4px;
+  will-change: transform;
+}
+
+.runner-1 {
+  animation: mascot-run-across 20s linear infinite;
+}
+
+.runner-2 {
+  animation: mascot-run-across 20s linear infinite;
+  animation-delay: -10s;
 }
 
 .mascot-parade-item {
@@ -1437,13 +1447,13 @@ body {
   animation-delay: 0.55s;
 }
 
-/* Chuyển động từ trái sang phải */
-@keyframes mascot-marquee-scroll {
+/* Chuyển động chạy qua trọn vẹn bề ngang màn hình từ trái sang phải */
+@keyframes mascot-run-across {
   0% {
-    transform: translateX(-50%);
+    transform: translateX(calc(-100% - 20px));
   }
   100% {
-    transform: translateX(0);
+    transform: translateX(calc(100vw + 20px));
   }
 }
 
@@ -1473,11 +1483,18 @@ body {
 
 @media (max-width: 768px) {
   .mascot-marquee-divider {
-    padding: 6px 0 3px;
+    height: 42px;
   }
-  .mascot-marquee-group {
+  .mascot-runner-track {
     gap: 18px;
-    padding-right: 18px;
+    padding-bottom: 3px;
+  }
+  .runner-1 {
+    animation-duration: 12s;
+  }
+  .runner-2 {
+    animation-duration: 12s;
+    animation-delay: -6s;
   }
   .parade-fawn {
     height: 32px;
