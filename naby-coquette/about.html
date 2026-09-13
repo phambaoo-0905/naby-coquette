@@ -45,21 +45,48 @@
     </div>
   </header>
 
-  <!-- 2. HEADER TRANG ABOUT VINTAGE -->
-  <section class="about-hero-header">
-    <div class="about-hero-deco-bow">
-      <img src="assets/elements/ribbon_bow_2.png" alt="Bow Deco">
+  <!-- 2. HERO BANNER TOÀN CẢNH (ẢNH 3 - BỨC TRANH NABY VINTAGE 4K) -->
+  <section class="hero-banner-section" id="heroSection">
+    <div class="hero-banner-container" id="heroBannerContainer">
+      <picture class="hero-banner-picture">
+        <source type="image/webp" media="(min-width: 1200px)" srcset="assets/hero-banner-4k.webp 4096w, assets/hero-banner-2k.webp 2560w">
+        <source type="image/webp" srcset="assets/hero-banner-2k.webp 2560w">
+        <source type="image/png" media="(min-width: 1200px)" srcset="assets/hero-banner-2x.png 4096w, assets/hero-banner.png 2560w">
+        <img 
+          src="assets/hero-banner.png" 
+          srcset="assets/hero-banner-2x.png 4096w, assets/hero-banner.png 2560w" 
+          sizes="100vw"
+          alt="Naby Coquette Artwork Banner" 
+          class="hero-banner-img" 
+          id="heroBannerImg"
+          loading="eager"
+          decoding="async"
+        >
+      </picture>
+      <!-- Nút điều khiển tuỳ chỉnh kích thước hiển thị riêng cho màn hình điện thoại -->
+      <div class="mobile-banner-controls" id="mobileBannerControls">
+        <button class="banner-mode-pill active" id="btnBannerZoom" type="button" title="Hiển thị to vừa vặn màn hình điện thoại">
+          <span>✨ Vừa màn hình</span>
+        </button>
+        <button class="banner-mode-pill" id="btnBannerFit" type="button" title="Xem toàn cảnh trọn vẹn 2 chú nai">
+          <span>🦌 Toàn cảnh</span>
+        </button>
+      </div>
     </div>
-    <span class="about-subtitle-script">Our Story & Dreams</span>
-    <h1 class="about-main-title">About Naby Coquette ♡</h1>
-    <p class="about-intro-p">
-      Một chiếc áo xinh, một niềm vui mới · Trao gửi nét dịu dàng như chú nai con giữa vườn hoa hồng cổ điển Pháp.
-    </p>
   </section>
 
   <!-- 3. NỘI DUNG CHÍNH TRANG ABOUT (NỀN TRẮNG TINH KHÔI) -->
   <main class="main-content-white">
     <div class="content-container">
+
+      <!-- TIÊU ĐỀ GIỚI THIỆU -->
+      <div class="about-page-title-wrap">
+        <span class="about-subtitle-script">Our Story & Dreams</span>
+        <h1 class="about-main-title">About Naby Coquette ♡</h1>
+        <p class="about-intro-p">
+          Một chiếc áo xinh, một niềm vui mới · Trao gửi nét dịu dàng như chú nai con giữa vườn hoa hồng cổ điển Pháp.
+        </p>
+      </div>
 
       <!-- PHẦN 1: CÂU CHUYỆN THƯƠNG HIỆU -->
       <section class="about-card-box">
