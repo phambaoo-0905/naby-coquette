@@ -284,11 +284,24 @@ body {
 }
 
 /* ====================================================
-   3. PHẦN THÂN BÊN DƯỚI - NỀN HỒNG PASTEL NHẸ NHÀNG
+   3. KHUNG TRÊN TỪ DẢI RUY BĂNG TRỞ LÊN (NỀN SẠCH KHÔNG HOẠ TIẾT THEO YÊU CẦU)
 ==================================================== */
+.wardrobe-top-clean-zone {
+  width: 100%;
+  background-color: #FFF8F7;
+  background-image: 
+    radial-gradient(ellipse at 50% 0%, #ffffff 0%, #FFF8F7 50%, #FEECEB 100%),
+    radial-gradient(circle at 15% 40%, rgba(255, 241, 242, 0.8) 0%, transparent 60%),
+    radial-gradient(circle at 85% 75%, rgba(254, 235, 238, 0.8) 0%, transparent 60%);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  position: relative;
+  z-index: 2;
+  padding-bottom: 4px;
+}
+
 .main-content-white {
   background-color: transparent;
-  padding: 50px 0 80px;
+  padding: 0 0 80px;
 }
 
 .content-container {
@@ -300,7 +313,8 @@ body {
 /* Tiêu đề mục Tủ đồ "Naby Coquette Collection" */
 .catalog-header {
   text-align: center;
-  margin-bottom: 36px;
+  margin-top: 18px;
+  margin-bottom: 22px;
 }
 .wardrobe-script-tag {
   font-family: var(--font-script);
@@ -574,30 +588,30 @@ body {
    CAROUSEL CARD HƯỚNG DẪN ĐẶT HÀNG (COQUETTE AESTHETIC)
 ==================================================== */
 .order-guide-section {
-  background: linear-gradient(180deg, rgba(255, 241, 242, 0.5) 0%, rgba(255, 255, 255, 0.95) 100%);
+  background: #FFFFFF; /* Opacity 100%, thuần đặc không trong suốt */
   border: 1px solid var(--border-card);
-  border-radius: 28px;
-  padding: 48px 36px 42px;
-  margin: 10px 0 75px;
-  box-shadow: 0 8px 32px rgba(168, 79, 104, 0.06);
+  border-radius: 24px;
+  padding: 44px 36px 40px;
+  margin: 25px 0 75px;
+  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.08);
   position: relative;
 }
 
 .order-guide-header {
   text-align: center;
-  margin-bottom: 34px;
+  margin-bottom: 32px;
 }
 .guide-subtitle-script {
   font-family: var(--font-script);
-  font-size: 2.1rem;
+  font-size: 2.2rem;
   color: var(--dusty-rose);
   display: block;
-  line-height: 1.2;
-  margin-bottom: 2px;
+  line-height: 1.1;
+  margin-bottom: 4px;
 }
 .guide-main-title {
   font-family: var(--font-sans);
-  font-size: 1.85rem;
+  font-size: 1.95rem;
   font-weight: 700;
   color: var(--fawn-dark);
   letter-spacing: -0.015em;
@@ -605,10 +619,11 @@ body {
 }
 .guide-intro-desc {
   font-family: var(--font-sans);
-  font-size: 0.96rem;
+  font-size: 0.95rem;
   color: var(--text-muted);
-  max-width: 580px;
+  max-width: 600px;
   margin: 0 auto;
+  line-height: 1.6;
 }
 
 /* Lưới Card Hướng Dẫn Đặt Hàng (Dạng Card Bình Thường, Không Carousel) */
@@ -619,24 +634,24 @@ body {
   width: 100%;
 }
 
-/* Thẻ Card Hướng Dẫn */
+/* Thẻ Card Hướng Dẫn - Đồng bộ 100% màu pastel hồng, font & size chuẩn standard-card trang About us */
 .guide-card {
-  background: #ffffff;
-  border: 1.5px solid var(--border-card);
-  border-radius: 20px;
-  padding: 26px 20px 22px;
+  background: #FFF1F2; /* Màu pastel chuẩn 100% opacity giống standard-card trang About us */
+  border: 1px solid var(--border-card);
+  border-radius: 18px;
+  padding: 24px 20px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.06);
+  box-shadow: 0 6px 20px rgba(168, 79, 104, 0.07);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
 }
 .guide-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 12px 28px rgba(168, 79, 104, 0.14);
-  border-color: #EBB6C2;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.14);
+  border-color: #E5B4BE;
 }
 
 .guide-card-badge {
@@ -644,38 +659,38 @@ body {
   font-size: 0.74rem;
   font-weight: 700;
   color: var(--dusty-rose);
-  background: #FFF1F2;
+  background: #ffffff;
   border: 1px solid #F8CCD5;
   padding: 4px 12px;
-  border-radius: 14px;
+  border-radius: 12px;
   margin-bottom: 14px;
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
 .guide-card-icon {
-  font-size: 2.2rem;
+  font-size: 2rem;
   margin-bottom: 12px;
-  width: 60px;
-  height: 60px;
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: #FFF5F6;
+  background: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(168, 79, 104, 0.08);
+  box-shadow: 0 3px 10px rgba(168, 79, 104, 0.08);
   transition: transform 0.3s ease;
 }
 .guide-card:hover .guide-card-icon {
-  transform: scale(1.12) rotate(4deg);
+  transform: scale(1.1) rotate(4deg);
 }
 
 .guide-card-title {
   font-family: var(--font-sans);
-  font-size: 1.08rem;
+  font-size: 1.1rem;
   font-weight: 700;
   color: var(--fawn-dark);
-  margin-bottom: 10px;
+  margin-bottom: 8px;
   letter-spacing: -0.01em;
 }
 
@@ -691,10 +706,11 @@ body {
 .guide-card-tip {
   font-family: var(--font-sans);
   font-size: 0.78rem;
+  font-weight: 600;
   color: var(--dusty-rose);
-  font-weight: 500;
-  background: rgba(255, 241, 242, 0.7);
-  padding: 4px 10px;
+  background: #ffffff;
+  border: 1px solid #F8CCD5;
+  padding: 5px 12px;
   border-radius: 10px;
   width: 100%;
 }
@@ -709,10 +725,10 @@ body {
 @media (max-width: 600px) {
   .order-guide-section {
     padding: 36px 18px 30px;
-    border-radius: 22px;
+    border-radius: 20px;
   }
   .guide-main-title {
-    font-size: 1.45rem;
+    font-size: 1.55rem;
   }
   .guide-cards-grid {
     grid-template-columns: 1fr;
