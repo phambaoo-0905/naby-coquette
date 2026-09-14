@@ -277,12 +277,13 @@ body {
 }
 .wardrobe-script-tag {
   font-family: var(--font-script);
-  font-size: clamp(3rem, 6.5vw, 4.4rem);
+  font-size: clamp(3.8rem, 8.5vw, 5.8rem);
   color: var(--dusty-rose);
   display: block;
-  line-height: 1.15;
-  margin-bottom: 0;
+  line-height: 1.12;
+  margin-bottom: 4px;
   letter-spacing: 0.02em;
+  text-shadow: 0 2px 10px rgba(168, 79, 104, 0.06);
 }
 .catalog-title {
   font-family: var(--font-sans);
@@ -1861,11 +1862,11 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: center;
-  gap: 14px;
-  margin-bottom: 14px;
+  gap: 16px;
+  margin-bottom: 12px;
 }
 .catalog-mascot-deer {
-  width: 76px;
+  width: 82px;
   height: auto;
   filter: drop-shadow(0 4px 10px rgba(58, 46, 41, 0.08));
   transition: transform 0.3s ease;
@@ -1874,7 +1875,7 @@ body {
   transform: translateY(-3px) rotate(-3deg);
 }
 .catalog-mascot-bunny {
-  width: 56px;
+  width: 62px;
   height: auto;
   filter: drop-shadow(0 4px 10px rgba(58, 46, 41, 0.08));
   transition: transform 0.3s ease;

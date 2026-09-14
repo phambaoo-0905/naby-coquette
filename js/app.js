@@ -288,19 +288,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Render danh sách Card sản phẩm (Ảnh 1)
   if (productsGrid && typeof productsData !== "undefined") {
-    let currentFilter = "all";
+    let currentSort = "newest";
 
     function renderProducts() {
       productsGrid.innerHTML = "";
 
-      const filtered = productsData.filter((item) => {
-        if (currentFilter === "all") return true;
-        if (currentFilter === "available") return item.status === true;
-        if (currentFilter === "passed") return item.status === false;
-        return item.category === currentFilter;
-      });
+      let list = [...productsData];
 
-      if (filtered.length === 0) {
+      if (currentSort === "cheap") {
+        list.sort((a, b) => a.price - b.price);
+      } else if (currentSort === "expensive") {
+        list.sort((a, b) => b.price - a.price);
+      } else if (currentSort === "available") {
+        list = list.filter((item) => item.status === true);
+      } else {
+        // "newest" hoặc mặc định: giữ nguyên thứ tự ban đầu
+      }
+
+      if (list.length === 0) {
         productsGrid.innerHTML = `
           <div style="grid-column: 1 / -1; text-align: center; padding: 60px 20px; color: var(--text-muted);">
             <p style="font-size: 1.3rem; font-family: var(--font-serif); margin-bottom: 6px; color: var(--fawn-dark);">Không tìm thấy món đồ phù hợp ♡</p>
@@ -310,7 +315,7 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
       }
 
-      filtered.forEach((product) => {
+      list.forEach((product) => {
         const card = document.createElement("div");
         card.className = "product-card";
         card.setAttribute("data-id", product.id);
@@ -348,7 +353,7 @@ document.addEventListener("DOMContentLoaded", () => {
       pill.addEventListener("click", () => {
         filterPills.forEach((p) => p.classList.remove("active"));
         pill.classList.add("active");
-        currentFilter = pill.dataset.filter || "all";
+        currentSort = pill.dataset.sort || pill.dataset.filter || "newest";
         renderProducts();
       });
     });
