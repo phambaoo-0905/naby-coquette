@@ -601,157 +601,35 @@ body.page-orders {
 }
 
 /* ====================================================
-   CAROUSEL CARD HƯỚNG DẪN ĐẶT HÀNG (COQUETTE AESTHETIC)
+   HƯỚNG DẪN ĐẶT HÀNG (ĐỒNG BỘ LAYOUT & MÀU SẮC TRANG ABOUT US)
 ==================================================== */
 .order-guide-section {
-  background: #FFFFFF; /* Opacity 100%, thuần đặc không trong suốt */
-  border: 1px solid var(--border-card);
-  border-radius: 24px;
-  padding: 44px 36px 40px;
-  margin: 25px 0 75px;
-  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.08);
+  margin: 30px 0 75px;
   position: relative;
 }
 
-.order-guide-header {
-  text-align: center;
-  margin-bottom: 32px;
-}
-.guide-subtitle-script {
-  font-family: var(--font-script);
-  font-size: 2.2rem;
-  color: var(--dusty-rose);
-  display: block;
-  line-height: 1.1;
-  margin-bottom: 4px;
-}
-.guide-main-title {
-  font-family: var(--font-sans);
-  font-size: 1.95rem;
-  font-weight: 700;
-  color: var(--fawn-dark);
-  letter-spacing: -0.015em;
-  margin-bottom: 8px;
-}
-.guide-intro-desc {
-  font-family: var(--font-sans);
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  max-width: 600px;
-  margin: 0 auto;
-  line-height: 1.6;
+.order-guide-box {
+  /* consign-box styles apply here */
 }
 
-/* Lưới Card Hướng Dẫn Đặt Hàng (Dạng Card Bình Thường, Không Carousel) */
-.guide-cards-grid {
+.order-guide-steps {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
-  width: 100%;
-}
-
-/* Thẻ Card Hướng Dẫn - Đồng bộ 100% màu pastel hồng, font & size chuẩn standard-card trang About us */
-.guide-card {
-  background: #FFF1F2; /* Màu pastel chuẩn 100% opacity giống standard-card trang About us */
-  border: 1px solid var(--border-card);
-  border-radius: 18px;
-  padding: 24px 20px 22px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  box-shadow: 0 6px 20px rgba(168, 79, 104, 0.07);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
-  position: relative;
-}
-.guide-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.14);
-  border-color: #E5B4BE;
-}
-
-.guide-card-badge {
-  font-family: var(--font-sans);
-  font-size: 0.74rem;
-  font-weight: 700;
-  color: var(--dusty-rose);
-  background: #ffffff;
-  border: 1px solid #F8CCD5;
-  padding: 4px 12px;
-  border-radius: 12px;
-  margin-bottom: 14px;
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
-.guide-card-icon {
-  font-size: 2rem;
-  margin-bottom: 12px;
-  width: 56px;
-  height: 56px;
-  border-radius: 50%;
-  background: #ffffff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 3px 10px rgba(168, 79, 104, 0.08);
-  transition: transform 0.3s ease;
-}
-.guide-card:hover .guide-card-icon {
-  transform: scale(1.1) rotate(4deg);
-}
-
-.guide-card-title {
-  font-family: var(--font-sans);
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: var(--fawn-dark);
-  margin-bottom: 8px;
-  letter-spacing: -0.01em;
-}
-
-.guide-card-desc {
-  font-family: var(--font-sans);
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.55;
-  margin-bottom: 14px;
-  flex-grow: 1;
-}
-
-.guide-card-tip {
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 600;
-  color: var(--dusty-rose);
-  background: #ffffff;
-  border: 1px solid #F8CCD5;
-  padding: 5px 12px;
-  border-radius: 10px;
-  width: 100%;
+  margin-bottom: 35px;
 }
 
 @media (max-width: 992px) {
-  .guide-cards-grid {
+  .order-guide-steps {
     grid-template-columns: repeat(2, 1fr);
     gap: 18px;
   }
 }
 
 @media (max-width: 600px) {
-  .order-guide-section {
-    padding: 36px 18px 30px;
-    border-radius: 20px;
-  }
-  .guide-main-title {
-    font-size: 1.55rem;
-  }
-  .guide-cards-grid {
+  .order-guide-steps {
     grid-template-columns: 1fr;
     gap: 14px;
-  }
-  .guide-card {
-    padding: 22px 16px 18px;
   }
 }
 
@@ -1074,7 +952,12 @@ body.page-orders {
   display: flex;
   align-items: center;
   gap: 40px;
-  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.08);
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.about-card-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 .about-image-frame {
   flex: 0 0 320px;
@@ -1505,7 +1388,12 @@ body.page-orders {
   display: flex;
   align-items: center;
   gap: 40px;
-  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.08);
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.mascot-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 
 .mascot-visual {
@@ -1574,12 +1462,12 @@ body.page-orders {
   border-radius: 18px;
   padding: 24px 20px;
   text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 6px 20px rgba(168, 79, 104, 0.07);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
 }
 .standard-card:hover {
   transform: translateY(-4px);
-  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.14);
+  box-shadow: 0 12px 28px rgba(168, 79, 104, 0.13);
   border-color: #E5B4BE;
 }
 .standard-icon {
@@ -1611,7 +1499,11 @@ body.page-orders {
   border-radius: 24px;
   padding: 40px;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.08);
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.consign-box:hover {
+  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 .consign-box h3 {
   font-family: var(--font-sans);
@@ -1636,11 +1528,17 @@ body.page-orders {
 .consign-step-item {
   background: #ffffff;
   border-radius: 16px;
-  padding: 20px;
+  padding: 22px 18px;
   text-align: center;
   border: 1px solid var(--border-card);
-  box-shadow: 0 4px 12px rgba(168, 79, 104, 0.05);
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
   backdrop-filter: blur(4px);
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+}
+.consign-step-item:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 28px rgba(168, 79, 104, 0.13);
+  border-color: #E5B4BE;
 }
 .step-num {
   display: inline-block;
@@ -1720,7 +1618,12 @@ body.page-orders {
   border: 1px solid var(--border-card);
   border-radius: 20px;
   padding: 24px;
-  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.08);
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.orders-card-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 .orders-card-header {
   display: flex;
@@ -1820,7 +1723,12 @@ body.page-orders {
   padding: 28px 24px;
   position: sticky;
   top: 90px;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.orders-summary-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 .orders-summary-box h3 {
   font-family: var(--font-sans);
@@ -1932,9 +1840,14 @@ body.page-orders {
   border: 1px solid var(--border-light);
   border-radius: 24px;
   padding: 40px;
-  box-shadow: 0 8px 24px rgba(166, 88, 104, 0.05);
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
   max-width: 520px;
   margin: 0 auto;
+  transition: transform 0.28s ease, box-shadow 0.28s ease;
+}
+.empty-state-box:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 .empty-mascot-wrap {
   display: flex;
