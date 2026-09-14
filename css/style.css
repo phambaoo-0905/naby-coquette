@@ -51,16 +51,50 @@
 body {
   background-color: #FFF8F7;
   background-image: 
+    url('../assets/elements/coquette_floral_pattern_tile.png'),
     radial-gradient(ellipse at 50% 0%, #ffffff 0%, #FFF8F7 50%, #FEECEB 100%),
     radial-gradient(circle at 15% 40%, rgba(255, 241, 242, 0.8) 0%, transparent 60%),
     radial-gradient(circle at 85% 75%, rgba(254, 235, 238, 0.8) 0%, transparent 60%);
-  background-attachment: fixed;
-  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-repeat: 
+    repeat,
+    no-repeat,
+    no-repeat,
+    no-repeat;
+  background-position: 
+    center top,
+    center top,
+    center top,
+    center top;
+  background-size: 
+    360px 360px,
+    100% 100%,
+    100% 100%,
+    100% 100%;
+  background-attachment: 
+    fixed,
+    fixed,
+    fixed,
+    fixed;
   color: var(--fawn-dark);
   font-family: var(--font-sans);
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+@media (max-width: 768px) {
+  body {
+    background-size: 
+      260px 260px,
+      100% 100%,
+      100% 100%,
+      100% 100%;
+    background-attachment: 
+      scroll,
+      fixed,
+      fixed,
+      fixed;
+  }
 }
 
 /* ====================================================
@@ -1383,12 +1417,10 @@ body {
 /* Header chung cho About và Orders */
 .about-hero-header,
 .orders-hero-header {
-  background: var(--bg-pastel-pink);
-  background-image: radial-gradient(rgba(235, 206, 215, 0.45) 1px, transparent 1px);
-  background-size: 24px 24px;
+  background: rgba(255, 241, 242, 0.45);
   padding: 60px 20px 50px;
   text-align: center;
-  border-bottom: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-card);
   position: relative;
 }
 
