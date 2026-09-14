@@ -210,7 +210,7 @@ body {
 
 /* ====================================================
    2. HERO BANNER (ẢNH 3 - BỨC TRANH TOÀN CẢNH NABY)
-   Hiển thị tràn viền to rõ trên Web & Laptop
+   Tự động fit và zoom ra vào mượt mà theo kích thước Desktop
 ==================================================== */
 .hero-banner-section {
   width: 100%;
@@ -223,7 +223,7 @@ body {
 
 .hero-banner-container {
   width: 100%;
-  max-width: 100%; /* Tràn viền 100% không giới hạn 1320px */
+  max-width: 100%;
   margin: 0;
   padding: 0;
   position: relative;
@@ -236,24 +236,17 @@ body {
   height: 100%;
 }
 
-/* Hiển thị trên Web & Laptop: To rõ, tràn 100% chiều ngang màn hình */
+/* Hiển thị tràn viền 100%, tự động co giãn/zoom theo kích thước màn hình */
 .hero-banner-img {
   width: 100%;
   height: auto;
+  aspect-ratio: 3 / 1;
   display: block;
   object-fit: cover;
   object-position: center;
-  min-height: 480px; /* Đảm bảo chiều cao to rõ trên màn hình máy tính/laptop */
-  max-height: 700px;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
   filter: contrast(1.02);
-  transition: transform 0.4s ease, object-position 0.25s ease;
-}
-
-/* Cụm nút tùy chỉnh hiển thị trên điện thoại (mặc định ẩn trên Web & Laptop) */
-.mobile-banner-controls {
-  display: none;
 }
 
 /* ====================================================
@@ -1161,83 +1154,7 @@ body {
     font-size: 1.15rem;
   }
 }
-  /* TÙY CHỈNH CHO MÀN HÌNH ĐIỆN THOẠI & TABLET */
-  .hero-banner-container {
-    width: 100%;
-    position: relative;
-    touch-action: pan-y;
-  }
-
-  /* Mặc định trên điện thoại: Tùy chỉnh kích thước to rõ (chế độ Vừa màn hình) */
-  .hero-banner-img {
-    min-height: unset;
-    height: clamp(260px, 62vw, 340px);
-    object-fit: cover;
-    object-position: center;
-    width: 100%;
-  }
-
-  /* Chế độ Toàn cảnh: Tùy chỉnh xem trọn vẹn cả 2 chú nai linh vật trên điện thoại */
-  .hero-banner-container.mode-fit .hero-banner-img {
-    height: auto;
-    aspect-ratio: 3 / 1;
-    object-fit: contain;
-    background-color: #f7ede3;
-  }
-
-  /* Cụm nút chuyển đổi tùy chỉnh size trên màn hình điện thoại */
-  .mobile-banner-controls {
-    display: flex;
-    position: absolute;
-    bottom: 10px;
-    right: 12px;
-    gap: 6px;
-    z-index: 10;
-    background: rgba(255, 255, 255, 0.92);
-    backdrop-filter: blur(8px);
-    padding: 3px 5px;
-    border-radius: 20px;
-    border: 1px solid rgba(166, 88, 104, 0.25);
-    box-shadow: 0 4px 14px rgba(58, 46, 41, 0.12);
-  }
-
-  .banner-mode-pill {
-    background: transparent;
-    border: none;
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    font-weight: 600;
-    color: var(--fawn-brown);
-    padding: 5px 11px;
-    border-radius: 14px;
-    cursor: pointer;
-    transition: all 0.25s ease;
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    white-space: nowrap;
-  }
-
-  .banner-mode-pill.active {
-    background: var(--dusty-rose);
-    color: #ffffff;
-    box-shadow: 0 2px 6px rgba(166, 88, 104, 0.35);
-  }
-}
-
 @media (max-width: 480px) {
-  .hero-banner-img {
-    height: clamp(230px, 68vw, 300px);
-  }
-  .mobile-banner-controls {
-    bottom: 8px;
-    right: 8px;
-    padding: 2px 4px;
-  }
-  .banner-mode-pill {
-    font-size: 0.68rem;
-    padding: 4px 8px;
-  }
   .ig-pill-btn {
     display: none;
   }
