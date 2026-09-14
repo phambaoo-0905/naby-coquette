@@ -1547,61 +1547,73 @@ body.page-orders {
   box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 
-/* Họa tiết nai & thỏ trang trí ngẫu nhiên trong khung Easy Shopping Guide & Join Our Wardrobe */
+/* Họa tiết nai & thỏ trang trí ngẫu nhiên rải rác trong khung Easy Shopping Guide & Join Our Wardrobe */
 .consign-deco-mascot {
   position: absolute;
   pointer-events: none;
   z-index: 0;
-  opacity: 0.26;
-  filter: drop-shadow(0 4px 8px rgba(168, 79, 104, 0.08));
+  opacity: 0.22;
+  filter: drop-shadow(0 3px 6px rgba(168, 79, 104, 0.08));
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .consign-box:hover .consign-deco-mascot {
-  opacity: 0.45;
+  opacity: 0.42;
 }
 
-.deco-mascot-top-left {
-  top: 16px;
-  left: 24px;
-  width: 58px;
-  transform: rotate(-10deg);
-}
-
-.deco-mascot-top-right {
-  top: 18px;
-  right: 28px;
-  width: 46px;
-  transform: rotate(12deg);
-}
-
-.deco-mascot-bottom-left {
-  bottom: 20px;
-  left: 32px;
-  width: 54px;
-  transform: rotate(8deg);
-}
-
-.deco-mascot-bottom-right {
-  bottom: 18px;
-  right: 28px;
+.rand-mascot-1 {
+  top: 8%;
+  left: 14%;
   width: 48px;
+  transform: rotate(-14deg);
+}
+
+.rand-mascot-2 {
+  top: 14%;
+  left: 83%;
+  width: 42px;
+  transform: rotate(18deg);
+}
+
+.rand-mascot-3 {
+  top: 56%;
+  left: 4%;
+  width: 40px;
   transform: rotate(-8deg);
 }
 
-.deco-mascot-mid-left {
-  top: 48%;
-  left: 12px;
-  width: 38px;
-  transform: translateY(-50%) rotate(-15deg);
-  opacity: 0.18;
+.rand-mascot-4 {
+  top: 44%;
+  left: 48%;
+  width: 44px;
+  transform: rotate(12deg);
 }
 
-.deco-mascot-mid-right {
-  top: 46%;
-  right: 14px;
+.rand-mascot-5 {
+  top: 69%;
+  left: 26%;
+  width: 46px;
+  transform: rotate(-22deg);
+}
+
+.rand-mascot-6 {
+  top: 83%;
+  left: 73%;
+  width: 50px;
+  transform: rotate(15deg);
+}
+
+.rand-mascot-7 {
+  top: 36%;
+  left: 92%;
   width: 36px;
-  transform: translateY(-50%) rotate(15deg);
-  opacity: 0.18;
+  transform: rotate(-12deg);
+}
+
+.rand-mascot-8 {
+  top: 87%;
+  left: 17%;
+  width: 38px;
+  transform: rotate(8deg);
 }
 
 .consign-box .about-script,

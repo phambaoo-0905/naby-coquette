@@ -355,12 +355,12 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
 
-        // Khi ấn Mua ngay: Chuyển thẳng về trang Instagram của Naby
+        // Khi ấn Mua ngay: Chuyển thẳng sang trang Instagram của shop luôn (không copy)
         const btnBuyNow = card.querySelector(".btn-card-buy-now");
         if (btnBuyNow) {
           btnBuyNow.addEventListener("click", (e) => {
             e.stopPropagation(); // Không kích hoạt mở modal
-            redirectToInstagram(product);
+            window.open("https://instagram.com/_naby.coquette", "_blank");
           });
         }
 
