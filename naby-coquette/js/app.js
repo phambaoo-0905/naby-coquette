@@ -333,17 +333,19 @@ document.addEventListener("DOMContentLoaded", () => {
             <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
             <!-- Hiệu ứng chấm pastel nhỏ dịu dàng phủ lên ảnh chuẩn coquette -->
             <div class="card-dots-overlay" aria-hidden="true"></div>
-            ${!product.status ? '<span class="card-status-badge sold-out">Đã pass</span>' : ''}
             <div class="card-top-deco-badge" title="Naby Coquette Little Favorite">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
             </div>
           </div>
           <div class="product-info-wrap">
             <div class="product-card-name" title="${product.name}">${product.name}</div>
-            <div class="product-card-action-row">
-              <div class="product-card-price">${formatMoney(product.price)}</div>
-              <button class="btn-card-buy-now" type="button">Mua ngay</button>
-            </div>
+            <div class="product-card-price">${formatMoney(product.price)}</div>
+
+            <!-- Nút CTA Mua ngay nằm dưới cùng của card -->
+            <button class="btn-card-buy-now" type="button">
+              <span>Mua ngay</span>
+              <span class="btn-buy-icon">♡</span>
+            </button>
 
             <!-- Họa tiết linh vật nai & thỏ size nhỏ, giảm opacity theo đúng yêu cầu -->
             <div class="card-mascot-watermark">
@@ -353,16 +355,16 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
 
-        // Khi click vào nút Mua ngay
+        // Khi ấn Mua ngay: Chuyển thẳng về trang Instagram của Naby
         const btnBuyNow = card.querySelector(".btn-card-buy-now");
         if (btnBuyNow) {
           btnBuyNow.addEventListener("click", (e) => {
-            e.stopPropagation();
-            openProductModal(product);
+            e.stopPropagation(); // Không kích hoạt mở modal
+            redirectToInstagram(product);
           });
         }
 
-        // Khi click vào card: Mở modal popup chi tiết (Ảnh 2)
+        // Khi click vào vùng khác của card: Mở modal popup chi tiết
         card.addEventListener("click", () => {
           openProductModal(product);
         });

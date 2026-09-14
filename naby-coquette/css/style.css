@@ -524,57 +524,68 @@ body.page-orders {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.product-card-action-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 6px;
-  position: relative;
-  z-index: 2;
-  margin-top: 2px;
-}
 .product-card-price {
   font-family: var(--font-sans);
   font-size: 0.92rem;
   font-weight: 700;
   color: var(--dusty-rose);
+  position: relative;
+  z-index: 2;
+  margin-bottom: 8px;
 }
+
+/* Nút CTA Mua ngay dưới cùng của Card */
 .btn-card-buy-now {
-  background: var(--dusty-rose);
-  color: #ffffff;
-  border: none;
-  border-radius: 14px;
-  padding: 4px 10px;
-  font-size: 0.74rem;
-  font-weight: 700;
+  width: 100%;
+  background: #ffffff;
+  color: var(--dusty-rose);
+  border: 1px solid #F3CAD2;
+  border-radius: 18px;
+  padding: 6px 12px;
   font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 700;
   cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
   transition: all 0.22s ease;
-  box-shadow: 0 2px 6px rgba(168, 79, 104, 0.25);
-  white-space: nowrap;
-  letter-spacing: 0.01em;
+  box-shadow: 0 2px 6px rgba(168, 79, 104, 0.06);
+  position: relative;
+  z-index: 2;
 }
 .btn-card-buy-now:hover {
-  background: #8e4554;
-  transform: translateY(-1.5px) scale(1.04);
-  box-shadow: 0 4px 10px rgba(168, 79, 104, 0.35);
+  background: var(--dusty-rose);
+  color: #ffffff;
+  border-color: var(--dusty-rose);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(168, 79, 104, 0.25);
+}
+.btn-buy-icon {
+  font-size: 0.88rem;
+  line-height: 1;
+  transition: transform 0.22s ease;
+}
+.btn-card-buy-now:hover .btn-buy-icon {
+  transform: scale(1.25);
 }
 
 /* Chèn ảnh nai và thỏ size nhỏ và giảm opacity xuống theo đúng yêu cầu */
 .card-mascot-watermark {
   position: absolute;
-  bottom: 4px;
+  bottom: 38px;
   right: 8px;
   display: flex;
   align-items: flex-end;
   gap: 3px;
-  opacity: 0.25; /* Giảm opacity theo yêu cầu */
+  opacity: 0.22; /* Giảm opacity theo yêu cầu */
   pointer-events: none;
   z-index: 1;
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
 .product-card:hover .card-mascot-watermark {
-  opacity: 0.5; /* Hover hiện rõ nét hơn rất duyên dáng */
+  opacity: 0.45;
   transform: translateY(-2px);
 }
 .mascot-mini-fawn {
@@ -1530,70 +1541,77 @@ body.page-orders {
   box-shadow: 0 4px 16px rgba(168, 79, 104, 0.07), 0 1px 3px rgba(58, 46, 41, 0.03);
   transition: transform 0.28s ease, box-shadow 0.28s ease;
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 .consign-box:hover {
   box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 
-/* Họa tiết nai thỏ trang trí ngẫu nhiên khung */
-.box-mascot-deco {
+/* Họa tiết nai & thỏ trang trí ngẫu nhiên trong khung Easy Shopping Guide & Join Our Wardrobe */
+.consign-deco-mascot {
   position: absolute;
   pointer-events: none;
-  z-index: 1;
-  opacity: 0.85;
-  transition: transform 0.3s ease, opacity 0.3s ease;
+  z-index: 0;
+  opacity: 0.26;
+  filter: drop-shadow(0 4px 8px rgba(168, 79, 104, 0.08));
+  transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.box-mascot-deco .deco-mascot-img {
-  width: 52px;
-  height: auto;
-  filter: drop-shadow(0 4px 8px rgba(168, 79, 104, 0.15));
-  object-fit: contain;
-}
-.consign-box:hover .box-mascot-deco {
-  opacity: 1;
-}
-.deco-top-left {
-  top: -16px;
-  left: 18px;
-  transform: rotate(-10deg);
-}
-.deco-top-right {
-  top: -18px;
-  right: 22px;
-  transform: rotate(12deg);
-}
-.deco-bottom-left {
-  bottom: -14px;
-  left: 20px;
-  transform: rotate(8deg);
-}
-.deco-bottom-right {
-  bottom: -16px;
-  right: 22px;
-  transform: rotate(-10deg);
-}
-.deco-mid-left {
-  top: 48%;
-  left: -14px;
-  transform: translateY(-50%) rotate(-12deg);
-}
-.deco-mid-right {
-  top: 50%;
-  right: -14px;
-  transform: translateY(-50%) rotate(12deg);
+.consign-box:hover .consign-deco-mascot {
+  opacity: 0.45;
 }
 
-@media (max-width: 768px) {
-  .box-mascot-deco .deco-mascot-img {
-    width: 36px;
-  }
-  .deco-top-left { top: -10px; left: 6px; }
-  .deco-top-right { top: -12px; right: 8px; }
-  .deco-bottom-left { bottom: -8px; left: 6px; }
-  .deco-bottom-right { bottom: -10px; right: 8px; }
-  .deco-mid-left { left: -6px; }
-  .deco-mid-right { right: -6px; }
+.deco-mascot-top-left {
+  top: 16px;
+  left: 24px;
+  width: 58px;
+  transform: rotate(-10deg);
+}
+
+.deco-mascot-top-right {
+  top: 18px;
+  right: 28px;
+  width: 46px;
+  transform: rotate(12deg);
+}
+
+.deco-mascot-bottom-left {
+  bottom: 20px;
+  left: 32px;
+  width: 54px;
+  transform: rotate(8deg);
+}
+
+.deco-mascot-bottom-right {
+  bottom: 18px;
+  right: 28px;
+  width: 48px;
+  transform: rotate(-8deg);
+}
+
+.deco-mascot-mid-left {
+  top: 48%;
+  left: 12px;
+  width: 38px;
+  transform: translateY(-50%) rotate(-15deg);
+  opacity: 0.18;
+}
+
+.deco-mascot-mid-right {
+  top: 46%;
+  right: 14px;
+  width: 36px;
+  transform: translateY(-50%) rotate(15deg);
+  opacity: 0.18;
+}
+
+.consign-box .about-script,
+.consign-box h3,
+.consign-box .consign-desc,
+.consign-box .order-guide-steps,
+.consign-box .consign-steps,
+.consign-box .consign-cta {
+  position: relative;
+  z-index: 1;
 }
 .consign-box h3 {
   font-family: var(--font-sans);
