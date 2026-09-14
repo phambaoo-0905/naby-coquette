@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let cart = getCart();
 
   const formatMoney = (amount) => {
-    return new Intl.NumberFormat("vi-VN").format(amount) + "₫";
+    return new Intl.NumberFormat("vi-VN").format(amount) + " đ";
   };
 
   // Cập nhật huy hiệu số lượng trên thanh navbar
@@ -65,10 +65,187 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ====================================================
-  // 2. LOGIC TRANG TỦ ĐỒ NABY (INDEX.HTML)
+  // 2. LOGIC TRANG TỦ ĐỒ NABY (INDEX.HTML) & MODAL CHI TIẾT
   // ====================================================
   const productsGrid = document.getElementById("productsGrid");
   const filterPills = document.querySelectorAll(".filter-btn, .filter-pill");
+
+  // DOM elements của Modal
+  const productModal = document.getElementById("productModal");
+  const modalCloseBtn = document.getElementById("modalCloseBtn");
+  const modalMainImg = document.getElementById("modalMainImg");
+  const modalPrevBtn = document.getElementById("modalPrevBtn");
+  const modalNextBtn = document.getElementById("modalNextBtn");
+  const modalImgCounter = document.getElementById("modalImgCounter");
+  const zoomInBtn = document.getElementById("zoomInBtn");
+  const zoomOutBtn = document.getElementById("zoomOutBtn");
+  const zoomResetBtn = document.getElementById("zoomResetBtn");
+  const zoomLevelText = document.getElementById("zoomLevelText");
+  const modalThumbnailsStrip = document.getElementById("modalThumbnailsStrip");
+  const modalProductTitle = document.getElementById("modalProductTitle");
+  const modalProductPrice = document.getElementById("modalProductPrice");
+  const modalSpecsBlock = document.getElementById("modalSpecsBlock");
+  const modalContactBtn = document.getElementById("modalContactBtn");
+
+  const IG_URL = "https://instagram.com/_naby.coquette";
+
+  // Hàm hỗ trợ sao chép tin nhắn chốt đơn vào bộ nhớ tạm
+  function copyOrderMessage(productName, price) {
+    const text = `Chào Naby, mình muốn chốt món "${productName}" (${formatMoney(price)}) ạ ♡`;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).catch(() => {});
+    }
+  }
+
+  // Quản lý trạng thái hiển thị Modal
+  let currentModalImages = [];
+  let currentImgIndex = 0;
+  let currentZoom = 1;
+  let currentProduct = null;
+
+  function updateModalZoom() {
+    if (modalMainImg) {
+      modalMainImg.style.transform = `scale(${currentZoom})`;
+    }
+    if (zoomLevelText) {
+      zoomLevelText.textContent = `${Math.round(currentZoom * 100)}%`;
+    }
+  }
+
+  function showModalImage(index) {
+    if (!currentModalImages || currentModalImages.length === 0) return;
+    if (index < 0) index = currentModalImages.length - 1;
+    if (index >= currentModalImages.length) index = 0;
+    currentImgIndex = index;
+
+    if (modalMainImg) {
+      modalMainImg.src = currentModalImages[currentImgIndex];
+      modalMainImg.alt = currentProduct ? currentProduct.name : "Naby Product";
+    }
+
+    if (modalImgCounter) {
+      modalImgCounter.textContent = `${currentImgIndex + 1}/${currentModalImages.length}`;
+    }
+
+    currentZoom = 1;
+    updateModalZoom();
+
+    // Cập nhật thumbnail đang chọn
+    if (modalThumbnailsStrip) {
+      const thumbs = modalThumbnailsStrip.querySelectorAll(".modal-thumb-img");
+      thumbs.forEach((thumb, i) => {
+        thumb.classList.toggle("active", i === currentImgIndex);
+      });
+    }
+  }
+
+  function openProductModal(product) {
+    if (!productModal) return;
+    currentProduct = product;
+    currentModalImages = (product.images && product.images.length > 0) ? product.images : [product.image];
+    currentImgIndex = 0;
+
+    if (modalProductTitle) modalProductTitle.textContent = product.name;
+    if (modalProductPrice) modalProductPrice.textContent = formatMoney(product.price);
+
+    // Hiển thị thông số chi tiết (specs)
+    if (modalSpecsBlock) {
+      modalSpecsBlock.innerHTML = "";
+      const specsList = (product.specs && product.specs.length > 0) ? product.specs : [
+        `✧ ${product.size}`,
+        product.condition
+      ];
+      specsList.forEach((spec) => {
+        const p = document.createElement("p");
+        p.className = "modal-spec-item";
+        p.textContent = spec;
+        modalSpecsBlock.appendChild(p);
+      });
+    }
+
+    // Nút "Liên hệ Naby" chuyển sang Instagram
+    if (modalContactBtn) {
+      modalContactBtn.href = IG_URL;
+      modalContactBtn.onclick = () => {
+        copyOrderMessage(product.name, product.price);
+        showToast(`Đã lưu lời nhắn chốt "${product.name}", chuyển sang Instagram Naby ♡`);
+      };
+    }
+
+    // Tạo thanh ảnh thu nhỏ (Thumbnails)
+    if (modalThumbnailsStrip) {
+      modalThumbnailsStrip.innerHTML = "";
+      if (currentModalImages.length > 1) {
+        modalThumbnailsStrip.style.display = "flex";
+        currentModalImages.forEach((imgSrc, idx) => {
+          const thumb = document.createElement("img");
+          thumb.className = "modal-thumb-img" + (idx === 0 ? " active" : "");
+          thumb.src = imgSrc;
+          thumb.alt = `${product.name} ${idx + 1}`;
+          thumb.addEventListener("click", () => showModalImage(idx));
+          modalThumbnailsStrip.appendChild(thumb);
+        });
+      } else {
+        modalThumbnailsStrip.style.display = "none";
+      }
+    }
+
+    // Ẩn/hiện các nút prev/next và đếm số nếu chỉ có 1 ảnh
+    const hasMultipleImages = currentModalImages.length > 1;
+    if (modalPrevBtn) modalPrevBtn.style.display = hasMultipleImages ? "flex" : "none";
+    if (modalNextBtn) modalNextBtn.style.display = hasMultipleImages ? "flex" : "none";
+    if (modalImgCounter) modalImgCounter.style.display = hasMultipleImages ? "block" : "none";
+
+    showModalImage(0);
+
+    productModal.classList.add("active");
+    productModal.setAttribute("aria-hidden", "false");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeProductModal() {
+    if (!productModal) return;
+    productModal.classList.remove("active");
+    productModal.setAttribute("aria-hidden", "true");
+    document.body.style.overflow = "";
+    currentZoom = 1;
+    updateModalZoom();
+  }
+
+  if (modalCloseBtn) modalCloseBtn.addEventListener("click", closeProductModal);
+  if (productModal) {
+    productModal.addEventListener("click", (e) => {
+      if (e.target === productModal) closeProductModal();
+    });
+  }
+  if (modalPrevBtn) modalPrevBtn.addEventListener("click", () => showModalImage(currentImgIndex - 1));
+  if (modalNextBtn) modalNextBtn.addEventListener("click", () => showModalImage(currentImgIndex + 1));
+
+  if (zoomInBtn) {
+    zoomInBtn.addEventListener("click", () => {
+      currentZoom = Math.min(currentZoom + 0.25, 2.5);
+      updateModalZoom();
+    });
+  }
+  if (zoomOutBtn) {
+    zoomOutBtn.addEventListener("click", () => {
+      currentZoom = Math.max(currentZoom - 0.25, 0.75);
+      updateModalZoom();
+    });
+  }
+  if (zoomResetBtn) {
+    zoomResetBtn.addEventListener("click", () => {
+      currentZoom = 1;
+      updateModalZoom();
+    });
+  }
+
+  document.addEventListener("keydown", (e) => {
+    if (!productModal || !productModal.classList.contains("active")) return;
+    if (e.key === "Escape") closeProductModal();
+    if (e.key === "ArrowLeft") showModalImage(currentImgIndex - 1);
+    if (e.key === "ArrowRight") showModalImage(currentImgIndex + 1);
+  });
 
   if (productsGrid && typeof productsData !== "undefined") {
     let currentFilter = "all";
@@ -96,40 +273,57 @@ document.addEventListener("DOMContentLoaded", () => {
       filtered.forEach((product) => {
         const card = document.createElement("div");
         card.className = "product-card";
+        card.setAttribute("data-id", product.id);
 
-        const isInCart = cart.some((c) => c.id === product.id);
+        const specsHtml = (product.specs && product.specs.length > 0)
+          ? product.specs.map(s => `<p class="spec-item">${s}</p>`).join("")
+          : `<p class="spec-item">✧ ${product.size}</p><p class="spec-item">${product.condition}</p>`;
 
         card.innerHTML = `
           <div class="product-image-wrap">
             <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
-            ${!product.status ? '<span class="badge-soldout">Sold out</span>' : '<span class="badge-available">Còn hàng</span>'}
+            <span class="product-status-pill ${product.status ? 'status-available' : 'status-sold'}">
+              ${product.status ? 'Còn hàng' : 'Đã pass'}
+            </span>
+            <button class="btn-view-photos" type="button" aria-label="Xem ảnh">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                <circle cx="8.5" cy="8.5" r="1.5"/>
+                <polyline points="21 15 16 10 5 21"/>
+              </svg>
+              <span>Xem ảnh</span>
+            </button>
           </div>
-          <div class="product-title" title="${product.name}">${product.name}</div>
-          <div class="product-size-condition">${product.size} · ${product.condition}</div>
-          <div class="product-price">${formatMoney(product.price)}</div>
-          <button class="btn-action-card ${product.status ? 'btn-add-cart' : 'btn-sold-out'}" 
-                  data-id="${product.id}" 
-                  ${!product.status ? 'disabled' : ''}>
-            ${!product.status ? 'Sold out' : (isInCart ? '✓ Đã trong đơn' : '+ Add to cart')}
-          </button>
+          <div class="product-card-body">
+            <div class="product-name-price-row">
+              <h3 class="product-card-title">${product.name}</h3>
+              <span class="product-card-price">${formatMoney(product.price)}</span>
+            </div>
+            <div class="product-specs-list">
+              ${specsHtml}
+            </div>
+            <div class="product-card-action">
+              <a href="${IG_URL}" target="_blank" rel="noopener noreferrer" class="link-order-ig">
+                Chốt qua Instagram ↗
+              </a>
+            </div>
+          </div>
         `;
 
-        const addBtn = card.querySelector(".btn-add-cart");
-        if (product.status && addBtn) {
-          addBtn.addEventListener("click", () => {
-            const index = cart.findIndex((item) => item.id === product.id);
-            if (index > -1) {
-              cart.splice(index, 1);
-              saveCart(cart);
-              showToast(`Đã bỏ "${product.name}" khỏi Đơn của bạn ♡`);
-            } else {
-              cart.push(product);
-              saveCart(cart);
-              showToast(`Đã thêm "${product.name}" vào Đơn của bạn 🎀`);
-            }
-            renderProducts();
+        // Sự kiện click nút Chốt qua Instagram: copy text và mở Instagram (không kích hoạt modal)
+        const igLink = card.querySelector(".link-order-ig");
+        if (igLink) {
+          igLink.addEventListener("click", (e) => {
+            e.stopPropagation();
+            copyOrderMessage(product.name, product.price);
+            showToast(`Đã lưu lời nhắn chốt "${product.name}", chuyển sang Instagram Naby ♡`);
           });
         }
+
+        // Sự kiện click vào thẻ sản phẩm hoặc nút "Xem ảnh" -> Mở Modal chuẩn Ảnh 2
+        card.addEventListener("click", () => {
+          openProductModal(product);
+        });
 
         productsGrid.appendChild(card);
       });
