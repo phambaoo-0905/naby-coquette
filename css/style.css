@@ -270,10 +270,19 @@ body {
   padding: 0 30px;
 }
 
-/* Tiêu đề mục "Some highlighted products" / "Tủ đồ của Naby ♡" */
+/* Tiêu đề mục Tủ đồ "Naby Coquette Collection" */
 .catalog-header {
   text-align: center;
-  margin-bottom: 35px;
+  margin-bottom: 28px;
+}
+.wardrobe-script-tag {
+  font-family: var(--font-script);
+  font-size: clamp(3rem, 6.5vw, 4.4rem);
+  color: var(--dusty-rose);
+  display: block;
+  line-height: 1.15;
+  margin-bottom: 0;
+  letter-spacing: 0.02em;
 }
 .catalog-title {
   font-family: var(--font-sans);
@@ -288,14 +297,6 @@ body {
   margin-top: 6px;
   font-family: var(--font-sans);
   font-weight: 400;
-}
-.wardrobe-script-tag {
-  font-family: var(--font-script);
-  font-size: 2rem;
-  color: var(--dusty-rose);
-  display: block;
-  line-height: 1.1;
-  margin-bottom: 4px;
 }
 
 /* Bộ lọc danh mục (gọn gàng, tinh tế với khung trắng) */
