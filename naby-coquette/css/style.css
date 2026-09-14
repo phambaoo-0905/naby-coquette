@@ -371,7 +371,7 @@ body {
   position: absolute;
   inset: 0;
   background-image: url('../assets/elements/pastel_dots_overlay.svg');
-  background-size: 260px 260px;
+  background-size: 320px 320px;
   background-repeat: repeat;
   pointer-events: none;
   z-index: 2;
@@ -577,7 +577,7 @@ body {
   margin: 0 auto;
 }
 
-/* Lưới 4 Card Hướng Dẫn Tĩnh (không dùng carousel) */
+/* Lưới Card Hướng Dẫn Đặt Hàng (Dạng Card Bình Thường, Không Carousel) */
 .guide-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -590,7 +590,7 @@ body {
   background: #ffffff;
   border: 1.5px solid var(--border-card);
   border-radius: 20px;
-  padding: 28px 20px 24px;
+  padding: 26px 20px 22px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -668,7 +668,7 @@ body {
 @media (max-width: 992px) {
   .guide-cards-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
+    gap: 18px;
   }
 }
 
@@ -1971,41 +1971,42 @@ body {
   padding: 40px 20px 35px;
 }
 
-/* Trang trí nơ hồng điệu đà trên đầu Tủ đồ (thay thế hoa) */
+/* Trang trí nơ hồng coquette trên đầu Tủ đồ (thay hoa theo yêu cầu) */
 .catalog-header-bow {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 8px;
+  margin-bottom: 14px;
 }
-.catalog-bow-img {
-  width: 96px;
-  max-width: 25vw;
+.catalog-bow-motif {
+  width: 110px;
+  max-width: 32vw;
   height: auto;
-  filter: drop-shadow(0 4px 12px rgba(168, 79, 104, 0.12));
+  filter: drop-shadow(0 4px 14px rgba(168, 79, 104, 0.15));
   transition: transform 0.35s ease;
   user-select: none;
 }
-.catalog-bow-img:hover {
-  transform: translateY(-3px) scale(1.06);
+.catalog-bow-motif:hover {
+  transform: translateY(-3px) scale(1.04);
 }
 
-/* Dải ruy băng ren nơ điệu đà ngăn cách tiêu đề và tủ đồ */
-.catalog-lace-divider {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 4px 0 28px;
-  user-select: none;
+/* Dải ruy băng ren kéo dài full màn hình (100vw) bên dưới header và trên các card */
+.lace-ribbon-divider {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  height: 58px;
+  background-image: url('../assets/elements/lace_ribbon_divider_transparent.png');
+  background-repeat: repeat-x;
+  background-position: center top;
+  background-size: auto 58px;
   pointer-events: none;
-}
-.catalog-lace-img {
-  width: 100%;
-  max-width: 1200px;
-  height: auto;
-  object-fit: cover;
-  filter: drop-shadow(0 2px 8px rgba(168, 79, 104, 0.05));
+  z-index: 3;
+  margin-top: 10px;
+  margin-bottom: 32px;
 }
 
 /* ====================================================
