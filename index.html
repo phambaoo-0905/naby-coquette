@@ -43,20 +43,20 @@
     </div>
   </header>
 
-  <!-- PHẦN THÂN TỦ ĐỒ NABY - NỀN TRẮNG TINH KHÔI (#FFFFFF) -->
+  <!-- PHẦN THÂN TỦ ĐỒ NABY -->
   <main class="main-content-white wardrobe-page-main">
     <div class="content-container">
 
-      <!-- TIÊU ĐỀ MỤC TỦ ĐỒ CỦA NABY (CHUẨN FORM ẢNH 1) -->
+      <!-- Tiêu đề danh mục sản phẩm (phong cách ảnh 1) -->
       <section class="catalog-section" id="wardrobe-section">
-        <div class="catalog-header-wrap">
+        <div class="catalog-header-row">
           <div class="catalog-header-left">
-            <span class="catalog-kicker-pink">PICK YOUR LITTLE FAVORITE</span>
+            <span class="wardrobe-sub-kicker">PICK YOUR LITTLE FAVORITE</span>
             <h1 class="catalog-title">Tủ đồ của Naby ♡</h1>
           </div>
           <div class="catalog-header-right">
-            <p class="catalog-prompt-title">Thấy món đồ ưng ý?</p>
-            <p class="catalog-prompt-sub">Nhắn Instagram để chốt đơn nhé.</p>
+            <p>Thấy món đồ ưng ý?</p>
+            <p>Nhắn Instagram để chốt đơn nhé.</p>
           </div>
         </div>
 
@@ -70,80 +70,84 @@
           <button class="filter-btn" data-filter="passed">Đã pass</button>
         </div>
 
-        <!-- Lưới sản phẩm 3 cột chuẩn form ảnh 1 -->
+        <!-- Lưới sản phẩm 3 cột chuẩn phong cách ảnh 1 -->
         <div class="products-grid-3col" id="productsGrid"></div>
       </section>
 
     </div>
   </main>
 
-  <!-- MODAL POPUP CHI TIẾT SẢN PHẨM CHUẨN FORM ẢNH 2 -->
-  <div class="product-modal-backdrop" id="productModal" role="dialog" aria-modal="true" aria-hidden="true">
-    <div class="product-modal-card">
+  <!-- POPUP CHI TIẾT SẢN PHẨM (CHUẨN ẢNH 2 THE NABY LOOK) -->
+  <div class="product-modal-backdrop" id="productModal" style="display: none;" aria-hidden="true">
+    <div class="product-modal-card" role="dialog" aria-modal="true">
       <button class="modal-close-btn" id="modalCloseBtn" type="button" aria-label="Đóng popup">✕</button>
 
-      <!-- KHU VỰC ẢNH CHÍNH & SLIDER -->
-      <div class="modal-gallery-wrap">
-        <div class="modal-image-stage" id="modalImageStage">
-          <img src="" alt="" class="modal-main-img" id="modalMainImg">
-        </div>
+      <!-- Khung xem ảnh chính -->
+      <div class="modal-gallery-stage">
+        <img src="" alt="" class="modal-main-image" id="modalMainImg">
 
-        <!-- NÚT LÙI / TIẾN ẢNH -->
-        <button class="modal-nav-btn modal-prev-btn" id="modalPrevBtn" type="button" aria-label="Ảnh trước">‹</button>
-        <button class="modal-nav-btn modal-next-btn" id="modalNextBtn" type="button" aria-label="Ảnh sau">›</button>
+        <!-- Nút Prev / Next ảnh -->
+        <button class="modal-arrow-btn modal-arrow-prev" id="modalPrevBtn" type="button" aria-label="Ảnh trước">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <button class="modal-arrow-btn modal-arrow-next" id="modalNextBtn" type="button" aria-label="Ảnh sau">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
 
-        <!-- ĐẾM SỐ ẢNH (1/3) -->
-        <div class="modal-img-counter" id="modalImgCounter">1/1</div>
-
-        <!-- THANH THU PHÓNG ZOOM CHUẨN ẢNH 2 -->
+        <!-- Thanh công cụ Zoom ở giữa phía dưới ảnh -->
         <div class="modal-zoom-controls">
-          <button type="button" class="zoom-btn" id="zoomOutBtn" title="Thu nhỏ">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          <button class="modal-zoom-action" id="modalZoomOut" type="button" title="Thu nhỏ">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </button>
-          <span class="zoom-level-text" id="zoomLevelText">100%</span>
-          <button type="button" class="zoom-btn" id="zoomInBtn" title="Phóng to">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+          <span class="modal-zoom-val" id="modalZoomVal">100%</span>
+          <button class="modal-zoom-action" id="modalZoomIn" type="button" title="Phóng to">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
           </button>
-          <button type="button" class="zoom-btn" id="zoomResetBtn" title="Đặt lại">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="23 4 23 10 17 10"/><path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"/></svg>
+          <button class="modal-zoom-action" id="modalZoomReset" type="button" title="Đặt lại">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><polyline points="3 3 3 8 8 8"/></svg>
           </button>
         </div>
+
+        <!-- Đếm số ảnh góc phải phía dưới ảnh -->
+        <div class="modal-image-counter" id="modalImgCounter">1 / 1</div>
       </div>
 
-      <!-- DẢI ẢNH THU NHỎ THUMBNAILS -->
-      <div class="modal-thumbnails-strip" id="modalThumbnailsStrip"></div>
-
-      <!-- NỘI DUNG CHI TIẾT SẢN PHẨM -->
-      <div class="modal-info-content">
-        <span class="modal-kicker-tag">THE NABY LOOK</span>
+      <!-- Thông tin sản phẩm -->
+      <div class="modal-body-content">
+        <div class="modal-brand-tag">THE NABY LOOK</div>
         <div class="modal-title-price-row">
-          <h2 class="modal-product-title" id="modalProductTitle">Tên món đồ</h2>
-          <span class="modal-product-price" id="modalProductPrice">0 đ</span>
+          <h2 class="modal-prod-title" id="modalProdTitle"></h2>
+          <div class="modal-prod-price" id="modalProdPrice"></div>
         </div>
-        
-        <div class="modal-specs-block" id="modalSpecsBlock"></div>
 
-        <!-- KHUNG LIÊN HỆ NABY (1 Ô DUY NHẤT CHUYỂN SANG INSTAGRAM THEO ĐÚNG YÊU CẦU) -->
-        <div class="modal-action-box">
-          <p class="modal-action-note">Chọn điều bạn muốn, Naby đã soạn sẵn lời nhắn cho bạn ♡</p>
-          <a href="https://instagram.com/_naby.coquette" target="_blank" rel="noopener noreferrer" class="btn-contact-naby" id="modalContactBtn">
+        <!-- Khung chỉ 1 ô duy nhất: Liên hệ Naby (theo đúng yêu cầu người dùng) -->
+        <div class="modal-contact-box">
+          <p class="modal-contact-hint">Chọn điều bạn muốn, Naby đã sẵn sàng hỗ trợ bạn ♡</p>
+          <button class="btn-contact-naby" id="btnContactNaby" type="button">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
+              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
             </svg>
             <span>Liên hệ Naby</span>
-          </a>
+          </button>
         </div>
+
+        <!-- Dải thumbnail ảnh nhỏ phía dưới -->
+        <div class="modal-thumbs-row" id="modalThumbsRow"></div>
       </div>
     </div>
   </div>
 
-  <!-- THÔNG BÁO TOAST -->
+  <!-- THÔNG BÁO TOAST KHI THÊM ĐỒ VÀO GIỎ -->
   <div class="toast-notification" id="toastNotification">
     <span class="toast-icon">🎀</span>
-    <span class="toast-message" id="toastMessage">Đang chuyển tiếp...</span>
-    <a href="https://instagram.com/_naby.coquette" target="_blank" class="toast-link">Mở Instagram →</a>
+    <span class="toast-message" id="toastMessage">Đã thêm vào Đơn của bạn ♡</span>
+    <a href="orders.html" class="toast-link">Xem đơn →</a>
   </div>
 
   <!-- CHÂN TRANG FOOTER -->
