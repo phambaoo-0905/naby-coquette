@@ -1845,14 +1845,6 @@ body {
   padding: 40px 20px 35px;
 }
 
-.wardrobe-script-tag {
-  font-family: var(--font-script);
-  font-size: 1.7rem;
-  color: var(--dusty-rose);
-  display: block;
-  margin-bottom: 4px;
-}
-
 .wardrobe-page-main {
   padding-top: 45px;
 }
