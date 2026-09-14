@@ -1547,73 +1547,85 @@ body.page-orders {
   box-shadow: 0 10px 24px rgba(168, 79, 104, 0.12);
 }
 
-/* Họa tiết nai & thỏ trang trí ngẫu nhiên rải rác trong khung Easy Shopping Guide & Join Our Wardrobe */
-.consign-deco-mascot {
+/* Họa tiết nai & thỏ phân bổ ngẫu nhiên duyên dáng trong khung (không dồn 4 góc) */
+.random-mascots-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.random-mascot {
   position: absolute;
   pointer-events: none;
-  z-index: 0;
   opacity: 0.22;
   filter: drop-shadow(0 3px 6px rgba(168, 79, 104, 0.08));
   transition: opacity 0.3s ease, transform 0.3s ease;
 }
-.consign-box:hover .consign-deco-mascot {
-  opacity: 0.42;
+
+.consign-box:hover .random-mascot {
+  opacity: 0.38;
 }
 
-.rand-mascot-1 {
-  top: 8%;
-  left: 14%;
+/* Các vị trí ngẫu nhiên không đối xứng, rải đều khắp mặt phẳng khung */
+.random-mascot.m-1 {
+  top: 12%;
+  left: 6%;
   width: 48px;
   transform: rotate(-14deg);
 }
 
-.rand-mascot-2 {
-  top: 14%;
-  left: 83%;
-  width: 42px;
+.random-mascot.m-2 {
+  top: 6%;
+  left: 33%;
+  width: 38px;
   transform: rotate(18deg);
 }
 
-.rand-mascot-3 {
-  top: 56%;
-  left: 4%;
+.random-mascot.m-3 {
+  top: 16%;
+  right: 18%;
+  width: 44px;
+  transform: rotate(-10deg);
+}
+
+.random-mascot.m-4 {
+  top: 48%;
+  left: 3%;
+  width: 36px;
+  transform: rotate(20deg);
+}
+
+.random-mascot.m-5 {
+  top: 44%;
+  right: 4%;
+  width: 46px;
+  transform: rotate(-16deg);
+}
+
+.random-mascot.m-6 {
+  bottom: 12%;
+  left: 17%;
   width: 40px;
+  transform: rotate(14deg);
+}
+
+.random-mascot.m-7 {
+  bottom: 8%;
+  left: 53%;
+  width: 48px;
   transform: rotate(-8deg);
 }
 
-.rand-mascot-4 {
-  top: 44%;
-  left: 48%;
-  width: 44px;
-  transform: rotate(12deg);
-}
-
-.rand-mascot-5 {
-  top: 69%;
-  left: 26%;
-  width: 46px;
-  transform: rotate(-22deg);
-}
-
-.rand-mascot-6 {
-  top: 83%;
-  left: 73%;
-  width: 50px;
-  transform: rotate(15deg);
-}
-
-.rand-mascot-7 {
-  top: 36%;
-  left: 92%;
-  width: 36px;
-  transform: rotate(-12deg);
-}
-
-.rand-mascot-8 {
-  top: 87%;
-  left: 17%;
+.random-mascot.m-8 {
+  bottom: 14%;
+  right: 20%;
   width: 38px;
-  transform: rotate(8deg);
+  transform: rotate(12deg);
 }
 
 .consign-box .about-script,

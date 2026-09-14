@@ -91,23 +91,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeImgIndex = 0;
   let activeZoom = 1;
 
-  // Mở Instagram & sao chép nội dung chốt đơn
-  function redirectToInstagram(product) {
-    const message = `Chào Naby Coquette ♡ Mình muốn chốt món này ạ:\n🎀 ${product.name} (${product.size || "Freesize"})\n💰 Giá: ${formatMoney(product.price)}\nNaby tư vấn và giữ đồ giúp mình nhé ୨ৎ`;
-
-    if (navigator.clipboard && navigator.clipboard.writeText) {
-      navigator.clipboard.writeText(message).then(() => {
-        showToast(`🎀 Đã sao chép "${product.name}"! Naby đang mở Instagram nàng nhé ♡`);
-      }).catch(() => {
-        showToast(`Đang chuyển đến Instagram @_naby.coquette ♡`);
-      });
-    } else {
-      showToast(`Đang chuyển đến Instagram @_naby.coquette ♡`);
-    }
-
-    setTimeout(() => {
-      window.open("https://instagram.com/_naby.coquette", "_blank");
-    }, 450);
+  // Chuyển thẳng về trang Instagram của shop (không copy, mở trực tiếp)
+  function redirectToInstagram() {
+    window.open("https://instagram.com/_naby.coquette", "_blank");
   }
 
   // Cập nhật hiển thị ảnh trong modal
@@ -355,12 +341,12 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
 
-        // Khi ấn Mua ngay: Chuyển thẳng sang trang Instagram của shop luôn (không copy)
+        // Khi ấn Mua ngay: Chuyển thẳng về trang Instagram của Naby
         const btnBuyNow = card.querySelector(".btn-card-buy-now");
         if (btnBuyNow) {
           btnBuyNow.addEventListener("click", (e) => {
             e.stopPropagation(); // Không kích hoạt mở modal
-            window.open("https://instagram.com/_naby.coquette", "_blank");
+            redirectToInstagram(product);
           });
         }
 
