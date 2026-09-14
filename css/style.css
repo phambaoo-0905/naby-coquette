@@ -327,38 +327,39 @@ body {
 }
 
 /* ====================================================
-   4. LƯỚI SẢN PHẨM & CARD (CHUẨN FORM ẢNH 1)
+   4. LƯỚI SẢN PHẨM & CARD (HIỆU ỨNG CHUẨN ẢNH MẪU)
 ==================================================== */
-.products-grid-3col {
+.products-grid-4col {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 36px 30px;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 24px 20px;
   margin-bottom: 70px;
 }
 
 .product-card {
   display: flex;
   flex-direction: column;
-  background: transparent;
+  background: #ffffff;
+  border: 1px solid var(--border-card, #F7DDE2);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.06);
   cursor: pointer;
-  transition: transform 0.25s ease;
+  transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+  position: relative;
 }
 .product-card:hover {
-  transform: translateY(-4px);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(168, 79, 104, 0.15);
+  border-color: #EBB6C2;
 }
 
-/* Khung ảnh sản phẩm bo góc mềm */
+/* Khung ảnh sản phẩm */
 .product-image-wrap {
   position: relative;
-  aspect-ratio: 1 / 1.15;
-  background: #ffffff;
-  border-radius: 18px;
+  aspect-ratio: 1 / 1.05;
+  background: #fdfaf8;
   overflow: hidden;
-  box-shadow: 0 4px 18px rgba(168, 79, 104, 0.08);
-  transition: box-shadow 0.3s ease;
-}
-.product-card:hover .product-image-wrap {
-  box-shadow: 0 10px 28px rgba(168, 79, 104, 0.16);
 }
 .product-image {
   width: 100%;
@@ -368,123 +369,146 @@ body {
   transition: transform 0.4s ease;
 }
 .product-card:hover .product-image {
-  transform: scale(1.03);
+  transform: scale(1.04);
 }
 
 /* Nhãn trạng thái góc trái trên */
-.badge-status-pill {
+.card-status-badge {
   position: absolute;
-  top: 14px;
-  left: 14px;
-  background: #ffffff;
-  color: #3a2e29;
-  font-size: 0.78rem;
+  top: 9px;
+  left: 9px;
+  background: rgba(255, 255, 255, 0.94);
+  color: var(--fawn-dark);
+  font-size: 0.72rem;
   font-weight: 600;
-  padding: 5px 14px;
-  border-radius: 20px;
+  padding: 3px 10px;
+  border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  backdrop-filter: blur(4px);
   z-index: 2;
   font-family: var(--font-sans);
 }
-.badge-status-pill.status-sold {
+.card-status-badge.sold-out {
   background: rgba(45, 35, 30, 0.85);
   color: #ffffff;
 }
 
-/* Nút Xem ảnh góc phải dưới của khung ảnh */
-.badge-view-photos {
+/* Sticker/Badge nhỏ góc phải trên chuẩn ảnh mẫu */
+.card-top-deco-badge {
   position: absolute;
-  bottom: 14px;
-  right: 14px;
-  background: rgba(255, 255, 255, 0.88);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-  color: #3a2e29;
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 6px 14px;
-  border-radius: 20px;
+  top: 9px;
+  right: 9px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px dashed #D6A4B0;
   display: flex;
   align-items: center;
-  gap: 6px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
+  justify-content: center;
+  color: var(--dusty-rose);
+  box-shadow: 0 2px 6px rgba(168, 79, 104, 0.12);
+  backdrop-filter: blur(4px);
   z-index: 2;
-  transition: all 0.2s ease;
-  font-family: var(--font-sans);
+  transition: transform 0.3s ease;
 }
-.badge-view-photos:hover {
-  background: #ffffff;
-  transform: scale(1.04);
+.product-card:hover .card-top-deco-badge {
+  transform: rotate(25deg) scale(1.1);
 }
 
-/* Thông tin chữ bên dưới ảnh */
+/* Phần thông tin chữ của card: CHỈ ĐỂ TÊN + GIÁ theo đúng yêu cầu */
 .product-info-wrap {
-  padding-top: 14px;
+  position: relative;
+  padding: 12px 14px 14px 14px;
+  background: #FFF1F2;
+  /* Họa tiết sọc dọc pastel mờ ảo thanh lịch chuẩn style web */
+  background-image: repeating-linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.65) 0px,
+    rgba(255, 255, 255, 0.65) 12px,
+    rgba(255, 241, 242, 0.95) 12px,
+    rgba(255, 241, 242, 0.95) 24px
+  );
+  border-top: 1px solid rgba(247, 221, 226, 0.7);
   display: flex;
   flex-direction: column;
-  flex: 1;
-}
-.product-info-row-top {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 12px;
-  margin-bottom: 8px;
+  justify-content: center;
+  min-height: 68px;
+  overflow: hidden;
 }
 .product-card-name {
   font-family: var(--font-sans);
-  font-size: 1.08rem;
+  font-size: 0.94rem;
   font-weight: 600;
   color: var(--fawn-dark);
-  margin: 0;
   line-height: 1.35;
+  margin-bottom: 4px;
+  position: relative;
+  z-index: 2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .product-card-price {
   font-family: var(--font-sans);
-  font-size: 1.08rem;
-  font-weight: 700;
+  font-size: 0.92rem;
+  font-weight: 600;
   color: var(--dusty-rose);
-  white-space: nowrap;
+  position: relative;
+  z-index: 2;
 }
-.product-specs-list {
+
+/* Chèn ảnh nai và thỏ size nhỏ và giảm opacity xuống theo đúng yêu cầu */
+.card-mascot-watermark {
+  position: absolute;
+  bottom: 4px;
+  right: 8px;
   display: flex;
-  flex-direction: column;
+  align-items: flex-end;
   gap: 3px;
+  opacity: 0.25; /* Giảm opacity theo yêu cầu */
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.product-card:hover .card-mascot-watermark {
+  opacity: 0.5; /* Hover hiện rõ nét hơn rất duyên dáng */
+  transform: translateY(-2px);
+}
+.mascot-mini-fawn {
+  width: 32px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(168, 79, 104, 0.08));
+}
+.mascot-mini-bunny {
+  width: 22px;
+  height: auto;
+  filter: drop-shadow(0 2px 4px rgba(168, 79, 104, 0.08));
+}
+
+/* Chi tiết thông số món đồ trong Modal */
+.modal-specs-box {
+  background: #FFF1F2;
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 12px 16px;
   margin-bottom: 14px;
 }
-.product-spec-item {
+.modal-spec-row {
   font-family: var(--font-sans);
-  font-size: 0.84rem;
-  color: #766a67;
-  line-height: 1.45;
-}
-.product-card-action {
-  margin-top: auto;
-  padding-top: 6px;
-}
-.link-order-ig {
+  font-size: 0.88rem;
+  color: var(--fawn-brown);
+  line-height: 1.5;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  align-items: baseline;
+  gap: 8px;
+}
+.modal-spec-row:not(:last-child) {
+  margin-bottom: 4px;
+}
+.modal-spec-row .spec-bullet {
   color: var(--dusty-rose);
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  transition: color 0.2s ease;
-}
-.link-order-ig:hover {
-  color: #8c3b52;
-}
-.link-order-ig .arrow-icon {
-  font-size: 0.95rem;
-  transition: transform 0.2s ease;
-}
-.link-order-ig:hover .arrow-icon {
-  transform: translate(3px, -3px);
+  font-size: 0.8rem;
 }
 
 /* ====================================================
@@ -1047,21 +1071,14 @@ body {
 /* ====================================================
    RESPONSIVE DESIGN
 ==================================================== */
-@media (max-width: 1200px) {
-  .products-grid-5col {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+@media (max-width: 1024px) {
+  .products-grid-4col {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 20px 16px;
   }
 }
 
 @media (max-width: 992px) {
-  .products-grid-3col {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 24px 20px;
-  }
-  .products-grid-5col {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-  }
   .about-card-box {
     flex-direction: column;
     padding: 35px 25px;
@@ -1095,13 +1112,9 @@ body {
   .nav-link {
     font-size: 0.85rem;
   }
-  .products-grid-3col {
+  .products-grid-4col {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20px 16px;
-  }
-  .products-grid-5col {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 14px;
+    gap: 16px 12px;
   }
   .catalog-title {
     font-size: 2rem;
@@ -1109,16 +1122,35 @@ body {
 }
 
 @media (max-width: 576px) {
-  .products-grid-3col {
-    grid-template-columns: 1fr;
-    gap: 24px;
+  .products-grid-4col {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 10px;
+  }
+  .product-info-wrap {
+    padding: 10px 10px 12px 10px;
+    min-height: 60px;
+  }
+  .product-card-name {
+    font-size: 0.85rem;
+  }
+  .product-card-price {
+    font-size: 0.84rem;
+  }
+  .card-mascot-watermark {
+    opacity: 0.22;
+  }
+  .mascot-mini-fawn {
+    width: 26px;
+  }
+  .mascot-mini-bunny {
+    width: 18px;
   }
   .product-modal-card {
     padding: 12px;
     border-radius: 20px;
   }
   .modal-gallery-stage {
-    height: 350px;
+    height: 340px;
     border-radius: 14px;
   }
   .modal-prod-title {

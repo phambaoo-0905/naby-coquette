@@ -85,6 +85,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const modalProdPrice = document.getElementById("modalProdPrice");
   const btnContactNaby = document.getElementById("btnContactNaby");
   const modalThumbsRow = document.getElementById("modalThumbsRow");
+  const modalSpecsBox = document.getElementById("modalSpecsBox");
 
   let activeProduct = null;
   let activeImgIndex = 0;
@@ -155,6 +156,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
     if (modalProdTitle) modalProdTitle.textContent = product.name;
     if (modalProdPrice) modalProdPrice.textContent = formatMoney(product.price);
+
+    // Hiển thị chi tiết thông số món đồ trong popup theo yêu cầu
+    if (modalSpecsBox) {
+      modalSpecsBox.innerHTML = "";
+      const specs = product.specs && product.specs.length > 0
+        ? product.specs
+        : [`✧ ${product.size}`, product.condition];
+      specs.forEach(s => {
+        const row = document.createElement("div");
+        row.className = "modal-spec-row";
+        row.innerHTML = `<span class="spec-bullet">✧</span> <span>${s.replace(/^✧\s*/, '')}</span>`;
+        modalSpecsBox.appendChild(row);
+      });
+    }
 
     // Tạo danh sách ảnh thumbnails
     if (modalThumbsRow) {
@@ -300,53 +315,27 @@ document.addEventListener("DOMContentLoaded", () => {
         card.className = "product-card";
         card.setAttribute("data-id", product.id);
 
-        const specsHtml = product.specs && product.specs.length > 0
-          ? product.specs.map(s => `<div class="product-spec-item">${s}</div>`).join("")
-          : `<div class="product-spec-item">✧ ${product.size}</div><div class="product-spec-item">${product.condition}</div>`;
-
         card.innerHTML = `
           <div class="product-image-wrap">
             <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
-            <span class="badge-status-pill ${product.status ? 'status-available' : 'status-sold'}">
-              ${product.status ? 'Còn hàng' : 'Đã bán'}
-            </span>
-            <button class="badge-view-photos" type="button">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect width="18" height="18" x="3" y="3" rx="2" ry="2"/>
-                <circle cx="9" cy="9" r="2"/>
-                <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
-              </svg>
-              <span>Xem ảnh</span>
-            </button>
+            ${!product.status ? '<span class="card-status-badge sold-out">Đã pass</span>' : '<span class="card-status-badge available">Còn hàng</span>'}
+            <div class="card-top-deco-badge" title="Naby Coquette Little Favorite">
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            </div>
           </div>
           <div class="product-info-wrap">
-            <div class="product-info-row-top">
-              <h3 class="product-card-name">${product.name}</h3>
-              <span class="product-card-price">${formatMoney(product.price)}</span>
-            </div>
-            <div class="product-specs-list">
-              ${specsHtml}
-            </div>
-            <div class="product-card-action">
-              <a href="https://instagram.com/_naby.coquette" target="_blank" class="link-order-ig">
-                <span>Chốt qua Instagram</span>
-                <span class="arrow-icon">↗</span>
-              </a>
+            <div class="product-card-name" title="${product.name}">${product.name}</div>
+            <div class="product-card-price">${formatMoney(product.price)}</div>
+
+            <!-- Họa tiết linh vật nai & thỏ size nhỏ, giảm opacity theo đúng yêu cầu -->
+            <div class="card-mascot-watermark">
+              <img src="assets/elements/fawn_lying.png" alt="Naby Fawn" class="mascot-mini-fawn">
+              <img src="assets/elements/bunny_mascot.png" alt="Naby Bunny" class="mascot-mini-bunny">
             </div>
           </div>
         `;
 
-        // Khi click vào link "Chốt qua Instagram ↗": Chuyển thẳng Instagram
-        const linkIg = card.querySelector(".link-order-ig");
-        if (linkIg) {
-          linkIg.addEventListener("click", (e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            redirectToInstagram(product);
-          });
-        }
-
-        // Khi click vào card hoặc nút "Xem ảnh": Mở modal popup (Ảnh 2)
+        // Khi click vào card: Mở modal popup chi tiết (Ảnh 2)
         card.addEventListener("click", () => {
           openProductModal(product);
         });
