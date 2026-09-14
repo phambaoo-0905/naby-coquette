@@ -270,33 +270,10 @@ body {
   padding: 0 30px;
 }
 
-/* Tiêu đề mục "Tủ đồ của Naby ♡" (chuẩn phong cách ảnh 1) */
-.catalog-header-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 28px;
-  padding: 0 4px;
-}
-.catalog-header-left {
-  text-align: left;
-}
-.wardrobe-sub-kicker {
-  display: block;
-  font-family: var(--font-sans);
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 1.5px;
-  color: var(--dusty-rose);
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-.catalog-header-right {
-  text-align: right;
-  font-family: var(--font-sans);
-  font-size: 0.9rem;
-  color: #766a67;
-  line-height: 1.45;
+/* Tiêu đề mục "Some highlighted products" / "Tủ đồ của Naby ♡" */
+.catalog-header {
+  text-align: center;
+  margin-bottom: 35px;
 }
 .catalog-title {
   font-family: var(--font-sans);
@@ -304,15 +281,29 @@ body {
   font-weight: 700;
   color: var(--fawn-dark);
   letter-spacing: -0.02em;
-  margin: 0;
+}
+.catalog-subtitle {
+  font-size: 0.95rem;
+  color: var(--text-muted);
+  margin-top: 6px;
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+.wardrobe-script-tag {
+  font-family: var(--font-script);
+  font-size: 2rem;
+  color: var(--dusty-rose);
+  display: block;
+  line-height: 1.1;
+  margin-bottom: 4px;
 }
 
-/* Bộ lọc danh mục */
+/* Bộ lọc danh mục (gọn gàng, tinh tế với khung trắng) */
 .category-filters {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 10px;
-  margin-bottom: 35px;
+  margin-bottom: 40px;
   flex-wrap: wrap;
 }
 .filter-btn {
@@ -1102,14 +1093,6 @@ body {
   }
   .nav-link {
     font-size: 0.85rem;
-  }
-  .catalog-header-row {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  .catalog-header-right {
-    text-align: left;
   }
   .products-grid-3col {
     grid-template-columns: repeat(2, minmax(0, 1fr));
