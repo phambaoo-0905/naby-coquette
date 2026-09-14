@@ -406,6 +406,90 @@
 
         <!-- Lưới sản phẩm 4 cột chuẩn phong cách ảnh mẫu -->
         <div class="products-grid-4col" id="productsGrid"></div>
+
+        <!-- Nút Xem thêm sản phẩm (mặc định chỉ hiện 8 card) -->
+        <div class="load-more-container" id="loadMoreContainer">
+          <button class="btn-load-more" id="btnLoadMore" type="button">
+            <span>Xem thêm đồ xinh ♡</span>
+            <span class="load-more-count" id="loadMoreCount">(+6)</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- HƯỚNG DẪN ĐẶT HÀNG CAROUSEL (CHUẨN COQUETTE AESTHETIC) -->
+      <section class="order-guide-section" id="orderGuideSection">
+        <div class="order-guide-header">
+          <span class="guide-subtitle-script">Easy Shopping Guide</span>
+          <h2 class="guide-main-title">Hướng Dẫn Đặt Hàng Cùng Naby ♡</h2>
+          <p class="guide-intro-desc">
+            Chỉ với 4 bước thật dịu dàng để rước một em đồ xinh xắn về tủ đồ của nàng ୨ৎ
+          </p>
+        </div>
+
+        <!-- Khung Carousel Card -->
+        <div class="guide-carousel-wrapper">
+          <button class="guide-nav-btn guide-prev-btn" id="guidePrevBtn" type="button" aria-label="Xem bước trước">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
+          </button>
+
+          <div class="guide-carousel-track" id="guideCarouselTrack">
+            <!-- Bước 1 -->
+            <div class="guide-card" data-step="0">
+              <div class="guide-card-badge">Bước 01</div>
+              <div class="guide-card-icon">🎀</div>
+              <h3 class="guide-card-title">Chọn Món Đồ Nàng Yêu</h3>
+              <p class="guide-card-desc">
+                Dạo quanh Tủ đồ Naby, bấm vào từng card để ngắm cận chất vải, độ mới (Newtag / Like new) và thông số số đo chi tiết.
+              </p>
+              <div class="guide-card-tip">✧ Có công cụ Zoom ảnh to rõ</div>
+            </div>
+
+            <!-- Bước 2 -->
+            <div class="guide-card" data-step="1">
+              <div class="guide-card-badge">Bước 02</div>
+              <div class="guide-card-icon">💌</div>
+              <h3 class="guide-card-title">Chạm "Liên Hệ Naby"</h3>
+              <p class="guide-card-desc">
+                Trong bảng chi tiết món đồ, bấm nút <strong>Liên hệ Naby</strong>. Tên món đồ và giá tiền sẽ được tự động sao chép ngay lập tức.
+              </p>
+              <div class="guide-card-tip">✧ Tự động sao chép mã đồ</div>
+            </div>
+
+            <!-- Bước 3 -->
+            <div class="guide-card" data-step="2">
+              <div class="guide-card-badge">Bước 03</div>
+              <div class="guide-card-icon">💬</div>
+              <h3 class="guide-card-title">Nhắn Tin Qua Instagram</h3>
+              <p class="guide-card-desc">
+                Cửa sổ Instagram <strong>@_naby.coquette</strong> tự động mở ra. Nàng chỉ cần dán tin nhắn vào khung chat để Naby tư vấn giữ đồ.
+              </p>
+              <div class="guide-card-tip">✧ Naby phản hồi nhanh chóng</div>
+            </div>
+
+            <!-- Bước 4 -->
+            <div class="guide-card" data-step="3">
+              <div class="guide-card-badge">Bước 04</div>
+              <div class="guide-card-icon">📦</div>
+              <h3 class="guide-card-title">Nhận Bưu Kiện Ngọt Ngào</h3>
+              <p class="guide-card-desc">
+                Naby gói ghém từng món đồ cẩn thận với nơ xinh và hương thơm dễ chịu, gửi gắm trọn vẹn yêu thương tới tận tay nàng thơ.
+              </p>
+              <div class="guide-card-tip">✧ Gói quà nơ xinh thơm tho</div>
+            </div>
+          </div>
+
+          <button class="guide-nav-btn guide-next-btn" id="guideNextBtn" type="button" aria-label="Xem bước tiếp theo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+          </button>
+        </div>
+
+        <!-- Chỉ số trang (Pagination Dots) -->
+        <div class="guide-dots-indicator" id="guideDotsIndicator">
+          <button class="guide-dot active" data-index="0" type="button" aria-label="Chuyển đến bước 1"></button>
+          <button class="guide-dot" data-index="1" type="button" aria-label="Chuyển đến bước 2"></button>
+          <button class="guide-dot" data-index="2" type="button" aria-label="Chuyển đến bước 3"></button>
+          <button class="guide-dot" data-index="3" type="button" aria-label="Chuyển đến bước 4"></button>
+        </div>
       </section>
 
     </div>

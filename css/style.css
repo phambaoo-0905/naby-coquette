@@ -366,6 +366,23 @@ body {
   transform: scale(1.04);
 }
 
+/* Hiệu ứng chấm nhỏ pastel dịu dàng phủ lên ảnh trong card (tự động áp dụng mọi ảnh) */
+.card-dots-overlay {
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/elements/pastel_dots_overlay.svg');
+  background-size: 260px 260px;
+  background-repeat: repeat;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.92;
+  transition: opacity 0.3s ease, transform 0.4s ease;
+}
+.product-card:hover .card-dots-overlay {
+  opacity: 1;
+  transform: scale(1.02);
+}
+
 /* Nhãn trạng thái góc trái trên */
 .card-status-badge {
   position: absolute;
@@ -478,6 +495,275 @@ body {
   width: 22px;
   height: auto;
   filter: drop-shadow(0 2px 4px rgba(168, 79, 104, 0.08));
+}
+
+/* ====================================================
+   NÚT XEM THÊM ĐỒ XINH (CHỈ HIỆN 8 CARD BAN ĐẦU)
+==================================================== */
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: -40px 0 65px;
+}
+.btn-load-more {
+  background: #FFF1F2;
+  color: var(--dusty-rose);
+  border: 1.5px solid var(--dusty-rose);
+  border-radius: 30px;
+  padding: 12px 34px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  font-family: var(--font-sans);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.12);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.btn-load-more:hover {
+  background: var(--dusty-rose);
+  color: #ffffff;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(168, 79, 104, 0.25);
+}
+.btn-load-more:active {
+  transform: translateY(-1px);
+}
+.load-more-count {
+  font-size: 0.86rem;
+  opacity: 0.85;
+}
+
+/* ====================================================
+   CAROUSEL CARD HƯỚNG DẪN ĐẶT HÀNG (COQUETTE AESTHETIC)
+==================================================== */
+.order-guide-section {
+  background: linear-gradient(180deg, rgba(255, 241, 242, 0.5) 0%, rgba(255, 255, 255, 0.95) 100%);
+  border: 1px solid var(--border-card);
+  border-radius: 28px;
+  padding: 48px 36px 42px;
+  margin: 10px 0 75px;
+  box-shadow: 0 8px 32px rgba(168, 79, 104, 0.06);
+  position: relative;
+}
+
+.order-guide-header {
+  text-align: center;
+  margin-bottom: 34px;
+}
+.guide-subtitle-script {
+  font-family: var(--font-script);
+  font-size: 2.1rem;
+  color: var(--dusty-rose);
+  display: block;
+  line-height: 1.2;
+  margin-bottom: 2px;
+}
+.guide-main-title {
+  font-family: var(--font-sans);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--fawn-dark);
+  letter-spacing: -0.015em;
+  margin-bottom: 8px;
+}
+.guide-intro-desc {
+  font-family: var(--font-sans);
+  font-size: 0.96rem;
+  color: var(--text-muted);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* Khung Carousel */
+.guide-carousel-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.guide-carousel-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  width: 100%;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  padding: 8px 4px 12px;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.guide-carousel-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* Thẻ Card Hướng Dẫn */
+.guide-card {
+  background: #ffffff;
+  border: 1.5px solid var(--border-card);
+  border-radius: 20px;
+  padding: 26px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  box-shadow: 0 4px 16px rgba(168, 79, 104, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  position: relative;
+  scroll-snap-align: start;
+}
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(168, 79, 104, 0.14);
+  border-color: #EBB6C2;
+}
+
+.guide-card-badge {
+  font-family: var(--font-sans);
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--dusty-rose);
+  background: #FFF1F2;
+  border: 1px solid #F8CCD5;
+  padding: 4px 12px;
+  border-radius: 14px;
+  margin-bottom: 14px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.guide-card-icon {
+  font-size: 2.2rem;
+  margin-bottom: 12px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: #FFF5F6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(168, 79, 104, 0.08);
+  transition: transform 0.3s ease;
+}
+.guide-card:hover .guide-card-icon {
+  transform: scale(1.12) rotate(4deg);
+}
+
+.guide-card-title {
+  font-family: var(--font-sans);
+  font-size: 1.08rem;
+  font-weight: 700;
+  color: var(--fawn-dark);
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.guide-card-desc {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+  margin-bottom: 14px;
+  flex-grow: 1;
+}
+
+.guide-card-tip {
+  font-family: var(--font-sans);
+  font-size: 0.78rem;
+  color: var(--dusty-rose);
+  font-weight: 500;
+  background: rgba(255, 241, 242, 0.7);
+  padding: 4px 10px;
+  border-radius: 10px;
+  width: 100%;
+}
+
+/* Nút điều hướng Carousel */
+.guide-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid var(--border-card);
+  color: var(--fawn-dark);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+  box-shadow: 0 4px 14px rgba(168, 79, 104, 0.15);
+  transition: all 0.25s ease;
+}
+.guide-nav-btn:hover {
+  background: var(--dusty-rose);
+  color: #ffffff;
+  border-color: var(--dusty-rose);
+  transform: translateY(-50%) scale(1.08);
+}
+.guide-prev-btn {
+  left: -18px;
+}
+.guide-next-btn {
+  right: -18px;
+}
+
+/* Chỉ số trang (Dots) */
+.guide-dots-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 24px;
+}
+.guide-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #F2D4DA;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: all 0.28s ease;
+}
+.guide-dot.active {
+  width: 26px;
+  border-radius: 10px;
+  background: var(--dusty-rose);
+}
+
+@media (max-width: 992px) {
+  .guide-carousel-track {
+    grid-template-columns: repeat(4, 280px);
+    overflow-x: auto;
+  }
+  .guide-nav-btn {
+    display: flex;
+  }
+}
+
+@media (max-width: 600px) {
+  .order-guide-section {
+    padding: 36px 18px 30px;
+    border-radius: 22px;
+  }
+  .guide-main-title {
+    font-size: 1.45rem;
+  }
+  .guide-carousel-track {
+    grid-template-columns: repeat(4, 82vw);
+    gap: 14px;
+  }
+  .guide-card {
+    padding: 22px 16px 18px;
+  }
+  .guide-nav-btn {
+    display: none;
+  }
 }
 
 /* Chi tiết thông số món đồ trong Modal */

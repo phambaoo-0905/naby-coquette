@@ -289,6 +289,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // Render danh sách Card sản phẩm (Ảnh 1)
   if (productsGrid && typeof productsData !== "undefined") {
     let currentSort = "newest";
+    const INITIAL_DISPLAY_COUNT = 8;
+    let displayedCount = INITIAL_DISPLAY_COUNT;
+
+    const loadMoreContainer = document.getElementById("loadMoreContainer");
+    const btnLoadMore = document.getElementById("btnLoadMore");
+    const loadMoreCount = document.getElementById("loadMoreCount");
 
     function renderProducts() {
       productsGrid.innerHTML = "";
@@ -301,8 +307,6 @@ document.addEventListener("DOMContentLoaded", () => {
         list.sort((a, b) => b.price - a.price);
       } else if (currentSort === "available") {
         list = list.filter((item) => item.status === true);
-      } else {
-        // "newest" hoặc mặc định: giữ nguyên thứ tự ban đầu
       }
 
       if (list.length === 0) {
@@ -312,10 +316,14 @@ document.addEventListener("DOMContentLoaded", () => {
             <span style="font-size: 0.9rem;">Naby sẽ sớm cập nhật thêm các mẫu mới bạn nhé! 🦌 ୨ৎ</span>
           </div>
         `;
+        if (loadMoreContainer) loadMoreContainer.style.display = "none";
         return;
       }
 
-      list.forEach((product) => {
+      // Chỉ hiển thị tối đa displayedCount (mặc định 8 card)
+      const visibleItems = list.slice(0, displayedCount);
+
+      visibleItems.forEach((product) => {
         const card = document.createElement("div");
         card.className = "product-card";
         card.setAttribute("data-id", product.id);
@@ -323,6 +331,8 @@ document.addEventListener("DOMContentLoaded", () => {
         card.innerHTML = `
           <div class="product-image-wrap">
             <img class="product-image" src="${product.image}" alt="${product.name}" loading="lazy">
+            <!-- Hiệu ứng chấm pastel nhỏ dịu dàng phủ lên ảnh chuẩn coquette -->
+            <div class="card-dots-overlay" aria-hidden="true"></div>
             ${!product.status ? '<span class="card-status-badge sold-out">Đã pass</span>' : '<span class="card-status-badge available">Còn hàng</span>'}
             <div class="card-top-deco-badge" title="Naby Coquette Little Favorite">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
@@ -347,18 +357,103 @@ document.addEventListener("DOMContentLoaded", () => {
 
         productsGrid.appendChild(card);
       });
+
+      // Cập nhật trạng thái nút "Xem thêm"
+      if (loadMoreContainer && btnLoadMore) {
+        const remaining = list.length - displayedCount;
+        if (remaining > 0) {
+          loadMoreContainer.style.display = "flex";
+          if (loadMoreCount) {
+            loadMoreCount.textContent = `(+${remaining})`;
+          }
+        } else {
+          loadMoreContainer.style.display = "none";
+        }
+      }
     }
 
-    filterPills.forEach((pill) => {
-      pill.addEventListener("click", () => {
-        filterPills.forEach((p) => p.classList.remove("active"));
-        pill.classList.add("active");
-        currentSort = pill.dataset.sort || pill.dataset.filter || "newest";
+    if (btnLoadMore) {
+      btnLoadMore.addEventListener("click", () => {
+        displayedCount += 8; // Hiện thêm 8 món tiếp theo
         renderProducts();
+      });
+    }
+
+    renderProducts();
+
+    // Khởi tạo Carousel Hướng dẫn đặt hàng
+    initOrderGuideCarousel();
+  }
+
+  // Logic Carousel Card Hướng Dẫn Đặt Hàng
+  function initOrderGuideCarousel() {
+    const track = document.getElementById("guideCarouselTrack");
+    const prevBtn = document.getElementById("guidePrevBtn");
+    const nextBtn = document.getElementById("guideNextBtn");
+    const dots = document.querySelectorAll(".guide-dot");
+    const cards = document.querySelectorAll(".guide-card");
+
+    if (!track || cards.length === 0) return;
+
+    let currentIndex = 0;
+
+    const updateDots = (index) => {
+      dots.forEach((d, i) => {
+        d.classList.toggle("active", i === index);
+      });
+    };
+
+    const scrollToIndex = (index) => {
+      if (index < 0) index = 0;
+      if (index >= cards.length) index = cards.length - 1;
+      currentIndex = index;
+      const targetCard = cards[currentIndex];
+      if (targetCard) {
+        track.scrollTo({
+          left: targetCard.offsetLeft - track.offsetLeft,
+          behavior: "smooth"
+        });
+      }
+      updateDots(currentIndex);
+    };
+
+    if (prevBtn) {
+      prevBtn.addEventListener("click", () => {
+        scrollToIndex(currentIndex - 1);
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener("click", () => {
+        scrollToIndex(currentIndex + 1);
+      });
+    }
+
+    dots.forEach((dot, idx) => {
+      dot.addEventListener("click", () => {
+        scrollToIndex(idx);
       });
     });
 
-    renderProducts();
+    let isScrolling;
+    track.addEventListener("scroll", () => {
+      clearTimeout(isScrolling);
+      isScrolling = setTimeout(() => {
+        const scrollLeft = track.scrollLeft;
+        let closestIndex = 0;
+        let minDiff = Infinity;
+        cards.forEach((card, idx) => {
+          const cardLeft = card.offsetLeft - track.offsetLeft;
+          const diff = Math.abs(scrollLeft - cardLeft);
+          if (diff < minDiff) {
+            minDiff = diff;
+            closestIndex = idx;
+          }
+        });
+        currentIndex = closestIndex;
+        updateDots(currentIndex);
+      }, 50);
+    }, { passive: true });
   }
 
   // ====================================================
