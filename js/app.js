@@ -327,11 +327,11 @@ document.addEventListener("DOMContentLoaded", () => {
             <div class="product-card-name" title="${product.name}">${product.name}</div>
             <div class="product-card-price">${formatMoney(product.price)}</div>
 
-            <!-- Nút CTA Mua ngay nằm dưới cùng của card -->
-            <button class="btn-card-buy-now" type="button">
+            <!-- Nút CTA Mua ngay dẫn thẳng trực tiếp qua Instagram -->
+            <a href="https://instagram.com/_naby.coquette" target="_blank" rel="noopener noreferrer" class="btn-card-buy-now" onclick="event.stopPropagation();">
               <span>Mua ngay</span>
               <span class="btn-buy-icon">♡</span>
-            </button>
+            </a>
 
             <!-- Họa tiết linh vật nai & thỏ size nhỏ, giảm opacity theo đúng yêu cầu -->
             <div class="card-mascot-watermark">
@@ -341,12 +341,11 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         `;
 
-        // Khi ấn Mua ngay: Chuyển thẳng về trang Instagram của Naby
+        // Khi ấn Mua ngay: Chuyển thẳng về trang Instagram của Naby (ngăn modal mở)
         const btnBuyNow = card.querySelector(".btn-card-buy-now");
         if (btnBuyNow) {
           btnBuyNow.addEventListener("click", (e) => {
-            e.stopPropagation(); // Không kích hoạt mở modal
-            redirectToInstagram(product);
+            e.stopPropagation();
           });
         }
 
