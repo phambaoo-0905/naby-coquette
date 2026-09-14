@@ -375,11 +375,11 @@ body {
   background-repeat: repeat;
   pointer-events: none;
   z-index: 2;
-  opacity: 0.92;
+  opacity: 0.65;
   transition: opacity 0.3s ease, transform 0.4s ease;
 }
 .product-card:hover .card-dots-overlay {
-  opacity: 1;
+  opacity: 0.85;
   transform: scale(1.02);
 }
 
@@ -577,27 +577,12 @@ body {
   margin: 0 auto;
 }
 
-/* Khung Carousel */
-.guide-carousel-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
-.guide-carousel-track {
+/* Lưới 4 Card Hướng Dẫn Tĩnh (không dùng carousel) */
+.guide-cards-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   width: 100%;
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  scroll-snap-type: x mandatory;
-  padding: 8px 4px 12px;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.guide-carousel-track::-webkit-scrollbar {
-  display: none;
 }
 
 /* Thẻ Card Hướng Dẫn */
@@ -605,7 +590,7 @@ body {
   background: #ffffff;
   border: 1.5px solid var(--border-card);
   border-radius: 20px;
-  padding: 26px 20px 22px;
+  padding: 28px 20px 24px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -613,7 +598,6 @@ body {
   box-shadow: 0 4px 16px rgba(168, 79, 104, 0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
   position: relative;
-  scroll-snap-align: start;
 }
 .guide-card:hover {
   transform: translateY(-5px);
@@ -681,68 +665,10 @@ body {
   width: 100%;
 }
 
-/* Nút điều hướng Carousel */
-.guide-nav-btn {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: #ffffff;
-  border: 1.5px solid var(--border-card);
-  color: var(--fawn-dark);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 5;
-  box-shadow: 0 4px 14px rgba(168, 79, 104, 0.15);
-  transition: all 0.25s ease;
-}
-.guide-nav-btn:hover {
-  background: var(--dusty-rose);
-  color: #ffffff;
-  border-color: var(--dusty-rose);
-  transform: translateY(-50%) scale(1.08);
-}
-.guide-prev-btn {
-  left: -18px;
-}
-.guide-next-btn {
-  right: -18px;
-}
-
-/* Chỉ số trang (Dots) */
-.guide-dots-indicator {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 24px;
-}
-.guide-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #F2D4DA;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  transition: all 0.28s ease;
-}
-.guide-dot.active {
-  width: 26px;
-  border-radius: 10px;
-  background: var(--dusty-rose);
-}
-
 @media (max-width: 992px) {
-  .guide-carousel-track {
-    grid-template-columns: repeat(4, 280px);
-    overflow-x: auto;
-  }
-  .guide-nav-btn {
-    display: flex;
+  .guide-cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
   }
 }
 
@@ -754,15 +680,12 @@ body {
   .guide-main-title {
     font-size: 1.45rem;
   }
-  .guide-carousel-track {
-    grid-template-columns: repeat(4, 82vw);
+  .guide-cards-grid {
+    grid-template-columns: 1fr;
     gap: 14px;
   }
   .guide-card {
     padding: 22px 16px 18px;
-  }
-  .guide-nav-btn {
-    display: none;
   }
 }
 
@@ -2048,23 +1971,41 @@ body {
   padding: 40px 20px 35px;
 }
 
-/* Trang trí hoa hồng vintage cổ điển trên đầu Tủ đồ (thay thế linh vật) */
-.catalog-header-floral {
+/* Trang trí nơ hồng điệu đà trên đầu Tủ đồ (thay thế hoa) */
+.catalog-header-bow {
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 14px;
+  margin-bottom: 8px;
 }
-.catalog-floral-rose {
-  width: 95px;
-  max-width: 26vw;
+.catalog-bow-img {
+  width: 96px;
+  max-width: 25vw;
   height: auto;
-  filter: drop-shadow(0 4px 14px rgba(168, 79, 104, 0.12));
+  filter: drop-shadow(0 4px 12px rgba(168, 79, 104, 0.12));
   transition: transform 0.35s ease;
   user-select: none;
 }
-.catalog-floral-rose:hover {
-  transform: translateY(-3px) scale(1.04);
+.catalog-bow-img:hover {
+  transform: translateY(-3px) scale(1.06);
+}
+
+/* Dải ruy băng ren nơ điệu đà ngăn cách tiêu đề và tủ đồ */
+.catalog-lace-divider {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 4px 0 28px;
+  user-select: none;
+  pointer-events: none;
+}
+.catalog-lace-img {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
+  object-fit: cover;
+  filter: drop-shadow(0 2px 8px rgba(168, 79, 104, 0.05));
 }
 
 /* ====================================================
