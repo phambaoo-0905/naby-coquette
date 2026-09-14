@@ -51,6 +51,24 @@
 body {
   background-color: #FFF8F7;
   background-image: 
+    radial-gradient(ellipse at 50% 0%, #ffffff 0%, #FFF8F7 50%, #FEECEB 100%),
+    radial-gradient(circle at 15% 40%, rgba(255, 241, 242, 0.8) 0%, transparent 60%),
+    radial-gradient(circle at 85% 75%, rgba(254, 235, 238, 0.8) 0%, transparent 60%);
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: 100% 100%;
+  background-attachment: fixed;
+  color: var(--fawn-dark);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* Hoạ tiết hoa nhí vintage trên trang About & trang Orders */
+body.page-about,
+body.page-orders {
+  background-image: 
     url('../assets/elements/coquette_floral_pattern_tile.png'),
     radial-gradient(ellipse at 50% 0%, #ffffff 0%, #FFF8F7 50%, #FEECEB 100%),
     radial-gradient(circle at 15% 40%, rgba(255, 241, 242, 0.8) 0%, transparent 60%),
@@ -75,15 +93,11 @@ body {
     fixed,
     fixed,
     fixed;
-  color: var(--fawn-dark);
-  font-family: var(--font-sans);
-  line-height: 1.6;
-  min-height: 100vh;
-  overflow-x: hidden;
 }
 
 @media (max-width: 768px) {
-  body {
+  body.page-about,
+  body.page-orders {
     background-size: 
       260px 260px,
       100% 100%,
@@ -284,24 +298,26 @@ body {
 }
 
 /* ====================================================
-   3. KHUNG TRÊN TỪ DẢI RUY BĂNG TRỞ LÊN (NỀN SẠCH KHÔNG HOẠ TIẾT THEO YÊU CẦU)
+   3. PHẦN TỦ ĐỒ NABY (NỀN HOA NHÍ VINTAGE TỪ DẢI RUY BĂNG TRỞ XUỐNG)
 ==================================================== */
-.wardrobe-top-clean-zone {
-  width: 100%;
-  background-color: #FFF8F7;
-  background-image: 
-    radial-gradient(ellipse at 50% 0%, #ffffff 0%, #FFF8F7 50%, #FEECEB 100%),
-    radial-gradient(circle at 15% 40%, rgba(255, 241, 242, 0.8) 0%, transparent 60%),
-    radial-gradient(circle at 85% 75%, rgba(254, 235, 238, 0.8) 0%, transparent 60%);
-  background-size: 100% 100%, 100% 100%, 100% 100%;
-  position: relative;
-  z-index: 2;
-  padding-bottom: 4px;
-}
-
 .main-content-white {
   background-color: transparent;
   padding: 0 0 80px;
+}
+
+.wardrobe-page-main {
+  background-image: url('../assets/elements/coquette_floral_pattern_tile.png');
+  background-repeat: repeat;
+  background-position: center top;
+  background-size: 360px 360px;
+  background-attachment: fixed;
+}
+
+@media (max-width: 768px) {
+  .wardrobe-page-main {
+    background-size: 260px 260px;
+    background-attachment: scroll;
+  }
 }
 
 .content-container {
