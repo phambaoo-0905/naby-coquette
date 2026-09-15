@@ -501,4 +501,240 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderOrdersPage();
   }
+
+  // ====================================================
+  // 4. TRA CỨU ĐƠN HÀNG QUA GOOGLE SHEETS (ORDER LOOKUP)
+  // ====================================================
+
+  /**
+   * URL của Google Apps Script Web App.
+   * Thay thế chuỗi bên dưới bằng URL thực sau khi deploy Apps Script.
+   * Hướng dẫn deploy ở file: google-apps-script/Code.gs
+   */
+  const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwqaBK0rW0CnTCatCJC3mMYFO2xjj9_bB5dH8Ig7OgjA4OgCjQSmfJT5pLkVQW8BVDK/exec";
+
+  const orderLookupInput = document.getElementById("orderLookupInput");
+  const btnOrderSearch = document.getElementById("btnOrderSearch");
+  const orderLookupFeedback = document.getElementById("orderLookupFeedback");
+  const orderResultsSection = document.getElementById("orderResultsSection");
+  const orderResultsHandle = document.getElementById("orderResultsHandle");
+  const orderResultsList = document.getElementById("orderResultsList");
+  const btnOrderClear = document.getElementById("btnOrderClear");
+
+  // Chỉ chạy nếu đang ở trang orders.html
+  if (btnOrderSearch && orderLookupInput) {
+
+    /** Hiển thị trạng thái phản hồi bên dưới ô tìm kiếm */
+    function setLookupFeedback(type, html) {
+      if (!orderLookupFeedback) return;
+      orderLookupFeedback.className = "order-lookup-feedback";
+      if (type) orderLookupFeedback.classList.add(type);
+      orderLookupFeedback.innerHTML = html;
+    }
+
+    /** Map trạng thái đơn sang vị trí thanh tiến trình và CSS class */
+    function getProgressState(status) {
+      const s = (status || "").toLowerCase().trim();
+      // Bước: 0 = Đã chốt, 1 = Đang giao, 2 = Đã nhận
+      if (s.includes("đang giao") || s.includes("dang giao") || s.includes("shipping")) {
+        return 1;
+      }
+      if (s.includes("đã nhận") || s.includes("da nhan") || s.includes("done") || s.includes("hoàn thành") || s.includes("hoan thanh")) {
+        return 2;
+      }
+      // Mặc định: Đã chốt
+      return 0;
+    }
+
+    /** Map trạng thái sang CSS pill class */
+    function getStatusPillClass(status) {
+      const s = (status || "").toLowerCase().trim();
+      if (s.includes("đang giao") || s.includes("dang giao")) return "status-dang-giao";
+      if (s.includes("đã nhận") || s.includes("da nhan") || s.includes("done") || s.includes("hoan thanh")) return "status-da-nhan";
+      return "status-da-chot";
+    }
+
+    /**
+     * Render một card đơn hàng từ object data:
+     * { order_id, instagram_handle, order_date, status, items, shipping_fee, spx_tracking_code }
+     * items: mảng [{name, payment}] hoặc chuỗi "TênMón|TT,TênMón2|TT"
+     */
+    function renderOrderCard(order) {
+      const card = document.createElement("div");
+      card.className = "order-result-card";
+
+      const progressIdx = getProgressState(order.status);
+      const steps = [
+        { label: "Đã chốt", icon: "✓" },
+        { label: "Đang giao", icon: "📦" },
+        { label: "Đã nhận", icon: "🎀" },
+      ];
+
+      const progressHTML = steps.map((step, i) => {
+        let cls = "";
+        if (i < progressIdx) cls = "done";
+        else if (i === progressIdx) cls = "active";
+        return `
+          <div class="progress-step ${cls}">
+            <div class="progress-dot">${i <= progressIdx ? (i < progressIdx ? "✓" : step.icon) : ""}</div>
+            <span class="progress-label">${step.label}</span>
+          </div>
+        `;
+      }).join("");
+
+      // Parse items (string "Tên|TT,Tên2|TT" hoặc mảng JS)
+      let parsedItems = [];
+      if (Array.isArray(order.items)) {
+        parsedItems = order.items;
+      } else if (typeof order.items === "string" && order.items.trim()) {
+        parsedItems = order.items.split(",").map(raw => {
+          const parts = raw.trim().split("|");
+          return { name: (parts[0] || "").trim(), payment: (parts[1] || "").trim() };
+        }).filter(it => it.name);
+      }
+
+      const itemsHTML = parsedItems.length > 0
+        ? parsedItems.map(it => {
+            const isPaid = (it.payment || "").toLowerCase().includes("đã") || (it.payment || "").toLowerCase().includes("paid");
+            return `
+              <div class="order-result-item-row">
+                <span class="order-result-item-name">${it.name}</span>
+                <span class="order-result-item-payment ${isPaid ? 'paid' : 'unpaid'}">${it.payment || "Chưa TT"}</span>
+              </div>
+            `;
+          }).join("")
+        : `<div class="order-result-item-row"><span class="order-result-item-name" style="color:var(--text-muted)">Không có thông tin sản phẩm</span></div>`;
+
+      // Phí ship
+      const shippingFee = order.shipping_fee
+        ? new Intl.NumberFormat("vi-VN").format(Number(order.shipping_fee)) + "₫"
+        : "—";
+
+      // Nút SPX
+      const spxCode = (order.spx_tracking_code || "").trim();
+      const spxBtn = spxCode
+        ? `<a href="https://spx.vn/tracking?trackingId=${encodeURIComponent(spxCode)}" target="_blank" rel="noopener noreferrer" class="btn-spx-track">
+             📦 Theo dõi trên SPX
+           </a>`
+        : `<span class="btn-spx-track no-tracking">📦 Chưa có mã vận đơn</span>`;
+
+      const pillClass = getStatusPillClass(order.status);
+
+      card.innerHTML = `
+        <div class="order-result-card-header">
+          <div>
+            <div class="order-result-id">${order.order_id || "—"}</div>
+            <div class="order-result-date">Ngày đặt: ${order.order_date || "—"}</div>
+          </div>
+          <span class="order-status-pill ${pillClass}">${order.status || "Đã chốt"}</span>
+        </div>
+
+        <div class="order-progress-bar">
+          ${progressHTML}
+        </div>
+
+        <div class="order-result-items-title">Sản phẩm</div>
+        <div class="order-result-items-list">
+          ${itemsHTML}
+        </div>
+
+        <div class="order-result-footer">
+          <div class="order-shipping-info">
+            Phí ship: <strong>${shippingFee}</strong>
+          </div>
+          ${spxBtn}
+        </div>
+      `;
+
+      return card;
+    }
+
+    /** Thực hiện tra cứu đơn hàng */
+    async function searchOrders(handle) {
+      if (!handle) return;
+
+      // Hiển thị loading
+      setLookupFeedback("loading", `<div class="lookup-spinner"></div> Đang tìm kiếm đơn hàng...`);
+      if (btnOrderSearch) btnOrderSearch.disabled = true;
+
+      // Ẩn kết quả cũ
+      if (orderResultsSection) orderResultsSection.classList.remove("visible");
+
+      try {
+        const cleanHandle = handle.replace(/^@/, "").trim();
+        const url = `${APPS_SCRIPT_URL}?handle=${encodeURIComponent(cleanHandle)}`;
+
+        const response = await fetch(url);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+        const data = await response.json();
+
+        if (data.error) {
+          setLookupFeedback("error", `⚠️ ${data.error}`);
+          return;
+        }
+
+        const orders = Array.isArray(data) ? data : (data.orders || []);
+
+        if (orders.length === 0) {
+          setLookupFeedback("", `🔍 Không tìm thấy đơn hàng nào với tên "<strong>@${cleanHandle}</strong>".<br><span style="font-size:0.82rem">Hãy kiểm tra lại tên Instagram hoặc nhắn Naby qua Instagram để được hỗ trợ nhé ♡</span>`);
+          return;
+        }
+
+        // Hiển thị kết quả
+        setLookupFeedback("", "");
+        if (orderResultsHandle) orderResultsHandle.textContent = `@${cleanHandle}`;
+        if (orderResultsList) {
+          orderResultsList.innerHTML = "";
+          orders.forEach(order => {
+            orderResultsList.appendChild(renderOrderCard(order));
+          });
+        }
+        if (orderResultsSection) orderResultsSection.classList.add("visible");
+
+        // Cuộn xuống kết quả
+        setTimeout(() => {
+          if (orderResultsSection) {
+            orderResultsSection.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
+        }, 100);
+
+      } catch (err) {
+        console.error("Lỗi tra cứu đơn hàng:", err);
+        setLookupFeedback("error", `⚠️ Không thể kết nối đến hệ thống. Hãy thử lại sau ít phút hoặc nhắn Naby qua Instagram nhé ♡`);
+      } finally {
+        if (btnOrderSearch) btnOrderSearch.disabled = false;
+      }
+    }
+
+    // Gán sự kiện nút Tìm
+    btnOrderSearch.addEventListener("click", () => {
+      const handle = orderLookupInput.value.trim();
+      if (!handle) {
+        setLookupFeedback("error", "⚠️ Bạn chưa nhập tên Instagram nhé ♡");
+        orderLookupInput.focus();
+        return;
+      }
+      searchOrders(handle);
+    });
+
+    // Enter để tìm
+    orderLookupInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") btnOrderSearch.click();
+    });
+
+    // Nút "Tìm lại" — xóa kết quả và focus lại input
+    if (btnOrderClear) {
+      btnOrderClear.addEventListener("click", () => {
+        if (orderResultsSection) orderResultsSection.classList.remove("visible");
+        if (orderResultsList) orderResultsList.innerHTML = "";
+        setLookupFeedback("", "");
+        if (orderLookupInput) {
+          orderLookupInput.value = "";
+          orderLookupInput.focus();
+        }
+      });
+    }
+  }
 });
+
